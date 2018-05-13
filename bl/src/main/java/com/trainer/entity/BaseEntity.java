@@ -24,4 +24,7 @@ public abstract class BaseEntity implements Serializable{
 		this.id = id;
 	}
 	
+	public boolean isPersistent(){
+		return getId() != null;
+	}
 }
