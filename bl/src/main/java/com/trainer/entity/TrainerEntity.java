@@ -1,6 +1,5 @@
 package com.trainer.entity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,9 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,13 +17,9 @@ import com.trainer.types.GenderType;
 
 @Entity
 @Table(name="trainers")
-public class TrainerEntity implements Serializable{
+public class TrainerEntity extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
 	
 	@Column
 	private String firstName;
@@ -59,14 +51,6 @@ public class TrainerEntity implements Serializable{
 	
 	@OneToMany(mappedBy="trainer", cascade= CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<NutritionEntity> nutrions = new ArrayList<NutritionEntity>();
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getFirstName() {
 		return firstName;

@@ -7,7 +7,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="wrk_prog_link")
-public class WorkoutProgramLinkEntity {
+public class WorkoutProgramLinkEntity extends BaseEntity{
+
+	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
 	private WorkoutEntity workout;
