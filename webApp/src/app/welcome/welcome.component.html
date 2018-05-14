@@ -1,0 +1,21 @@
+
+
+
+
+
+
+<div *ngIf="!state">
+<app-login></app-login>
+
+</div>
+<div *ngIf="state">
+<app-create-account></app-create-account>
+
+</div>
+
+<div class="buttonWrapper">
+<button  class="btn btn-primary toggleStateButton" (click)="toggleState()">
+  {{state ? 'Back to login' : 'Create an account'}}
+</button>
+</div>
+
