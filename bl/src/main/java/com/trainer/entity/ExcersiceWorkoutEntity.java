@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.trainer.visitors.BaseVisitor;
+
 @Entity
 @Table(name="ex_work")
 public class ExcersiceWorkoutEntity extends BaseEntity{
@@ -44,4 +46,8 @@ public class ExcersiceWorkoutEntity extends BaseEntity{
 		this.numOfIntervals = numOfIntervals;
 	}
 	
+	@Override
+	public Object accept(BaseVisitor visitor, Object... obj) {
+		return visitor.visit(this, obj);
+	}
 }

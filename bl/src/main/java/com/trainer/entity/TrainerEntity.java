@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.trainer.types.GenderType;
+import com.trainer.visitors.BaseVisitor;
 
 @Entity
 @Table(name="trainers")
@@ -130,5 +131,10 @@ public class TrainerEntity extends BaseEntity {
 
 	public void setNutrions(List<NutritionEntity> nutrions) {
 		this.nutrions = nutrions;
+	}
+	
+	@Override
+	public Object accept(BaseVisitor visitor, Object... obj) {
+		return visitor.visit(this, obj);
 	}
 }

@@ -11,6 +11,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.trainer.visitors.BaseVisitor;
+
 @Entity
 @Table(name="work_prog")
 public class WorkoutProgramEntity extends BaseEntity{
@@ -38,6 +40,11 @@ public class WorkoutProgramEntity extends BaseEntity{
 
 	public void setWorkouts(List<WorkoutEntity> workouts) {
 		this.workouts = workouts;
+	}
+	
+	@Override
+	public Object accept(BaseVisitor visitor, Object... obj) {
+		return visitor.visit(this, obj);
 	}
 
 }

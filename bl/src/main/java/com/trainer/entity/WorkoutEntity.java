@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.trainer.visitors.BaseVisitor;
+
 @Entity
 @Table(name="workout")
 public class WorkoutEntity extends BaseEntity{
@@ -27,5 +29,10 @@ public class WorkoutEntity extends BaseEntity{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Override
+	public Object accept(BaseVisitor visitor, Object... obj) {
+		return visitor.visit(this, obj);
 	}
 }

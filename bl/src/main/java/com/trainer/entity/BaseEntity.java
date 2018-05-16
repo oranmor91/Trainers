@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import com.trainer.visitors.BaseVisitor;
+
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable{
 
@@ -27,4 +29,6 @@ public abstract class BaseEntity implements Serializable{
 	public boolean isPersistent(){
 		return getId() != null;
 	}
+	
+	public abstract Object accept(BaseVisitor visitor, Object... obj);
 }

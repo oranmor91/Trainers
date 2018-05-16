@@ -6,6 +6,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.trainer.visitors.BaseVisitor;
+
 @Entity
 @Table(name="nutrition")
 public class NutritionEntity extends BaseEntity {
@@ -22,4 +24,8 @@ public class NutritionEntity extends BaseEntity {
 	@ManyToOne
 	private TrainerEntity trainer;
 	
+	@Override
+	public Object accept(BaseVisitor visitor, Object... obj) {
+		return visitor.visit(this, obj);
+	}
 }

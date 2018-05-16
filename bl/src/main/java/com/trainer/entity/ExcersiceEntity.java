@@ -7,6 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 import com.trainer.types.MuscleType;
+import com.trainer.visitors.BaseVisitor;
 
 @Entity
 @Table(name="excersice")
@@ -57,5 +58,10 @@ public class ExcersiceEntity extends BaseEntity{
 
 	public void setVideoURL(String videoURL) {
 		this.videoURL = videoURL;
+	}
+
+	@Override
+	public Object accept(BaseVisitor visitor, Object... obj) {
+		return visitor.visit(this, obj);
 	}
 }

@@ -1,10 +1,8 @@
 package com.trainer.dto;
 
-import java.io.Serializable;
-
 import com.trainer.types.MuscleType;
 
-public class Excersice implements Serializable{
+public class Excersice implements BaseDto{
 
 	private static final long serialVersionUID = 1L;
 
@@ -57,5 +55,4 @@ public class Excersice implements Serializable{
 	public void setVideoURL(String videoURL) {
 		this.videoURL = videoURL;
 	}
-	
 }
