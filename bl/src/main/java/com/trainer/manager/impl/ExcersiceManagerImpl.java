@@ -1,6 +1,5 @@
 package com.trainer.manager.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,38 +36,31 @@ public class ExcersiceManagerImpl implements ExcersiceManager{
 	
 	@Override
 	public List<Excersice> getAll() {
-		List<Excersice> results = new ArrayList<Excersice>();
-		
-		for (ExcersiceEntity excersice : m_excersiceDao.getAll())
-			results.add((Excersice) m_dtoVisitor.visit(excersice));
-		
-		return results;
+		return ModelPersister.getAll(m_excersiceDao, m_dtoVisitor);
 	}
 
 	@Override
 	public List<ExcersiceEntity> getAllEntities() {
-		return m_excersiceDao.getAll();
+		return ModelPersister.getAllEntities(m_excersiceDao);
 	}
 	
 	@Override
 	public ExcersiceEntity getEntity(Integer id) {
-		return m_excersiceDao.get(id);
+		return ModelPersister.getEntity(id, m_excersiceDao);
 	}
 
 	@Override
 	public Excersice save(Excersice dto) {
-		ExcersiceEntity entity = (ExcersiceEntity) m_entityVistor.visit(dto.getId() == null ? new ExcersiceEntity() : getEntity(dto.getId()), dto);
-		entity = m_excersiceDao.save(entity);
-		return (Excersice) m_dtoVisitor.visit(entity);
+		return ModelPersister.save(dto, new ExcersiceEntity(), m_excersiceDao, m_dtoVisitor, m_entityVistor);
 	}
 
 	@Override
 	public ExcersiceEntity saveEntity(ExcersiceEntity entity) {
-		return m_excersiceDao.save(entity);
+		return ModelPersister.saveEntity(entity, m_excersiceDao);
 	}
 
 	@Override
 	public void delete(Integer id) {
-		m_excersiceDao.delete(id);
+		ModelPersister.delete(id, m_excersiceDao);
 	}
 }

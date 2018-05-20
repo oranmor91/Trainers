@@ -1,15 +1,15 @@
 package com.trainer.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.trainer.types.GenderType;
 
-public class Trainer implements BaseDto{
+public class Trainer extends BaseDto{
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer id;
-	
 	private String firstName;
 	
 	private String lastName;
@@ -27,14 +27,8 @@ public class Trainer implements BaseDto{
 	private Double weight;
 	
 	private int numOfExpeirence;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	
+	private List<Integer> nutritionId = new ArrayList<Integer>();
 
 	public String getFirstName() {
 		return firstName;
@@ -106,5 +100,13 @@ public class Trainer implements BaseDto{
 
 	public void setNumOfExpeirence(int numOfExpeirence) {
 		this.numOfExpeirence = numOfExpeirence;
+	}
+
+	public List<Integer> getNutritionId() {
+		return nutritionId;
+	}
+
+	public void setNutritionId(List<Integer> nutritionId) {
+		this.nutritionId = nutritionId;
 	}
 }

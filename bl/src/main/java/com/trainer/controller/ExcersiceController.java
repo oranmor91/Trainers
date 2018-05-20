@@ -37,7 +37,7 @@ public class ExcersiceController {
 		return m_excersiceManager.save(dto);
 	}
 	
-	@RequestMapping(method = RequestMethod.DELETE, value="/delete/{id}")
+	@RequestMapping(method = RequestMethod.DELETE, value="/{id}")
 	@ResponseStatus(value=HttpStatus.OK)
 	public void delete(@PathVariable Integer id) {
 		m_excersiceManager.delete(id);

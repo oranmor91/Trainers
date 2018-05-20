@@ -20,4 +20,5 @@ public interface BaseVisitor {
 	public Object visit(WorkoutEntity workoutEntity, Object... obj);
 
 	public Object visit(WorkoutProgramEntity workoutProgramEntity, Object... obj);
+
 }

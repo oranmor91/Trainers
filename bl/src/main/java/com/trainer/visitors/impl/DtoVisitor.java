@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.trainer.dto.Excersice;
+import com.trainer.dto.Trainer;
 import com.trainer.entity.ExcersiceEntity;
 import com.trainer.entity.ExcersiceWorkoutEntity;
 import com.trainer.entity.NutritionEntity;
@@ -16,11 +17,24 @@ import com.trainer.visitors.BaseVisitor;
 @Qualifier("DtoVisitor")
 public class DtoVisitor implements BaseVisitor{
 
-	//TODO
 	@Override
 	public Object visit(TrainerEntity entity, Object... obj) {
-		//TODO!
-		return null;
+		Trainer dto = new Trainer();
+		dto.setAdress(entity.getAdress());
+		dto.setBirthDay(entity.getBirthDay());
+		dto.setFirstName(entity.getFirstName());
+		dto.setGender(entity.getGender());
+		dto.setHeight(entity.getHeight());
+		dto.setId(entity.getId());
+		dto.setLastName(entity.getLastName());
+		dto.setNumOfExpeirence(entity.getNumOfExpeirence());
+		dto.setPhoneNumber(entity.getPhoneNumber());
+		dto.setWeight(entity.getWeight());
+		
+		for (NutritionEntity nutrion : entity.getNutrions())
+			dto.getNutritionId().add(nutrion.getId());
+		
+		return dto;
 	}
 
 	@Override

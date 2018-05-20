@@ -1,19 +1,16 @@
 package com.trainer.visitors.impl;
 
-import java.util.Date;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.trainer.dto.Excersice;
+import com.trainer.dto.Trainer;
 import com.trainer.entity.ExcersiceEntity;
 import com.trainer.entity.ExcersiceWorkoutEntity;
 import com.trainer.entity.NutritionEntity;
 import com.trainer.entity.TrainerEntity;
 import com.trainer.entity.WorkoutEntity;
 import com.trainer.entity.WorkoutProgramEntity;
-import com.trainer.types.GenderType;
 import com.trainer.visitors.BaseVisitor;
 
 @Component
@@ -32,8 +29,7 @@ public class EntityVisitor implements BaseVisitor{
 		entity.setAdress(dto.getAdress());
 		entity.setHeight(dto.getHeight());
 		entity.setWeight(dto.getWeight());
-		entity.setNumOfExpeirence(dto.getNumOfExpeirenc());
-		entity.setNutrions(dto.getNutrions());
+		entity.setNumOfExpeirence(dto.getNumOfExpeirence());
 		return entity;
 	}
 

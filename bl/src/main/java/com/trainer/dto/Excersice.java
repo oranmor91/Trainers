@@ -2,12 +2,10 @@ package com.trainer.dto;
 
 import com.trainer.types.MuscleType;
 
-public class Excersice implements BaseDto{
+public class Excersice extends BaseDto{
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer id;
-	
 	private String name;
 
 	private MuscleType primaryMuscle;
@@ -15,14 +13,6 @@ public class Excersice implements BaseDto{
 	private String comment;
 	
 	private String videoURL;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
