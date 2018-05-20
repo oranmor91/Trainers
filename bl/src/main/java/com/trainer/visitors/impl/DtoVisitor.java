@@ -12,6 +12,7 @@ import com.trainer.entity.ExcersiceWorkoutEntity;
 import com.trainer.entity.NutritionEntity;
 import com.trainer.entity.TrainerEntity;
 import com.trainer.entity.WorkoutEntity;
+import com.trainer.entity.WorkoutProgramEntity;
 import com.trainer.visitors.BaseVisitor;
 
 @Component
@@ -51,8 +52,12 @@ public class DtoVisitor implements BaseVisitor{
 
 	@Override
 	public Object visit(ExcersiceWorkoutEntity excersiceWorkoutEntity, Object... obj) {
-		// TODO Auto-generated method stub
-		return null;
+		ExcersiceWorkout workoutExcersice = new ExcersiceWorkout();
+		workoutExcersice.setId(excersiceWorkoutEntity.getId());
+		workoutExcersice.setExcersiceId(excersiceWorkoutEntity.getExcersice().getId());
+		workoutExcersice.setNumOfIntervals(excersiceWorkoutEntity.getNumOfIntervals());
+		workoutExcersice.setNumOfSets(excersiceWorkoutEntity.getNumOfSets());
+		return workoutExcersice;
 	}
 
 	@Override
@@ -68,14 +73,16 @@ public class DtoVisitor implements BaseVisitor{
 		dto.setName(workoutEntity.getName());
 		
 		for (ExcersiceWorkoutEntity excersice : workoutEntity.getExcersices()) {
-			ExcersiceWorkout workoutExcersice = new ExcersiceWorkout();
-			workoutExcersice.setId(excersice.getId());
-			workoutExcersice.setExcersiceId(excersice.getExcersice().getId());
-			workoutExcersice.setNumOfIntervals(excersice.getNumOfIntervals());
-			workoutExcersice.setNumOfSets(excersice.getNumOfSets());
+			ExcersiceWorkout workoutExcersice = (ExcersiceWorkout) excersice.accept(this, excersice);
 			dto.getExcersices().add(workoutExcersice);
 		}
 		
 		return dto;
+	}
+
+	@Override
+	public Object visit(WorkoutProgramEntity workoutProgramEntity, Object... obj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

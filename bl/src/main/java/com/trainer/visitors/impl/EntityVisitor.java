@@ -13,6 +13,7 @@ import com.trainer.entity.ExcersiceWorkoutEntity;
 import com.trainer.entity.NutritionEntity;
 import com.trainer.entity.TrainerEntity;
 import com.trainer.entity.WorkoutEntity;
+import com.trainer.entity.WorkoutProgramEntity;
 import com.trainer.manaager.ExcersiceManager;
 import com.trainer.visitors.BaseVisitor;
 
@@ -52,14 +53,22 @@ public class EntityVisitor implements BaseVisitor{
 
 	@Override
 	public Object visit(ExcersiceWorkoutEntity excersiceWorkoutEntity, Object... obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Object visit(NutritionEntity nutritionEntity, Object... obj) {
-		// TODO Auto-generated method stub
-		return null;
+		ExcersiceWorkout dto = (ExcersiceWorkout) obj[0];
+		Integer excersiceId = dto.getExcersiceId();
+		
+		if (excersiceId == null)
+			return null;
+		
+		ExcersiceEntity entity = m_excersiceManager.getEntity(excersiceId);
+		
+		if (entity == null)
+			return null;
+		
+		excersiceWorkoutEntity.setId(dto.getId());
+		excersiceWorkoutEntity.setExcersice(entity);
+		excersiceWorkoutEntity.setNumOfIntervals(dto.getNumOfIntervals());
+		excersiceWorkoutEntity.setNumOfSets(dto.getNumOfSets());
+		return excersiceWorkoutEntity;
 	}
 
 	@Override
@@ -71,24 +80,24 @@ public class EntityVisitor implements BaseVisitor{
 		workoutEntity.getExcersices().clear();
 		
 		for (ExcersiceWorkout excersiceWorkout : dto.getExcersices()) {
-			Integer excersiceId = excersiceWorkout.getExcersiceId();
+			ExcersiceWorkoutEntity entity = (ExcersiceWorkoutEntity) visit(new ExcersiceWorkoutEntity(), excersiceWorkout);
 			
-			if (excersiceId == null)
-				continue;
-			
-			ExcersiceEntity entity = m_excersiceManager.getEntity(excersiceId);
-			
-			if (entity == null)
-				continue;
-			
-			ExcersiceWorkoutEntity excersiceWorkoutEntity = new ExcersiceWorkoutEntity();
-			excersiceWorkoutEntity.setId(excersiceWorkout.getId());
-			excersiceWorkoutEntity.setExcersice(entity);
-			excersiceWorkoutEntity.setNumOfIntervals(excersiceWorkout.getNumOfIntervals());
-			excersiceWorkoutEntity.setNumOfSets(excersiceWorkout.getNumOfSets());
-			workoutEntity.getExcersices().add(excersiceWorkoutEntity);	
+			if (entity != null)
+				workoutEntity.getExcersices().add(entity);	
 		}
 				
 		return workoutEntity;
+	}
+	
+	@Override
+	public Object visit(NutritionEntity nutritionEntity, Object... obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object visit(WorkoutProgramEntity workoutProgramEntity, Object... obj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
