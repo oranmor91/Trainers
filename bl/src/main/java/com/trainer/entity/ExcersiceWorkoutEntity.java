@@ -21,7 +21,7 @@ public class ExcersiceWorkoutEntity extends BaseEntity{
 	
 	@Column
 	private Integer numOfIntervals;
-
+	
 	public ExcersiceEntity getExcersice() {
 		return excersice;
 	}

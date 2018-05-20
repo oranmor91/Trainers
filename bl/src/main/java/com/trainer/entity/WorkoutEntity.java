@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,7 +21,7 @@ public class WorkoutEntity extends BaseEntity{
 	@Column
 	private String name;
 
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<ExcersiceWorkoutEntity> excersices = new ArrayList<ExcersiceWorkoutEntity>();
 
 	public String getName() {
@@ -34,5 +35,13 @@ public class WorkoutEntity extends BaseEntity{
 	@Override
 	public Object accept(BaseVisitor visitor, Object... obj) {
 		return visitor.visit(this, obj);
+	}
+
+	public List<ExcersiceWorkoutEntity> getExcersices() {
+		return excersices;
+	}
+
+	public void setExcersices(List<ExcersiceWorkoutEntity> excersices) {
+		this.excersices = excersices;
 	}
 }

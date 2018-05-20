@@ -1,22 +1,28 @@
 package com.trainer.visitors.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.trainer.dto.Excersice;
+import com.trainer.dto.ExcersiceWorkout;
 import com.trainer.dto.Trainer;
+import com.trainer.dto.Workout;
 import com.trainer.entity.ExcersiceEntity;
 import com.trainer.entity.ExcersiceWorkoutEntity;
 import com.trainer.entity.NutritionEntity;
 import com.trainer.entity.TrainerEntity;
 import com.trainer.entity.WorkoutEntity;
-import com.trainer.entity.WorkoutProgramEntity;
+import com.trainer.manaager.ExcersiceManager;
 import com.trainer.visitors.BaseVisitor;
 
 @Component
 @Qualifier("EntityVisitor")
 public class EntityVisitor implements BaseVisitor{
 
+	@Autowired
+	private ExcersiceManager m_excersiceManager;
+	
 	@Override
 	public Object visit(TrainerEntity entity, Object... obj) {
 		Trainer dto = (Trainer) obj[0];
@@ -58,14 +64,31 @@ public class EntityVisitor implements BaseVisitor{
 
 	@Override
 	public Object visit(WorkoutEntity workoutEntity, Object... obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		Workout dto = (Workout) obj[0];
+		workoutEntity.setId(dto.getId());
+		workoutEntity.setName(dto.getName());
 
-	@Override
-	public Object visit(WorkoutProgramEntity workoutProgramEntity, Object... obj) {
-		// TODO Auto-generated method stub
-		return null;
+		workoutEntity.getExcersices().clear();
+		
+		for (ExcersiceWorkout excersiceWorkout : dto.getExcersices()) {
+			Integer excersiceId = excersiceWorkout.getExcersiceId();
+			
+			if (excersiceId == null)
+				continue;
+			
+			ExcersiceEntity entity = m_excersiceManager.getEntity(excersiceId);
+			
+			if (entity == null)
+				continue;
+			
+			ExcersiceWorkoutEntity excersiceWorkoutEntity = new ExcersiceWorkoutEntity();
+			excersiceWorkoutEntity.setId(excersiceWorkout.getId());
+			excersiceWorkoutEntity.setExcersice(entity);
+			excersiceWorkoutEntity.setNumOfIntervals(excersiceWorkout.getNumOfIntervals());
+			excersiceWorkoutEntity.setNumOfSets(excersiceWorkout.getNumOfSets());
+			workoutEntity.getExcersices().add(excersiceWorkoutEntity);	
+		}
+				
+		return workoutEntity;
 	}
-
 }

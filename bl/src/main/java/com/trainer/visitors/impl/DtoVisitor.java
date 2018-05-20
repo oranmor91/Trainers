@@ -4,13 +4,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.trainer.dto.Excersice;
+import com.trainer.dto.ExcersiceWorkout;
 import com.trainer.dto.Trainer;
+import com.trainer.dto.Workout;
 import com.trainer.entity.ExcersiceEntity;
 import com.trainer.entity.ExcersiceWorkoutEntity;
 import com.trainer.entity.NutritionEntity;
 import com.trainer.entity.TrainerEntity;
 import com.trainer.entity.WorkoutEntity;
-import com.trainer.entity.WorkoutProgramEntity;
 import com.trainer.visitors.BaseVisitor;
 
 @Component
@@ -62,13 +63,19 @@ public class DtoVisitor implements BaseVisitor{
 
 	@Override
 	public Object visit(WorkoutEntity workoutEntity, Object... obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Object visit(WorkoutProgramEntity workoutProgramEntity, Object... obj) {
-		// TODO Auto-generated method stub
-		return null;
+		Workout dto = new Workout();
+		dto.setId(workoutEntity.getId());
+		dto.setName(workoutEntity.getName());
+		
+		for (ExcersiceWorkoutEntity excersice : workoutEntity.getExcersices()) {
+			ExcersiceWorkout workoutExcersice = new ExcersiceWorkout();
+			workoutExcersice.setId(excersice.getId());
+			workoutExcersice.setExcersiceId(excersice.getExcersice().getId());
+			workoutExcersice.setNumOfIntervals(excersice.getNumOfIntervals());
+			workoutExcersice.setNumOfSets(excersice.getNumOfSets());
+			dto.getExcersices().add(workoutExcersice);
+		}
+		
+		return dto;
 	}
 }

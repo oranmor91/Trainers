@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import com.trainer.dao.BaseDao;
 import com.trainer.entity.BaseEntity;
@@ -23,7 +24,7 @@ public class BaseDaoImpl<ENTITY extends BaseEntity> implements BaseDao<ENTITY>{
 
 	@Override
 	public List<ENTITY> getAll() {
-		TypedQuery<ENTITY> createQuery = m_entityManager.createQuery("FROM ExcersiceEntity", getEntityClass());
+		TypedQuery<ENTITY> createQuery = m_entityManager.createQuery("FROM " + getEntityClass().getName(), getEntityClass());
 		
 		List<ENTITY> resultList = createQuery.getResultList();
 		
@@ -34,6 +35,7 @@ public class BaseDaoImpl<ENTITY extends BaseEntity> implements BaseDao<ENTITY>{
 	}
 
 	@Override
+	@Transactional
 	public ENTITY save(ENTITY entity) {
 		ENTITY result = null;
 		
@@ -48,6 +50,7 @@ public class BaseDaoImpl<ENTITY extends BaseEntity> implements BaseDao<ENTITY>{
 	}
 
 	@Override
+	@Transactional
 	public void delete(Integer id) {
 		ENTITY trainerEntity = get(id);
 		
