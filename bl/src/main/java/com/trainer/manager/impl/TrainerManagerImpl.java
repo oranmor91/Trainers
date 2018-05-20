@@ -9,7 +9,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.trainer.dao.TrainerDao;
+import com.trainer.dto.Excersice;
 import com.trainer.dto.Trainer;
+import com.trainer.entity.ExcersiceEntity;
 import com.trainer.entity.TrainerEntity;
 import com.trainer.manaager.TrainerManager;
 import com.trainer.utils.ModelPersister;
@@ -40,10 +42,11 @@ public class TrainerManagerImpl implements TrainerManager{
 		List<Trainer> results = new ArrayList<Trainer>();
 		
 		for (TrainerEntity trainer : m_trainerDao.getAll())
-			results.add(convert(trainer));
+			results.add((Trainer)m_dtoVisitor.visit(trainer));
 		
 		return results;
 	}
+	
 
 	@Override
 	public List<TrainerEntity> getAllEntities() {
@@ -57,10 +60,11 @@ public class TrainerManagerImpl implements TrainerManager{
 
 	@Override
 	public Trainer save(Trainer dto) {
-		TrainerEntity convert = convert(dto);
-		convert = m_trainerDao.save(convert);
-		return convert(convert);
+		TrainerEntity entity = (TrainerEntity)m_entityVistor.visit(dto.getId() == null ? new TrainerEntity() : getEntity(dto.getId()), dto);
+		entity = m_trainerDao.save(entity);
+		return (Trainer) m_dtoVisitor.visit(entity);
 	}
+	
 
 	@Override
 	public TrainerEntity saveEntity(TrainerEntity entity) {
@@ -71,16 +75,4 @@ public class TrainerManagerImpl implements TrainerManager{
 	public void delete(Integer id) {
 		m_trainerDao.delete(id);
 	}
-
-	//TODO: to remove and change to visitor
-	private TrainerEntity convert(Trainer dto) {
-		TrainerEntity result = new TrainerEntity();
-		return result;
-	}
-	
-	//TODO: to remove and change to visitor
-	private Trainer convert(TrainerEntity entity) {
-		return null;
-	}
-
 }
