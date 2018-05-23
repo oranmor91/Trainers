@@ -16,7 +16,7 @@ import com.trainer.visitors.BaseVisitor;
 
 @Entity
 @Table(name="work_prog")
-public class WorkoutProgramEntity extends BaseEntity{
+public class ProgramDefEntity extends BaseEntity{
 
 	private static final long serialVersionUID = 1L;
 

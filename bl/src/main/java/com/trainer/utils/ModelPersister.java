@@ -29,7 +29,6 @@ public class ModelPersister {
 		ENTITY entity = dto.getId() != null ? getEntity(dto.getId(), dao) : newInstance;
 		
 		entity = (ENTITY) entity.accept(m_entityVistor, dto);
-		
 		entity = dao.save(entity);
 		
 		return convert(entity, m_dtoVisitor);

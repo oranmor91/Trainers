@@ -13,7 +13,7 @@ import com.trainer.entity.ExcersiceWorkoutEntity;
 import com.trainer.entity.NutritionEntity;
 import com.trainer.entity.TrainerEntity;
 import com.trainer.entity.WorkoutEntity;
-import com.trainer.entity.WorkoutProgramEntity;
+import com.trainer.entity.ProgramDefEntity;
 import com.trainer.manaager.ExcersiceManager;
 import com.trainer.visitors.BaseVisitor;
 
@@ -96,7 +96,7 @@ public class EntityVisitor implements BaseVisitor{
 	}
 
 	@Override
-	public Object visit(WorkoutProgramEntity workoutProgramEntity, Object... obj) {
+	public Object visit(ProgramDefEntity workoutProgramEntity, Object... obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}

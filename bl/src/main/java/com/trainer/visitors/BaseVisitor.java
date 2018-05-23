@@ -5,7 +5,7 @@ import com.trainer.entity.ExcersiceWorkoutEntity;
 import com.trainer.entity.NutritionEntity;
 import com.trainer.entity.TrainerEntity;
 import com.trainer.entity.WorkoutEntity;
-import com.trainer.entity.WorkoutProgramEntity;
+import com.trainer.entity.ProgramDefEntity;
 
 public interface BaseVisitor {
 
@@ -19,7 +19,7 @@ public interface BaseVisitor {
 
 	public Object visit(WorkoutEntity workoutEntity, Object... obj);
 
-	public Object visit(WorkoutProgramEntity workoutProgramEntity, Object... obj);
+	public Object visit(ProgramDefEntity workoutProgramEntity, Object... obj);
 
 
 }
