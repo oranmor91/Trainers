@@ -13,7 +13,7 @@ public class ProgramDef extends BaseDto {
 	
 	private String notes;
 
-	private List<Workout> workouts = new ArrayList<Workout>();
+	private List<Integer> workouts = new ArrayList<Integer>();
 
 	public String getName() {
 		return name;
@@ -31,12 +31,19 @@ public class ProgramDef extends BaseDto {
 		this.name = name;
 	}
 
-	public List<Workout> getWorkout() {
+	public List<Integer> getWorkouts() {
 		return workouts;
 	}
 
-	public void setExcersices(List<Workout> workouts) {
+	public void setWorkouts(List<Integer> workouts) {
 		this.workouts = workouts;
 	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
 }

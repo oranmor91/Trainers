@@ -23,4 +23,6 @@
 <context:component-scan base-package="com.trainer.dao.impl" />
 <mvc:default-servlet-handler/>
 
+<bean id="eventListenerBean" class="webApp.ApplicationListenerBean" />
+
 </beans>

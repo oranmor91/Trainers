@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.trainer.dto.Excersice;
 import com.trainer.dto.ExcersiceWorkout;
+import com.trainer.dto.ProgramDef;
 import com.trainer.dto.Trainer;
 import com.trainer.dto.Workout;
 import com.trainer.entity.ExcersiceEntity;
@@ -15,6 +16,7 @@ import com.trainer.entity.TrainerEntity;
 import com.trainer.entity.WorkoutEntity;
 import com.trainer.entity.ProgramDefEntity;
 import com.trainer.manaager.ExcersiceManager;
+import com.trainer.manaager.WorkoutManager;
 import com.trainer.visitors.BaseVisitor;
 
 @Component
@@ -23,6 +25,9 @@ public class EntityVisitor implements BaseVisitor{
 
 	@Autowired
 	private ExcersiceManager m_excersiceManager;
+	
+	@Autowired
+	private WorkoutManager m_workoutManager;
 	
 	@Override
 	public Object visit(TrainerEntity entity, Object... obj) {
@@ -97,7 +102,21 @@ public class EntityVisitor implements BaseVisitor{
 
 	@Override
 	public Object visit(ProgramDefEntity workoutProgramEntity, Object... obj) {
-		// TODO Auto-generated method stub
-		return null;
+		ProgramDef dto = (ProgramDef) obj[0];
+		workoutProgramEntity.setId(dto.getId());
+		workoutProgramEntity.setDescription(dto.getDescription());
+		workoutProgramEntity.setName(dto.getName());
+		workoutProgramEntity.setNotes(dto.getNotes());
+		
+		workoutProgramEntity.getWorkouts().clear();
+		
+		for (Integer workoutId : dto.getWorkouts()) {
+			WorkoutEntity workoutEntity = m_workoutManager.getEntity(workoutId);
+			
+			if (workoutEntity != null)
+				workoutProgramEntity.getWorkouts().add(workoutEntity);
+		}
+		
+		return workoutProgramEntity;
 	}
 }

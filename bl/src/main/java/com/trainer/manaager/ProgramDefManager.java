@@ -11,7 +11,7 @@ public interface ProgramDefManager {
 	
 	public List<ProgramDef> getAll();
 	
-	public List<ProgramDef> getAllEntities();
+	public List<ProgramDefEntity> getAllEntities();
 	
 	public ProgramDefEntity getEntity(Integer id);
 	

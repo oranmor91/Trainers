@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.trainer.dto.Excersice;
 import com.trainer.dto.ExcersiceWorkout;
+import com.trainer.dto.ProgramDef;
 import com.trainer.dto.Trainer;
 import com.trainer.dto.Workout;
 import com.trainer.entity.ExcersiceEntity;
@@ -81,8 +82,16 @@ public class DtoVisitor implements BaseVisitor{
 	}
 
 	@Override
-	public Object visit(ProgramDefEntity workoutProgramEntity, Object... obj) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object visit(ProgramDefEntity programDefEntity, Object... obj) {
+		ProgramDef dto = new ProgramDef();
+		dto.setId(programDefEntity.getId());
+		dto.setName(programDefEntity.getName());
+		dto.setNotes(programDefEntity.getNotes());
+		dto.setDescription(programDefEntity.getDescription());
+		
+		for (WorkoutEntity workout : programDefEntity.getWorkouts())
+			dto.getWorkouts().add(workout.getId());
+		
+		return dto;
 	}
 }

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import com.trainer.visitors.BaseVisitor;
 
 @Entity
-@Table(name="work_prog")
+@Table(name="prog_def")
 public class ProgramDefEntity extends BaseEntity{
 
 	private static final long serialVersionUID = 1L;
@@ -30,7 +30,7 @@ public class ProgramDefEntity extends BaseEntity{
 	private String notes;
 	
 	@ManyToMany(cascade = { CascadeType.ALL}, fetch=FetchType.EAGER)
-	@JoinTable(name = "workout_program_link", joinColumns = { @JoinColumn(name = "work_prog_id") }, inverseJoinColumns = { @JoinColumn(name = "workouts_id") })
+	@JoinTable(name = "workout_prog_def", joinColumns = { @JoinColumn(name = "prog_def_id") }, inverseJoinColumns = { @JoinColumn(name = "workouts_id") })
 	private List<WorkoutEntity> workouts = new ArrayList<WorkoutEntity>();
 	
 	@Override

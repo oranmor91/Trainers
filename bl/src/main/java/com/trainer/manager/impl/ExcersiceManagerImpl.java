@@ -2,6 +2,8 @@ package com.trainer.manager.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -50,16 +52,19 @@ public class ExcersiceManagerImpl implements ExcersiceManager{
 	}
 
 	@Override
+	@Transactional
 	public Excersice save(Excersice dto) {
 		return ModelPersister.save(dto, new ExcersiceEntity(), m_excersiceDao, m_dtoVisitor, m_entityVistor);
 	}
 
 	@Override
+	@Transactional
 	public ExcersiceEntity saveEntity(ExcersiceEntity entity) {
 		return ModelPersister.saveEntity(entity, m_excersiceDao);
 	}
 
 	@Override
+	@Transactional
 	public void delete(Integer id) {
 		ModelPersister.delete(id, m_excersiceDao);
 	}

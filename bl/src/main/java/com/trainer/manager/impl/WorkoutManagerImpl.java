@@ -2,6 +2,8 @@ package com.trainer.manager.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -50,16 +52,19 @@ public class WorkoutManagerImpl implements WorkoutManager{
 	}
 
 	@Override
+	@Transactional
 	public Workout save(Workout dto) {
 		return ModelPersister.save(dto, new WorkoutEntity(), m_workoutDao, m_dtoVisitor, m_entityVistor);
 	}
 
 	@Override
+	@Transactional
 	public WorkoutEntity saveEntity(WorkoutEntity entity) {
 		return ModelPersister.saveEntity(entity, m_workoutDao);
 	}
 
 	@Override
+	@Transactional
 	public void delete(Integer id) {
 		ModelPersister.delete(id, m_workoutDao);
 	}
