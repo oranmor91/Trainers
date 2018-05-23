@@ -2,6 +2,8 @@ package com.trainer.manager.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -40,6 +42,7 @@ public class TrainerManagerImpl implements TrainerManager{
 	}
 	
 	@Override
+	@Transactional
 	public TrainerEntity saveEntity(TrainerEntity entity) {
 		return ModelPersister.saveEntity(entity, m_trainerDao);
 	}
@@ -55,11 +58,13 @@ public class TrainerManagerImpl implements TrainerManager{
 	}
 
 	@Override
+	@Transactional
 	public Trainer save(Trainer dto) {
 		return ModelPersister.save(dto, new TrainerEntity(), m_trainerDao, m_dtoVisitor, m_entityVistor);
 	}
 	
 	@Override
+	@Transactional
 	public void delete(Integer id) {
 		ModelPersister.delete(id, m_trainerDao);
 	}

@@ -11,11 +11,14 @@ import org.springframework.stereotype.Component;
 import com.trainer.entity.ExcersiceEntity;
 import com.trainer.entity.ExcersiceWorkoutEntity;
 import com.trainer.entity.ProgramDefEntity;
+import com.trainer.entity.TrainerEntity;
 import com.trainer.entity.WorkoutEntity;
 import com.trainer.manaager.ExcersiceManager;
 import com.trainer.manaager.ProgramDefManager;
 import com.trainer.manaager.StartUpManager;
+import com.trainer.manaager.TrainerManager;
 import com.trainer.manaager.WorkoutManager;
+import com.trainer.types.GenderType;
 import com.trainer.types.MuscleType;
 
 @Component
@@ -31,12 +34,22 @@ public class StartUpManagerImpl implements StartUpManager{
 	@Autowired
 	private ProgramDefManager m_programDefManager;
 	
+	@Autowired
+	private TrainerManager m_trainerManager;
+	
 	@Transactional
 	public void start() {
 		List<ExcersiceEntity> allEntities = m_excersiceManager.getAllEntities();
 		
 		if (!allEntities.isEmpty())
 			return;
+		
+		
+		TrainerEntity trainerEntity = new TrainerEntity();
+		trainerEntity.setFirstName("Super");
+		trainerEntity.setLastName("Admin");
+		trainerEntity.setGender(GenderType.MALE);
+		m_trainerManager.saveEntity(trainerEntity);
 		
 		ExcersiceEntity excersiceEntity = new ExcersiceEntity();
 		excersiceEntity.setName("sqat");
