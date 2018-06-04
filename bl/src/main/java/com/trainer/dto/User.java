@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.trainer.types.GenderType;
 
-public class Trainer extends BaseDto{
+public class User extends BaseDto{
 
 	private static final long serialVersionUID = 1L;
 

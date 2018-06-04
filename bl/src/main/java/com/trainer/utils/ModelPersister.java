@@ -15,17 +15,18 @@ public class ModelPersister {
 		return convert(entity, vistor);
 	}
 
-	public static <DTO extends BaseDto, ENTITY extends BaseEntity, DAO extends BaseDao<ENTITY>> List<DTO> getAll(DAO dao, BaseVisitor visitor) {
+	public static <DTO extends BaseDto, ENTITY extends BaseEntity, DAO extends BaseDao<ENTITY>> List<DTO> getAll(Integer coachId, DAO dao, BaseVisitor visitor) {
 		List<DTO> results = new ArrayList<DTO>();
 		
-		for (ENTITY entity : dao.getAll()) 
+		for (ENTITY entity : dao.getAll(coachId)) 
 			results.add(convert(entity, visitor));
 		
 		return results;
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <DTO extends BaseDto, ENTITY extends BaseEntity, DAO extends BaseDao<ENTITY>> DTO save(DTO dto, ENTITY newInstance, DAO dao, BaseVisitor m_dtoVisitor, BaseVisitor m_entityVistor) {
+	public static <DTO extends BaseDto, ENTITY extends BaseEntity, DAO extends BaseDao<ENTITY>> DTO save(DTO dto, Integer coachId, ENTITY newInstance, DAO dao, BaseVisitor m_dtoVisitor, BaseVisitor m_entityVistor) {
+		dto.setCoachId(coachId);
 		ENTITY entity = dto.getId() != null ? getEntity(dto.getId(), dao) : newInstance;
 		
 		entity = (ENTITY) entity.accept(m_entityVistor, dto);
@@ -34,8 +35,8 @@ public class ModelPersister {
 		return convert(entity, m_dtoVisitor);
 	}
 
-	public static <ENTITY extends BaseEntity, DAO extends BaseDao<ENTITY>> List<ENTITY> getAllEntities(DAO dao) {
-		return dao.getAll();
+	public static <ENTITY extends BaseEntity, DAO extends BaseDao<ENTITY>> List<ENTITY> getAllEntities(Integer coachId, DAO dao) {
+		return dao.getAll(coachId);
 	}
 
 	public static <ENTITY extends BaseEntity, DAO extends BaseDao<ENTITY>> ENTITY getEntity(Integer id, DAO dao) {
@@ -51,7 +52,7 @@ public class ModelPersister {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private static <ENTITY extends BaseEntity, DAO extends BaseDao<ENTITY>, DTO extends BaseDto> DTO convert(ENTITY entity, 
+	public static <ENTITY extends BaseEntity, DAO extends BaseDao<ENTITY>, DTO extends BaseDto> DTO convert(ENTITY entity, 
 																												 BaseVisitor dtoConverter,
 																												 Object ... args) {
 		if (entity == null)
@@ -59,5 +60,16 @@ public class ModelPersister {
 		
 		return (DTO) entity.accept(dtoConverter, args);
 	}
-
+	
+	public static <ENTITY extends BaseEntity, DAO extends BaseDao<ENTITY>, DTO extends BaseDto> List<DTO> convertAll(List<ENTITY> entities, 
+																												 BaseVisitor dtoConverter,
+																												 Object ... args) {
+		List<DTO> results = new ArrayList<DTO>();
+		
+		for (ENTITY entity : entities)
+			results.add(convert(entity, dtoConverter, args));
+		
+		return results;
+		
+	}
 }

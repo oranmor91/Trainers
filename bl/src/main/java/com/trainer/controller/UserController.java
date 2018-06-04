@@ -12,28 +12,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.trainer.dto.Trainer;
-import com.trainer.manaager.TrainerManager;
+import com.trainer.dto.User;
+import com.trainer.manaager.UserManager;
 
 @Controller
-@RequestMapping("/trainer")
-public class TrainerController {
+@RequestMapping("/user")
+public class UserController {
 
 	@Autowired
-	private TrainerManager m_trainerManager;
+	private UserManager m_trainerManager;
 	
 	@RequestMapping(method = RequestMethod.GET, value="/{id}")
-	public @ResponseBody Trainer get(@PathVariable Integer id) {
+	public @ResponseBody User get(@PathVariable Integer id) {
 		return m_trainerManager.get(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody List<Trainer> getAll() {
+	public @ResponseBody List<User> getAll() {
 		return m_trainerManager.getAll();
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody Trainer save(@RequestBody Trainer dto) {
+	public @ResponseBody User save(@RequestBody User dto) {
 		return m_trainerManager.save(dto);
 	}
 	

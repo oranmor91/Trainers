@@ -1,24 +1,25 @@
 package com.trainer.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.trainer.types.GenderType;
+import com.trainer.utils.UserType;
 import com.trainer.visitors.BaseVisitor;
 
 @Entity
-@Table(name="trainers")
-public class TrainerEntity extends BaseEntity {
+@Table(name="users")
+public class UserEntity extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -50,9 +51,12 @@ public class TrainerEntity extends BaseEntity {
 	@Column 
 	private int numOfExpeirence;
 	
-	@OneToMany(mappedBy="trainer", cascade= CascadeType.ALL, fetch=FetchType.EAGER)
-	private List<NutritionEntity> nutrions = new ArrayList<NutritionEntity>();
-
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name="user_roles")
+	@Column(name="roles", length=4000)
+	@Enumerated(EnumType.STRING)
+	private Set<UserType> roles = new HashSet<UserType>();
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -125,16 +129,16 @@ public class TrainerEntity extends BaseEntity {
 		this.numOfExpeirence = numOfExpeirence;
 	}
 
-	public List<NutritionEntity> getNutrions() {
-		return nutrions;
-	}
-
-	public void setNutrions(List<NutritionEntity> nutrions) {
-		this.nutrions = nutrions;
-	}
-	
 	@Override
 	public Object accept(BaseVisitor visitor, Object... obj) {
 		return visitor.visit(this, obj);
+	}
+
+	public Set<UserType> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<UserType> roles) {
+		this.roles = roles;
 	}
 }

@@ -9,19 +9,19 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import com.trainer.dao.TrainerDao;
-import com.trainer.dto.Trainer;
-import com.trainer.entity.TrainerEntity;
-import com.trainer.manaager.TrainerManager;
+import com.trainer.dao.UserDao;
+import com.trainer.dto.User;
+import com.trainer.entity.UserEntity;
+import com.trainer.manaager.UserManager;
 import com.trainer.utils.ModelPersister;
 import com.trainer.visitors.BaseVisitor;
 
 @Service
 @Scope("singleton")
-public class TrainerManagerImpl implements TrainerManager{
+public class UserManagerImpl extends BaseManager implements UserManager{
 
 	@Autowired
-	private TrainerDao m_trainerDao;
+	private UserDao m_trainerDao;
 	
 	@Autowired
 	@Qualifier("DtoVisitor")
@@ -32,35 +32,35 @@ public class TrainerManagerImpl implements TrainerManager{
 	private BaseVisitor m_entityVistor;
 	
 	@Override
-	public List<TrainerEntity> getAllEntities() {
-		return ModelPersister.getAllEntities(m_trainerDao);
+	public List<UserEntity> getAllEntities() {
+		return ModelPersister.getAllEntities(getLoggedInUser(), m_trainerDao);
 	}
 
 	@Override
-	public TrainerEntity getEntity(Integer id) {
+	public UserEntity getEntity(Integer id) {
 		return ModelPersister.getEntity(id, m_trainerDao);
 	}
 	
 	@Override
 	@Transactional
-	public TrainerEntity saveEntity(TrainerEntity entity) {
+	public UserEntity saveEntity(UserEntity entity) {
 		return ModelPersister.saveEntity(entity, m_trainerDao);
 	}
 
 	@Override
-	public Trainer get(Integer id) {
+	public User get(Integer id) {
 		return ModelPersister.get(id, m_trainerDao, m_dtoVisitor);
 	}
 
 	@Override
-	public List<Trainer> getAll() {
-		return ModelPersister.getAll(m_trainerDao, m_dtoVisitor);
+	public List<User> getAll() {
+		return ModelPersister.getAll(getLoggedInUser(), m_trainerDao, m_dtoVisitor);
 	}
 
 	@Override
 	@Transactional
-	public Trainer save(Trainer dto) {
-		return ModelPersister.save(dto, new TrainerEntity(), m_trainerDao, m_dtoVisitor, m_entityVistor);
+	public User save(User dto) {
+		return ModelPersister.save(dto, getLoggedInUser(), new UserEntity(), m_trainerDao, m_dtoVisitor, m_entityVistor);
 	}
 	
 	@Override

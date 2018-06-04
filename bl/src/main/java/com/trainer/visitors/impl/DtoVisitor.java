@@ -6,12 +6,13 @@ import org.springframework.stereotype.Component;
 import com.trainer.dto.Excersice;
 import com.trainer.dto.ExcersiceWorkout;
 import com.trainer.dto.ProgramDef;
-import com.trainer.dto.Trainer;
+import com.trainer.dto.User;
 import com.trainer.dto.Workout;
 import com.trainer.entity.ExcersiceEntity;
 import com.trainer.entity.ExcersiceWorkoutEntity;
 import com.trainer.entity.NutritionEntity;
-import com.trainer.entity.TrainerEntity;
+import com.trainer.entity.PersonalProgramEntity;
+import com.trainer.entity.UserEntity;
 import com.trainer.entity.WorkoutEntity;
 import com.trainer.entity.ProgramDefEntity;
 import com.trainer.visitors.BaseVisitor;
@@ -21,8 +22,8 @@ import com.trainer.visitors.BaseVisitor;
 public class DtoVisitor implements BaseVisitor{
 
 	@Override
-	public Object visit(TrainerEntity entity, Object... obj) {
-		Trainer dto = new Trainer();
+	public Object visit(UserEntity entity, Object... obj) {
+		User dto = new User();
 		dto.setAdress(entity.getAdress());
 		dto.setBirthDay(entity.getBirthDay());
 		dto.setFirstName(entity.getFirstName());
@@ -33,10 +34,6 @@ public class DtoVisitor implements BaseVisitor{
 		dto.setNumOfExpeirence(entity.getNumOfExpeirence());
 		dto.setPhoneNumber(entity.getPhoneNumber());
 		dto.setWeight(entity.getWeight());
-		
-		for (NutritionEntity nutrion : entity.getNutrions())
-			dto.getNutritionId().add(nutrion.getId());
-		
 		return dto;
 	}
 
@@ -93,5 +90,11 @@ public class DtoVisitor implements BaseVisitor{
 			dto.getWorkouts().add(workout.getId());
 		
 		return dto;
+	}
+
+	@Override
+	public Object visit(PersonalProgramEntity personalProgramEntity, Object... obj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

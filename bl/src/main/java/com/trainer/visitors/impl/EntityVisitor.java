@@ -7,12 +7,13 @@ import org.springframework.stereotype.Component;
 import com.trainer.dto.Excersice;
 import com.trainer.dto.ExcersiceWorkout;
 import com.trainer.dto.ProgramDef;
-import com.trainer.dto.Trainer;
+import com.trainer.dto.User;
 import com.trainer.dto.Workout;
 import com.trainer.entity.ExcersiceEntity;
 import com.trainer.entity.ExcersiceWorkoutEntity;
 import com.trainer.entity.NutritionEntity;
-import com.trainer.entity.TrainerEntity;
+import com.trainer.entity.PersonalProgramEntity;
+import com.trainer.entity.UserEntity;
 import com.trainer.entity.WorkoutEntity;
 import com.trainer.entity.ProgramDefEntity;
 import com.trainer.manaager.ExcersiceManager;
@@ -30,8 +31,8 @@ public class EntityVisitor implements BaseVisitor{
 	private WorkoutManager m_workoutManager;
 	
 	@Override
-	public Object visit(TrainerEntity entity, Object... obj) {
-		Trainer dto = (Trainer) obj[0];
+	public Object visit(UserEntity entity, Object... obj) {
+		User dto = (User) obj[0];
 		entity.setId(dto.getId());
 		entity.setFirstName(dto.getFirstName());
 		entity.setLastName(dto.getLastName());
@@ -118,5 +119,11 @@ public class EntityVisitor implements BaseVisitor{
 		}
 		
 		return workoutProgramEntity;
+	}
+
+	@Override
+	public Object visit(PersonalProgramEntity personalProgramEntity, Object... obj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

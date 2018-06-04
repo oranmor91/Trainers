@@ -27,7 +27,7 @@ public class ExcersiceEntity extends BaseEntity{
 	
 	@Column
 	private String videoURL;
-
+	
 	public String getName() {
 		return name;
 	}

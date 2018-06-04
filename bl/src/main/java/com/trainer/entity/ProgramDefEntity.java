@@ -69,5 +69,4 @@ public class ProgramDefEntity extends BaseEntity{
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-
 }

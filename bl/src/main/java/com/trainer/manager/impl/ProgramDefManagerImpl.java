@@ -18,7 +18,7 @@ import com.trainer.visitors.BaseVisitor;
 
 @Service
 @Scope("singleton")
-public class ProgramDefManagerImpl implements ProgramDefManager{
+public class ProgramDefManagerImpl extends BaseManager implements ProgramDefManager{
 
 	@Autowired
 	private ProgramDefDao m_ProgramDefDao;
@@ -38,12 +38,12 @@ public class ProgramDefManagerImpl implements ProgramDefManager{
 	
 	@Override
 	public List<ProgramDef> getAll() {
-		return ModelPersister.getAll(m_ProgramDefDao, m_dtoVisitor);
+		return ModelPersister.getAll(getLoggedInUser(), m_ProgramDefDao, m_dtoVisitor);
 	}
 
 	@Override
 	public List<ProgramDefEntity> getAllEntities() {
-		return ModelPersister.getAllEntities(m_ProgramDefDao);
+		return ModelPersister.getAllEntities(getLoggedInUser(), m_ProgramDefDao);
 	}
 	
 	@Override
@@ -54,7 +54,7 @@ public class ProgramDefManagerImpl implements ProgramDefManager{
 	@Override
 	@Transactional
 	public ProgramDef save(ProgramDef dto) {
-		return ModelPersister.save(dto, new ProgramDefEntity(), m_ProgramDefDao, m_dtoVisitor, m_entityVistor);
+		return ModelPersister.save(dto, getLoggedInUser(), new ProgramDefEntity(), m_ProgramDefDao, m_dtoVisitor, m_entityVistor);
 	}
 
 	@Override

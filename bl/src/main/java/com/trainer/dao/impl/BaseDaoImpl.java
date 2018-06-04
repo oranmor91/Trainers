@@ -15,7 +15,7 @@ import com.trainer.entity.BaseEntity;
 public class BaseDaoImpl<ENTITY extends BaseEntity> implements BaseDao<ENTITY>{
 
 	@PersistenceContext
-	private EntityManager m_entityManager;
+	protected EntityManager m_entityManager;
 	
 	@Override
 	public ENTITY get(Integer id) {
@@ -23,8 +23,10 @@ public class BaseDaoImpl<ENTITY extends BaseEntity> implements BaseDao<ENTITY>{
 	}
 
 	@Override
-	public List<ENTITY> getAll() {
-		TypedQuery<ENTITY> createQuery = m_entityManager.createQuery("FROM " + getEntityClass().getName(), getEntityClass());
+	public List<ENTITY> getAll(Integer coachId) {
+		String sql = "SELECT e FROM " + getEntityClass().getName() + " e where e.coach = :coachId";
+		TypedQuery<ENTITY> createQuery = m_entityManager.createQuery(sql, getEntityClass());
+		createQuery.setParameter("coachId", coachId);
 		
 		List<ENTITY> resultList = createQuery.getResultList();
 		
@@ -59,7 +61,7 @@ public class BaseDaoImpl<ENTITY extends BaseEntity> implements BaseDao<ENTITY>{
 	}
 
 	@SuppressWarnings("unchecked")
-	private Class<ENTITY> getEntityClass() {
+	protected Class<ENTITY> getEntityClass() {
 		return (Class<ENTITY>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 }

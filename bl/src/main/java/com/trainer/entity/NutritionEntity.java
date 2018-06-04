@@ -22,10 +22,34 @@ public class NutritionEntity extends BaseEntity {
 	private String name;
 
 	@ManyToOne
-	private TrainerEntity trainer;
+	private UserEntity user;
 	
 	@Override
 	public Object accept(BaseVisitor visitor, Object... obj) {
 		return visitor.visit(this, obj);
+	}
+
+	public UserEntity getUser() {
+		return user;
+	}
+
+	public void setUser(UserEntity user) {
+		this.user = user;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Byte[] getFile() {
+		return file;
+	}
+
+	public void setFile(Byte[] file) {
+		this.file = file;
 	}
 }

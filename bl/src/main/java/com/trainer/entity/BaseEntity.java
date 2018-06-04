@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 
 import com.trainer.visitors.BaseVisitor;
 
@@ -17,7 +18,10 @@ public abstract class BaseEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
-
+	
+	@OneToOne
+	private UserEntity coach;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -30,5 +34,14 @@ public abstract class BaseEntity implements Serializable{
 		return getId() != null;
 	}
 	
+	public UserEntity getCoach() {
+		return coach;
+	}
+
+	public void setCoach(UserEntity coach) {
+		this.coach = coach;
+	}
+	
 	public abstract Object accept(BaseVisitor visitor, Object... obj);
+
 }

@@ -18,7 +18,7 @@ import com.trainer.visitors.BaseVisitor;
 
 @Service
 @Scope("singleton")
-public class ExcersiceManagerImpl implements ExcersiceManager{
+public class ExcersiceManagerImpl extends BaseManager implements ExcersiceManager{
 
 	@Autowired
 	private ExcersiceDao m_excersiceDao;
@@ -38,12 +38,12 @@ public class ExcersiceManagerImpl implements ExcersiceManager{
 	
 	@Override
 	public List<Excersice> getAll() {
-		return ModelPersister.getAll(m_excersiceDao, m_dtoVisitor);
+		return ModelPersister.getAll(getLoggedInUser(), m_excersiceDao, m_dtoVisitor);
 	}
 
 	@Override
 	public List<ExcersiceEntity> getAllEntities() {
-		return ModelPersister.getAllEntities(m_excersiceDao);
+		return ModelPersister.getAllEntities(getLoggedInUser(), m_excersiceDao);
 	}
 	
 	@Override
@@ -54,7 +54,7 @@ public class ExcersiceManagerImpl implements ExcersiceManager{
 	@Override
 	@Transactional
 	public Excersice save(Excersice dto) {
-		return ModelPersister.save(dto, new ExcersiceEntity(), m_excersiceDao, m_dtoVisitor, m_entityVistor);
+		return ModelPersister.save(dto, getLoggedInUser(), new ExcersiceEntity(), m_excersiceDao, m_dtoVisitor, m_entityVistor);
 	}
 
 	@Override

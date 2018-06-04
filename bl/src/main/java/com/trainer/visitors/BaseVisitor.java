@@ -4,13 +4,13 @@ import com.trainer.entity.ExcersiceEntity;
 import com.trainer.entity.ExcersiceWorkoutEntity;
 import com.trainer.entity.NutritionEntity;
 import com.trainer.entity.PersonalProgramEntity;
-import com.trainer.entity.TrainerEntity;
+import com.trainer.entity.UserEntity;
 import com.trainer.entity.WorkoutEntity;
 import com.trainer.entity.ProgramDefEntity;
 
 public interface BaseVisitor {
 
-	public Object visit(TrainerEntity entity, Object... obj);
+	public Object visit(UserEntity entity, Object... obj);
 	
 	public Object visit(ExcersiceEntity entity, Object... obj);
 

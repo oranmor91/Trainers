@@ -23,7 +23,7 @@ public class PersonalProgramEntity extends BaseEntity{
 	private String name;
 	
 	@OneToOne
-	private TrainerEntity trainer;
+	private UserEntity trainer;
 	
 	@OneToOne
 	private ProgramDefEntity parentDef;
@@ -69,12 +69,12 @@ public class PersonalProgramEntity extends BaseEntity{
 	}
 
 
-	public TrainerEntity getTrainer() {
+	public UserEntity getTrainer() {
 		return trainer;
 	}
 
 
-	public void setTrainer(TrainerEntity trainer) {
+	public void setTrainer(UserEntity trainer) {
 		this.trainer = trainer;
 	}
 

@@ -18,7 +18,7 @@ import com.trainer.visitors.BaseVisitor;
 
 @Service
 @Scope("singleton")
-public class WorkoutManagerImpl implements WorkoutManager{
+public class WorkoutManagerImpl extends BaseManager implements WorkoutManager{
 
 	@Autowired
 	private WorkoutDao m_workoutDao;
@@ -38,12 +38,12 @@ public class WorkoutManagerImpl implements WorkoutManager{
 	
 	@Override
 	public List<Workout> getAll() {
-		return ModelPersister.getAll(m_workoutDao, m_dtoVisitor);
+		return ModelPersister.getAll(getLoggedInUser(), m_workoutDao, m_dtoVisitor);
 	}
 
 	@Override
 	public List<WorkoutEntity> getAllEntities() {
-		return ModelPersister.getAllEntities(m_workoutDao);
+		return ModelPersister.getAllEntities(getLoggedInUser(), m_workoutDao);
 	}
 	
 	@Override
@@ -54,7 +54,7 @@ public class WorkoutManagerImpl implements WorkoutManager{
 	@Override
 	@Transactional
 	public Workout save(Workout dto) {
-		return ModelPersister.save(dto, new WorkoutEntity(), m_workoutDao, m_dtoVisitor, m_entityVistor);
+		return ModelPersister.save(dto, getLoggedInUser(), new WorkoutEntity(), m_workoutDao, m_dtoVisitor, m_entityVistor);
 	}
 
 	@Override
@@ -68,5 +68,7 @@ public class WorkoutManagerImpl implements WorkoutManager{
 	public void delete(Integer id) {
 		ModelPersister.delete(id, m_workoutDao);
 	}
+	
+	
 
 }
