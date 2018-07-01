@@ -21,8 +21,10 @@
 <context:component-scan base-package="com.trainer.visitors.impl" />
 <context:component-scan base-package="com.trainer.dao" />
 <context:component-scan base-package="com.trainer.dao.impl" />
+<context:component-scan base-package="com.trainer.security" />
+
 <mvc:default-servlet-handler/>
 
-<bean id="eventListenerBean" class="webApp.ApplicationListenerBean" />
+<bean id="eventListenerBean" class="com.trainer.security.ApplicationListenerBean" />
 
 </beans>

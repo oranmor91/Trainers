@@ -1,0 +1,19 @@
+<b:beans xmlns="http://www.springframework.org/schema/security"
+		 xmlns:b="http://www.springframework.org/schema/beans"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<http authentication-manager-ref="authenticationManager" auto-config="true" use-expressions="true">
+	<intercept-url pattern="/login*" access="isAnonymous()"/>
+	<intercept-url pattern="/app/**" access="isAuthenticated()"/>
+	<form-login login-page="/login.html"/>
+	<csrf disabled="true"/>
+	</http>
+	
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider ref="formAuthenticationProvider"/>
+	</authentication-manager>
+	
+		<b:bean id="formAuthenticationProvider" class="com.trainer.security.FormAuthenticationProvider" />
+</b:beans>
