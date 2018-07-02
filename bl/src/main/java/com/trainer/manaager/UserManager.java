@@ -20,4 +20,6 @@ public interface UserManager {
 	public UserEntity saveEntity(UserEntity entity);
 	
 	public void delete(Integer id);
+
+	public UserEntity getByEmail(String email);
 }
