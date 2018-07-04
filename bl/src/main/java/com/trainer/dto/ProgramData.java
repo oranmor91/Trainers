@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonalProgramData implements Serializable{
+public class ProgramData implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 

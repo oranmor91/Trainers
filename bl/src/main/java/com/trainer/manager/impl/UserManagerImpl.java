@@ -68,4 +68,10 @@ public class UserManagerImpl extends BaseManager implements UserManager{
 	public void delete(Integer id) {
 		ModelPersister.delete(id, m_trainerDao);
 	}
+
+	@Override
+	public UserEntity getByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

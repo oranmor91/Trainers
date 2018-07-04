@@ -14,7 +14,7 @@ import com.trainer.entity.ProgramDefEntity;
 import com.trainer.entity.UserEntity;
 import com.trainer.entity.WorkoutEntity;
 import com.trainer.manaager.ExcersiceManager;
-import com.trainer.manaager.ProgramDefManager;
+import com.trainer.manaager.ProgramManager;
 import com.trainer.manaager.StartUpManager;
 import com.trainer.manaager.UserManager;
 import com.trainer.manaager.WorkoutManager;
@@ -32,7 +32,7 @@ public class StartUpManagerImpl implements StartUpManager{
 	private WorkoutManager m_workoutManager;
 	
 	@Autowired
-	private ProgramDefManager m_programDefManager;
+	private ProgramManager m_programDefManager;
 	
 	@Autowired
 	private UserManager m_trainerManager;
@@ -74,7 +74,7 @@ public class StartUpManagerImpl implements StartUpManager{
 		progDefEntity.setNotes("Do IT!");
 		progDefEntity.setCoach(coach);
 		progDefEntity.getWorkouts().add(workoutEntity);
-		m_programDefManager.saveEntity(progDefEntity);
+		m_programDefManager.saveDefEntity(progDefEntity);
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.trainer.controller;
+package com.trainer.admin.controller;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import com.trainer.dto.Workout;
 import com.trainer.manaager.WorkoutManager;
 
 @Controller
-@RequestMapping("/workout")
+@RequestMapping("/admin/workout")
 public class WorkoutController {
 
 	@Autowired

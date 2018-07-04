@@ -11,7 +11,7 @@ import com.trainer.dto.Workout;
 import com.trainer.entity.ExcersiceEntity;
 import com.trainer.entity.ExcersiceWorkoutEntity;
 import com.trainer.entity.NutritionEntity;
-import com.trainer.entity.PersonalProgramEntity;
+import com.trainer.entity.ProgramEntity;
 import com.trainer.entity.UserEntity;
 import com.trainer.entity.WorkoutEntity;
 import com.trainer.entity.ProgramDefEntity;
@@ -93,7 +93,7 @@ public class DtoVisitor implements BaseVisitor{
 	}
 
 	@Override
-	public Object visit(PersonalProgramEntity personalProgramEntity, Object... obj) {
+	public Object visit(ProgramEntity personalProgramEntity, Object... obj) {
 		// TODO Auto-generated method stub
 		return null;
 	}

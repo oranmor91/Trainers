@@ -1,8 +1,12 @@
 package com.trainer.dto;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
-public class PersonalProgram extends BaseDto{
+import com.trainer.entity.RMData;
+
+public class Program extends BaseDto{
 
 	private static final long serialVersionUID = 1L;
 
@@ -18,7 +22,13 @@ public class PersonalProgram extends BaseDto{
 	
 	private Date startDate;
 	
-	private PersonalProgramData data;
+	private ProgramData data;
+	
+	private List<RMData> rmData = new ArrayList<RMData>();
+	
+	public boolean isRmFilled() {
+		return !rmData.isEmpty();
+	}
 
 	public Integer getTrainerId() {
 		return trainerId;
@@ -52,11 +62,11 @@ public class PersonalProgram extends BaseDto{
 		this.startDate = startDate;
 	}
 
-	public PersonalProgramData getData() {
+	public ProgramData getData() {
 		return data;
 	}
 
-	public void setData(PersonalProgramData data) {
+	public void setData(ProgramData data) {
 		this.data = data;
 	}
 
@@ -74,5 +84,13 @@ public class PersonalProgram extends BaseDto{
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	public List<RMData> getRmData() {
+		return rmData;
+	}
+
+	public void setRmData(List<RMData> rmData) {
+		this.rmData = rmData;
 	}
 }

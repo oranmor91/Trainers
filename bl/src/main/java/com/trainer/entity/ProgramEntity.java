@@ -1,21 +1,29 @@
 package com.trainer.entity;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
+import javax.persistence.PostLoad;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 
-import com.trainer.dto.PersonalProgramData;
+import com.trainer.dto.ProgramData;
 import com.trainer.utils.JsonHelper;
 import com.trainer.visitors.BaseVisitor;
 
 @Entity
 @Table(name="person_program")
-public class PersonalProgramEntity extends BaseEntity{
+public class ProgramEntity extends BaseEntity{
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,19 +43,29 @@ public class PersonalProgramEntity extends BaseEntity{
 	@Lob
 	private String personalData;
 	
-	@Transient
-	private PersonalProgramData data;
+	@ElementCollection(fetch=FetchType.LAZY)
+	@CollectionTable(name="rm_data", joinColumns=@JoinColumn(name="person_program_id"), uniqueConstraints=@UniqueConstraint(columnNames = { "person_program_id", "workout", "excersice" }))
+	private List<RMData> rmData = new ArrayList<RMData>();
 	
-	public PersonalProgramData getData()  {
+	@Transient
+	private ProgramData data;
+	
+	@PostLoad
+	private void init() {
+		rmData.size();
+	}
+	
+	
+	public ProgramData getData()  {
 		try {
-			return JsonHelper.jsonToObject(personalData, PersonalProgramData.class);
+			return JsonHelper.jsonToObject(personalData, ProgramData.class);
 		}catch (Exception e) {
 		}
 		
 		return null;
 	}
 
-	public void setData(PersonalProgramData data) {
+	public void setData(ProgramData data) {
 		this.data = data;
 		
 		try {
@@ -96,5 +114,13 @@ public class PersonalProgramEntity extends BaseEntity{
 
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
+	}
+
+	public List<RMData> getRmData() {
+		return rmData;
+	}
+
+	public void setRmData(List<RMData> rmData) {
+		this.rmData = rmData;
 	}
 }
