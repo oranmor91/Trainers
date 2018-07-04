@@ -21,5 +21,10 @@ public interface UserManager {
 	
 	public void delete(Integer id);
 
-	public UserEntity getByEmail(String email);
+	public UserEntity getByUniqueID(String loggedInUser);
+	
+	public UserEntity getMyCoach();
+	
+	public Integer getMyCoachId();
+	
 }

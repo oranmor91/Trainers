@@ -25,14 +25,14 @@ public class LoginManagerImpl implements LoginManager{
 	private UserManager m_userManager;
 	
 	@Override
-	public Authentication login(String email, String password) {
-		UserEntity user = m_userManager.getByEmail(email);
+	public Authentication login(String uniqueID, String password) {
+		UserEntity user = m_userManager.getByUniqueID(uniqueID);
 		
 		if (user == null)
 			return null;
 
 		Collection<GrantedAuthority> auth = convertRoles(user.getRoles());
-		return new UsernamePasswordAuthenticationToken(email, password, auth);
+		return new UsernamePasswordAuthenticationToken(uniqueID, password, auth);
 	}
 
 	private Collection<GrantedAuthority> convertRoles(Set<UserType> roles) {

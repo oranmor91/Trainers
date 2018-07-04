@@ -26,6 +26,8 @@ public class User extends BaseDto{
 	
 	private Double weight;
 	
+	private String email;
+	
 	private int numOfExpeirence;
 	
 	private List<Integer> nutritionId = new ArrayList<Integer>();
@@ -108,5 +110,13 @@ public class User extends BaseDto{
 
 	public void setNutritionId(List<Integer> nutritionId) {
 		this.nutritionId = nutritionId;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

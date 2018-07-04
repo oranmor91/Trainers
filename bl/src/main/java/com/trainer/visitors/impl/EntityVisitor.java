@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.trainer.dto.Excersice;
 import com.trainer.dto.ExcersiceWorkout;
+import com.trainer.dto.Program;
 import com.trainer.dto.ProgramDef;
 import com.trainer.dto.User;
 import com.trainer.dto.Workout;
@@ -17,6 +18,8 @@ import com.trainer.entity.UserEntity;
 import com.trainer.entity.WorkoutEntity;
 import com.trainer.entity.ProgramDefEntity;
 import com.trainer.manaager.ExcersiceManager;
+import com.trainer.manaager.ProgramManager;
+import com.trainer.manaager.UserManager;
 import com.trainer.manaager.WorkoutManager;
 import com.trainer.visitors.BaseVisitor;
 
@@ -29,6 +32,12 @@ public class EntityVisitor implements BaseVisitor{
 	
 	@Autowired
 	private WorkoutManager m_workoutManager;
+	
+	@Autowired
+	private ProgramManager m_programManager;
+	
+	@Autowired
+	private UserManager m_userManager;
 	
 	@Override
 	public Object visit(UserEntity entity, Object... obj) {
@@ -43,6 +52,7 @@ public class EntityVisitor implements BaseVisitor{
 		entity.setHeight(dto.getHeight());
 		entity.setWeight(dto.getWeight());
 		entity.setNumOfExpeirence(dto.getNumOfExpeirence());
+		entity.setEmail(dto.getEmail());
 		return entity;
 	}
 
@@ -123,7 +133,22 @@ public class EntityVisitor implements BaseVisitor{
 
 	@Override
 	public Object visit(ProgramEntity personalProgramEntity, Object... obj) {
-		// TODO Auto-generated method stub
-		return null;
+		Program dto = (Program) obj[0];
+		
+		personalProgramEntity.setId(dto.getId());
+		personalProgramEntity.setName(dto.getName());
+		personalProgramEntity.getRmData().addAll(dto.getRmData());
+		personalProgramEntity.setData(dto.getData());
+		personalProgramEntity.setStartDate(dto.getStartDate());
+		
+		ProgramDefEntity defEntity = m_programManager.getDefEntity(dto.getProgramDefId());
+		personalProgramEntity.setParentDef(defEntity);
+		
+		UserEntity coachEntity = m_userManager.getEntity(dto.getCoachId());
+		personalProgramEntity.setCoach(coachEntity);
+		
+		UserEntity trainerEntity = m_userManager.getEntity(dto.getTrainerId());
+		personalProgramEntity.setTrainer(trainerEntity);
+		return personalProgramEntity;
 	}
 }

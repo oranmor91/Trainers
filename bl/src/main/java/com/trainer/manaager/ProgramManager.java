@@ -36,4 +36,7 @@ public interface ProgramManager {
 	public ProgramEntity saveEntity(ProgramEntity entity);
 
 	public void delete(Integer id);
+
+	public Program getMyCurrentProgram();
+
 }

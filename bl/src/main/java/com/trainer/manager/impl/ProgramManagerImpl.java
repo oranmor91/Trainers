@@ -22,8 +22,10 @@ import com.trainer.entity.ExcersiceWorkoutEntity;
 import com.trainer.entity.ProgramDefEntity;
 import com.trainer.entity.ProgramEntity;
 import com.trainer.entity.RMData;
+import com.trainer.entity.UserEntity;
 import com.trainer.entity.WorkoutEntity;
 import com.trainer.manaager.ProgramManager;
+import com.trainer.manaager.UserManager;
 import com.trainer.rm.RMCalculatorBuilder;
 import com.trainer.utils.ModelPersister;
 import com.trainer.visitors.BaseVisitor;
@@ -37,6 +39,9 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 	
 	@Autowired
 	private ProgramDao m_programDao;
+	
+	@Autowired
+	private UserManager m_userManager;
 	
 	@Autowired
 	@Qualifier("DtoVisitor")
@@ -53,12 +58,12 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 	
 	@Override
 	public List<ProgramDef> getAllDef() {
-		return ModelPersister.getAll(getLoggedInUser(), m_programDefDao, m_dtoVisitor);
+		return ModelPersister.getAll(m_userManager.getMyCoachId(), m_programDefDao, m_dtoVisitor);
 	}
 
 	@Override
 	public List<ProgramDefEntity> getAllDefEntities() {
-		return ModelPersister.getAllEntities(getLoggedInUser(), m_programDefDao);
+		return ModelPersister.getAllEntities(m_userManager.getMyCoachId(), m_programDefDao);
 	}
 	
 	@Override
@@ -69,7 +74,7 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 	@Override
 	@Transactional
 	public ProgramDef saveDef(ProgramDef dto) {
-		return ModelPersister.save(dto, getLoggedInUser(), new ProgramDefEntity(), m_programDefDao, m_dtoVisitor, m_entityVistor);
+		return ModelPersister.save(dto, m_userManager.getMyCoachId(), new ProgramDefEntity(), m_programDefDao, m_dtoVisitor, m_entityVistor);
 	}
 
 	@Override
@@ -91,12 +96,12 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 	
 	@Override
 	public List<Program> getAll() {
-		return ModelPersister.getAll(getLoggedInUser(), m_programDao, m_dtoVisitor);
+		return ModelPersister.getAll(m_userManager.getMyCoachId(), m_programDao, m_dtoVisitor);
 	}
 
 	@Override
 	public List<ProgramEntity> getAllEntities() {
-		return ModelPersister.getAllEntities(getLoggedInUser(), m_programDao);
+		return ModelPersister.getAllEntities(m_userManager.getMyCoachId(), m_programDao);
 	}
 	
 	@Override
@@ -107,7 +112,7 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 	@Override
 	@Transactional
 	public Program saveDef(Program dto) {
-		return ModelPersister.save(dto, getLoggedInUser(), new ProgramEntity(), m_programDao, m_dtoVisitor, m_entityVistor);
+		return ModelPersister.save(dto, m_userManager.getMyCoachId(), new ProgramEntity(), m_programDao, m_dtoVisitor, m_entityVistor);
 	}
 
 	@Override
@@ -215,4 +220,9 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 			throw new Exception("No workout was filled");
 	}
 
+	@Override
+	public Program getMyCurrentProgram() {
+		UserEntity byUniqueID = m_userManager.getByUniqueID(getLoggedInUser());
+		return ModelPersister.get(byUniqueID.getId(), m_programDao, m_dtoVisitor);
+	}
 }

@@ -20,7 +20,7 @@ import com.trainer.manaager.ProgramManager;
 public class ProgramDefController {
 
 	@Autowired
-	private ProgramManager m_programDefManager;;
+	private ProgramManager m_programDefManager;
 	
 	@RequestMapping(method = RequestMethod.GET, value="/{id}")
 	public @ResponseBody ProgramDef get(@PathVariable Integer id) {

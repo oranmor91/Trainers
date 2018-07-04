@@ -42,6 +42,9 @@ public class UserEntity extends BaseEntity {
 	@Column
 	private String adress;
 	
+	@Column(unique = true, nullable = false)
+	private String email;
+	
 	@Column
 	private Double height;
 	
@@ -140,5 +143,13 @@ public class UserEntity extends BaseEntity {
 
 	public void setRoles(Set<UserType> roles) {
 		this.roles = roles;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

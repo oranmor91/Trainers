@@ -5,16 +5,17 @@ import org.springframework.stereotype.Component;
 
 import com.trainer.dto.Excersice;
 import com.trainer.dto.ExcersiceWorkout;
+import com.trainer.dto.Program;
 import com.trainer.dto.ProgramDef;
 import com.trainer.dto.User;
 import com.trainer.dto.Workout;
 import com.trainer.entity.ExcersiceEntity;
 import com.trainer.entity.ExcersiceWorkoutEntity;
 import com.trainer.entity.NutritionEntity;
+import com.trainer.entity.ProgramDefEntity;
 import com.trainer.entity.ProgramEntity;
 import com.trainer.entity.UserEntity;
 import com.trainer.entity.WorkoutEntity;
-import com.trainer.entity.ProgramDefEntity;
 import com.trainer.visitors.BaseVisitor;
 
 @Component
@@ -34,6 +35,7 @@ public class DtoVisitor implements BaseVisitor{
 		dto.setNumOfExpeirence(entity.getNumOfExpeirence());
 		dto.setPhoneNumber(entity.getPhoneNumber());
 		dto.setWeight(entity.getWeight());
+		dto.setEmail(entity.getEmail());
 		return dto;
 	}
 
@@ -93,8 +95,25 @@ public class DtoVisitor implements BaseVisitor{
 	}
 
 	@Override
-	public Object visit(ProgramEntity personalProgramEntity, Object... obj) {
-		// TODO Auto-generated method stub
-		return null;
+	public Program visit(ProgramEntity personalProgramEntity, Object... obj) {
+		Program dto = new Program();
+		dto.setId(personalProgramEntity.getId());
+		dto.setName(personalProgramEntity.getName());
+		dto.setStartDate(personalProgramEntity.getStartDate());
+		dto.getRmData().addAll(personalProgramEntity.getRmData());
+		
+		UserEntity coach = personalProgramEntity.getCoach();
+		dto.setCoachId(coach.getId());
+		
+		UserEntity trainer = personalProgramEntity.getTrainer();
+		dto.setTrainerId(trainer.getId());
+		
+		ProgramDefEntity parentDef = personalProgramEntity.getParentDef();
+		dto.setNotes(parentDef.getNotes());
+		dto.setDescription(parentDef.getDescription());
+		dto.setProgramDefId(parentDef.getId());
+		
+		dto.setData(personalProgramEntity.getData());
+		return dto;
 	}
 }

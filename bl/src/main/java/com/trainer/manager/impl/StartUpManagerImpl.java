@@ -20,6 +20,7 @@ import com.trainer.manaager.UserManager;
 import com.trainer.manaager.WorkoutManager;
 import com.trainer.types.GenderType;
 import com.trainer.types.MuscleType;
+import com.trainer.utils.UserType;
 
 @Component
 @Scope("singleton")
@@ -45,11 +46,14 @@ public class StartUpManagerImpl implements StartUpManager{
 			return;
 		
 		
-		UserEntity trainerEntity = new UserEntity();
-		trainerEntity.setFirstName("Super");
-		trainerEntity.setLastName("Admin");
-		trainerEntity.setGender(GenderType.MALE);
-		UserEntity coach = m_trainerManager.saveEntity(trainerEntity);
+		UserEntity coach = new UserEntity();
+		coach.setFirstName("Super");
+		coach.setLastName("Admin");
+		coach.setGender(GenderType.MALE);
+		coach.setEmail("neri@gamil.com");
+		coach.getRoles().add(UserType.COACH);
+		coach.getRoles().add(UserType.TRAINER);
+		coach = m_trainerManager.saveEntity(coach);
 		
 		ExcersiceEntity excersiceEntity = new ExcersiceEntity();
 		excersiceEntity.setName("sqat");

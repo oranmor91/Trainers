@@ -33,7 +33,7 @@ public class UserManagerImpl extends BaseManager implements UserManager{
 	
 	@Override
 	public List<UserEntity> getAllEntities() {
-		return ModelPersister.getAllEntities(getLoggedInUser(), m_trainerDao);
+		return ModelPersister.getAllEntities(getMyCoachId(), m_trainerDao);
 	}
 
 	@Override
@@ -54,13 +54,13 @@ public class UserManagerImpl extends BaseManager implements UserManager{
 
 	@Override
 	public List<User> getAll() {
-		return ModelPersister.getAll(getLoggedInUser(), m_trainerDao, m_dtoVisitor);
+		return ModelPersister.getAll(getMyCoachId(), m_trainerDao, m_dtoVisitor);
 	}
 
 	@Override
 	@Transactional
 	public User save(User dto) {
-		return ModelPersister.save(dto, getLoggedInUser(), new UserEntity(), m_trainerDao, m_dtoVisitor, m_entityVistor);
+		return ModelPersister.save(dto, getMyCoachId(), new UserEntity(), m_trainerDao, m_dtoVisitor, m_entityVistor);
 	}
 	
 	@Override
@@ -70,8 +70,17 @@ public class UserManagerImpl extends BaseManager implements UserManager{
 	}
 
 	@Override
-	public UserEntity getByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+	public UserEntity getByUniqueID(String email) {
+		return m_trainerDao.findByEmail(email);
+	}
+
+	@Override
+	public UserEntity getMyCoach() {
+		return getByUniqueID(getLoggedInUser());
+	}
+
+	@Override
+	public Integer getMyCoachId() {
+		return getMyCoach().getId();
 	}
 }
