@@ -25,6 +25,4 @@
 
 <mvc:default-servlet-handler/>
 
-<bean id="eventListenerBean" class="com.trainer.security.ApplicationListenerBean" />
-
 </beans>
