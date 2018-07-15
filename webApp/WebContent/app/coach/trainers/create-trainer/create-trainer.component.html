@@ -1,13 +1,13 @@
 <div class="container">
   <form class="form-horizontal" role="form">
-    <h2>Registration Form</h2>
+    <h2>Create new Trainer</h2>
     <div class="form-group">
       <label for="firstName" class="col-sm-3 control-label">First Name</label>
       <div class="col-sm-9">
         <input [(ngModel)]="trainer.firstName"
                ngModel
-               type="firstName"
                name="firstName"
+               type="firstName"
                id="firstName"
                placeholder="First Name"
                class="form-control"
@@ -195,7 +195,7 @@
     </div>--> <!-- /.form-group -->
     <div class="form-group">
       <div class="col-sm-9 col-sm-offset-3">
-        <button (click)="register()" type="submit" class="btn btn-primary btn-block">Register</button>
+        <button (click)="createNewTrainer()" type="submit" class="btn btn-primary btn-block">Create new Trainer</button>
       </div>
     </div>
   </form> <!-- /form -->

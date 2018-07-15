@@ -1,0 +1,117 @@
+<div class="container">
+  <form class="form-horizontal" role="form">
+    <h2>Registration Form</h2>
+    <div class="form-group">
+      <label for="Program name" class="col-sm-3 control-label">Program name</label>
+      <div class="col-sm-9">
+        <input [(ngModel)]="program.programName"
+               ngModel
+               name="programName"
+               type="text"
+               id="programName"
+               placeholder="Program name"
+               class="form-control"
+               autofocus>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="Program target" class="col-sm-3 control-label">Program target</label>
+      <div class="col-sm-9">
+        <input [(ngModel)]="program.programTarget"
+               ngModel
+               name="programTarget"
+               type="text"
+               id="programTarget"
+               placeholder="Program target"
+               class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="Program note" class="col-sm-3 control-label">Program note</label>
+      <div class="col-sm-9">
+        <input [(ngModel)]="program.programNote"
+              ngModel
+              name="programNote"
+              type="text"
+              id="programNote"
+              placeholder="Program note"
+              class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="Number of sessions per week" class="col-sm-3 control-label">Number of sessions per week</label>
+      <div class="col-sm-9">
+        <input [(ngModel)]="program.numOfExercises"
+               ngModel
+               name="numOfExercises"
+               type="number"
+               id="numOfExercises"
+               placeholder="between 1-7"
+               class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3">Type</label>
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-4">
+           <!--  <label class="radio-inline">
+              <input type="radio"
+                     id="femaleRadio"
+                     value="FEMALE">
+              <input type="radio" name="gender1"  id="femaleRadio"
+                     ngModel
+                     [(ngModel)]="trainer.gender"
+
+                     value="FEMALE" />
+              Female
+            </label> -->
+           <label class="radio-inline">
+              <input type="radio"
+                     id="ARadio"
+                     value="A">
+              <input type="radio" name="a1"  id="ARadio"
+                     ngModel
+                      [(ngModel)]="program.programType"
+
+                     value="A" />
+              A
+            </label>
+            
+          </div>
+          <div class="col-sm-4">
+                       <label class="radio-inline">
+              <input type="radio"
+                     id="BRadio"
+                     value="B">
+              <input type="radio" name="b1"  id="BRadio"
+                     ngModel
+                     [(ngModel)]="program.programType"
+
+                     value="B" />
+              B
+            </label>
+          </div>
+           <div class="col-sm-4">
+                       <label class="radio-inline">
+              <input type="radio"
+                     id="CRadio"
+                     value="C">
+              <input type="radio" name="c1"  id="CRadio"
+                     ngModel
+                     [(ngModel)]="program.programType"
+
+                     value="C" />
+              C
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-9 col-sm-offset-3">
+        <button (click)="saveProgram()" type="submit" class="btn btn-primary btn-block">Save</button>
+      </div>
+    </div>
+  </form> <!-- /form -->
+</div> <!-- ./container -->

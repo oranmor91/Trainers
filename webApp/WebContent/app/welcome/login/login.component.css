@@ -52,8 +52,13 @@ form[role=login] img {
   margin: 0 auto;
   margin-bottom: 35px;
 }
-form[role=login] input,
+form[role=login] input {
+  font-size: 18px;
+  margin: 16px 0;
+}
 form[role=login] button {
+  background: cadetblue;
+  border: black;
   font-size: 18px;
   margin: 16px 0;
 }
@@ -62,6 +67,7 @@ form[role=login] > div {
 }
 
 .welcome {
+  color: cadetblue;
   font-size: 30px;
   text-align: center;
   margin-top: 1em;

@@ -5,3 +5,10 @@
   margin-top: 1em;
   margin-bottom: 1px;
 }
+
+form[role=buttonWrapper] button {
+  background: cadetblue;
+  border: black;
+  font-size: 18px;
+  margin: 16px 0;
+}

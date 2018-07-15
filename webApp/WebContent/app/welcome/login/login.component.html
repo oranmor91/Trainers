@@ -10,15 +10,28 @@
 
           <p class="welcome">Welcome to Trainer</p>
 
-          <input type="email" name="email" placeholder="Email" required class="form-control input-lg"  />
+          <input  [(ngModel)]="account.email"
+                  ngModel
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  required
+                  class="form-control input-lg"  />
 
-          <input type="password" class="form-control input-lg" id="password" placeholder="Password" required="" />
+          <input [(ngModel)]="account.password"
+                 ngModel
+                 type="password"
+                 name="password"
+                 class="form-control input-lg"
+                 id="password"
+                 placeholder="Password"
+                 required="" />
 
 
 <!--          <div class="pwstrength_viewport_progress"></div>-->
 
 
-          <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
+          <button (click)="login()" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
 
         </form>
 

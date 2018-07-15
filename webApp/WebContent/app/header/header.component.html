@@ -1,0 +1,28 @@
+<div class="col-md-5 col-xs-12">
+  <h1>Trainer</h1>
+</div>
+<div class="col-md-7 col-xs-12"> <!-- TODO: remove this line -->
+<!-- <div class="col-md-7 col-xs-12" *ngIf="dataService?.profile?.type === 'coach'"> \\TODO: uncomment this line --> 
+  <ul>
+    <li><a routerLink="/programs" routerLinkActive="active-link">Programs</a>
+    <li><a routerLink="/workouts" routerLinkActive="active-link">Workouts</a></li>
+    <li><a routerLink="/exercises" routerLinkActive="active-link">Exercises</a></li>
+    <li><a routerLink="/trainers" routerLinkActive="active-link">Trainers</a></li>
+    <li>
+      <span class="helloUser">Hello, <!--{{userConnected}}--></span>
+      <button (click)="logout()">Logout</button>
+    </li>
+  </ul>
+</div>
+
+<!-- \\TODO: uncomment this line -->
+<!-- <div class="col-md-7 col-xs-12" *ngIf="dataService?.profile?.type === 'trainer'">
+  <ul>
+    <li><a routerLink="/program" routerLinkActive="active-link">Program</a>
+    <li><a routerLink="/profile" routerLinkActive="active-link">Profile</a></li>
+    <li>
+      <span class="helloUser">Hello, {{dataService?.profile?.name}};</span>
+      <button (click)="logout()">Logout</button>
+    </li>
+  </ul>
+</div> -->

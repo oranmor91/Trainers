@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {GENDER} from "../../Model/gender.model";
+import {TRAINER} from "../../Model/trainer.model";
+import {DataService} from "../../Services/data/data.service";
 
 @Component({
   selector: 'app-create-account',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateAccountComponent implements OnInit {
 
-  constructor() { }
+ trainer:TRAINER = new TRAINER();
+
+ public gender : any = TRAINER;
+
+  constructor(private dataService:DataService) { }
 
   ngOnInit() {
   }
 
+  register(){
+    this.dataService.register(this.trainer)
+      .subscribe((data)=>{
+        console.log(data)
+      },(err)=>{
+        console.log(err)
+      },()=>{
+        console.log('done')
+      })
+  }
 }
