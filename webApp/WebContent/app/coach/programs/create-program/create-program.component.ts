@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class CreateProgramComponent implements OnInit {
 
-   program:PROGRAM = new PROGRAM();
+  program:PROGRAM = new PROGRAM();
   workouts:WORKOUT[]=[];
   
  constructor(private dataService:DataService,
