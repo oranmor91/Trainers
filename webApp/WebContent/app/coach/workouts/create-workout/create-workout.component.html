@@ -1,0 +1,32 @@
+<div class="container">
+  <form class="form-horizontal" role="form">
+    <h2>Create Workout</h2>
+    <div class="form-group">
+      <label for="Workout name" class="col-sm-3 control-label">Workout name</label>
+      <div class="col-sm-9">
+        <input [(ngModel)]="workout.workoutName"
+               ngModel
+               name="workoutName"
+               type="text"
+               id="workoutName"
+               placeholder="Workout name"
+               class="form-control"
+               autofocus>
+      </div>
+    </div>
+    <div class="form-group" *ngFor="let exercise of exercise;let i = index">
+    <div class="col-md-6">
+    	<input type="checkbox" name="{{exercise}}" >
+    </div>
+    <div class="col-md-6">
+    {{exercise}}
+    </div>
+</div>
+    
+    <div class="form-group">
+      <div class="col-sm-9 col-sm-offset-3">
+        <button (click)="saveWorkout()" type="submit" class="btn btn-primary btn-block">Save</button>
+      </div>
+    </div>
+  </form> <!-- /form -->
+</div> <!-- ./container -->

@@ -1,5 +1,5 @@
 import { PROGRAM } from '../../../Model/program.model';
-import { PROGRAMTYPE } from '../../../Model/programType.model';
+import { WORKOUT } from '../../../Model/workout.model';
 import { DataService } from '../../../Services/data/data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -12,16 +12,41 @@ import { Router } from '@angular/router';
 export class CreateProgramComponent implements OnInit {
 
    program:PROGRAM = new PROGRAM();
-
- public programType : any = PROGRAMTYPE;
+  workouts:WORKOUT[]=[];
   
  constructor(private dataService:DataService,
               private router: Router) { }
 
   ngOnInit() {
+   this.getWorkout();    
   }
 
+  getWorkout(){
+//      this.dataService.getWorkout(1111)
+//      .subscribe((data)=>{
+        
+//      this.workouts = data;
+        
+ //       this.router.navigate(['programs']);      
+//      },(err)=>{
+//        console.log(err)
+//      },()=>{
+//        console.log('done')
+//      })
+    
+  }
+  
+  
   saveProgram(){
-        this.router.navigate(['programs']);
+        this.dataService.createNewProgram(this.program)
+      .subscribe((data)=>{
+        this.router.navigate(['programs']);      
+      },(err)=>{
+        console.log(err)
+      },()=>{
+        console.log('done')
+      })
+    
+        
   }
 }

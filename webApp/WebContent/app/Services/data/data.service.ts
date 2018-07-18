@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ACCOUNT} from "../../Model/acount.model";
+import { EXERCISE } from '../../Model/exercise.model';
 import {TRAINER} from "../../Model/trainer.model";
 import {PROFILE} from "../../Model/profile.model";
+import { PROGRAM } from '../../Model/program.model';
+import { WORKOUT } from '../../Model/workout.model';
 
 @Injectable()
 export class DataService {
@@ -23,5 +26,21 @@ profile:PROFILE;
 
   createNewTrainer(trainer:TRAINER) {
     return this.http.post(`${this.baseURL}/trainer`, trainer)
+  }
+  
+    createNewProgram(program:PROGRAM) {
+    return this.http.post(`${this.baseURL}/createProgram`, program)
+  }
+  
+    createNewWorkout(workout:WORKOUT) {
+    return this.http.post(`${this.baseURL}/createWorkout`, workout)
+  }
+  
+  createNewExercise(exercise:EXERCISE) {
+    return this.http.post(`${this.baseURL}/createExercise`, exercise)
+  }
+  
+  getCoachExercise(id:string) {
+    return this.http.get(`${this.baseURL}/{{id}}/createExercise`)
   }
 }

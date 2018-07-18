@@ -1,4 +1,6 @@
+import { DataService } from '../../Services/data/data.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-exercises',
@@ -7,11 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExercisesComponent implements OnInit {
 
-  constructor() { }
+   constructor(private dataService:DataService,
+              private router: Router) { }
 
   ngOnInit() {
   }
 
+  createExercise(){
+    this.router.navigate(['create-exercise']);
+  }
+  
 editExercise(){
 }
 
