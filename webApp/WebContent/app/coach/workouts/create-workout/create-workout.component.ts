@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 export class CreateWorkoutComponent implements OnInit {
 
   workout:WORKOUT = new WORKOUT();
-  exercise:EXERCISE[]=[];
-  
+  exercises:EXERCISE[]=[];
+   
  constructor(private dataService:DataService,
               private router: Router) { }
 
@@ -22,13 +22,14 @@ export class CreateWorkoutComponent implements OnInit {
   }
 
   getExercises(){
-    this.dataService.getCoachExercise('')
-    .subscribe((data)=>{   
-      },(err)=>{
-        console.log(err)
-      },()=>{
-        console.log('done')
-      })
+//    this.dataService.getCoachExercise('')
+ //   .subscribe((data)=>{
+ //   this.exercises = <EXERCISE[]> data;
+ //     },(err)=>{
+//        console.log(err)
+//      },()=>{
+//       console.log('done')
+//      })
     
   }
   

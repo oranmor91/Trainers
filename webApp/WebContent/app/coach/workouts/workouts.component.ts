@@ -1,3 +1,4 @@
+import { WORKOUT } from '../../Model/workout.model';
 import { DataService } from '../../Services/data/data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -9,20 +10,40 @@ import { Router } from '@angular/router';
 })
 export class WorkoutsComponent implements OnInit {
 
+  workouts:WORKOUT[]=[];
+  
  constructor(private dataService:DataService,
               private router: Router) { }
 
-  ngOnInit() {
+ ngOnInit() {
+   this.getWorkouts()
   }
 
+  getWorkouts(){
+ //    this.dataService.getWorkuts('1111')
+ //   .subscribe((data)=>{
+ //   this.workout = <WORKOUT[]> data;
+//   },(err)=>{
+//      console.log(err)
+//    },()=>{
+//      console.log('done')
+//    })
+  }
+  
   createWorkout(){
     this.router.navigate(['create-workout']);
   }
   
-  editWorkout(){
+  editWorkout(id:number){
   }
   
-  removeWorkout(){
-    
+  removeWorkout(id:number){
+ //    this.dataService.removeWorkout(id)
+ //   .subscribe((data)=>{
+//   },(err)=>{
+//      console.log(err)
+//    },()=>{
+//      console.log('done')
+//    })
   }
 }

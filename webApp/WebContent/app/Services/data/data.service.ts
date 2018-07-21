@@ -28,12 +28,28 @@ profile:PROFILE;
     return this.http.post(`${this.baseURL}/trainer`, trainer)
   }
   
-    createNewProgram(program:PROGRAM) {
+  createNewProgram(program:PROGRAM) {
     return this.http.post(`${this.baseURL}/createProgram`, program)
   }
   
-    createNewWorkout(workout:WORKOUT) {
+  getPrograms(id:string) {
+    return this.http.get(`${this.baseURL}/{{id}}/getProgram`)
+  }
+  
+  removeProgram(id:number) {
+    return this.http.post(`${this.baseURL}/removeProgram`, id)
+  }
+  
+  createNewWorkout(workout:WORKOUT) {
     return this.http.post(`${this.baseURL}/createWorkout`, workout)
+  }
+  
+  getWorkouts(id:string){
+     return this.http.get(`${this.baseURL}/{{id}}/getWorkouts`)
+  }
+  
+    removeWorkout(id:number) {
+    return this.http.post(`${this.baseURL}/removeWorkout`, id)
   }
   
   createNewExercise(exercise:EXERCISE) {
@@ -41,6 +57,6 @@ profile:PROFILE;
   }
   
   getCoachExercise(id:string) {
-    return this.http.get(`${this.baseURL}/{{id}}/createExercise`)
+    return this.http.get(`${this.baseURL}/{{id}}/getExercise`)
   }
 }

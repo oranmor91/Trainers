@@ -1,3 +1,4 @@
+import { PROGRAM } from '../../Model/program.model';
 import { DataService } from '../../Services/data/data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -9,19 +10,39 @@ import { Router } from '@angular/router';
 })
 export class ProgramsComponent implements OnInit {
 
+  programs:PROGRAM[]=[];
+  
  constructor(private dataService:DataService,
               private router: Router) { }
 
-  ngOnInit() {
-  }
-createProgram(){
-  this.router.navigate(['create-program']);
+ ngOnInit() {
+   this.getPrograms();
   }
   
-  editProgram(){
+  getPrograms(){
+ //    this.dataService.getPrograms('1111')
+ //   .subscribe((data)=>{
+ //   this.programs = <PROGRAM[]> data;
+//   },(err)=>{
+//      console.log(err)
+//    },()=>{
+//      console.log('done')
+//    })
+  }
+  
+  createProgram(){
+    this.router.navigate(['create-program']);
+  }
+  
+  editProgram(id:number){
     this.router.navigate(['edit-program']);
   }
-   removeProgram(){
-    this.router.navigate(['programs']);
+   removeProgram(id:number){
+    this.dataService.removeProgram(id).subscribe((data)=>{
+    },(err)=>{
+      console.log(err)
+   },()=>{
+      console.log('done')
+    })
   }
 }

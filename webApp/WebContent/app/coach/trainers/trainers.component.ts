@@ -1,3 +1,4 @@
+import { TRAINER } from '../../Model/trainer.model';
 import { DataService } from '../../Services/data/data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -9,19 +10,41 @@ import { Router } from '@angular/router';
 })
 export class TrainersComponent implements OnInit {
 
+  trainers:TRAINER[]=[];
+  
   constructor(private dataService:DataService,
               private router: Router) { }
 
   ngOnInit() {
+    this.getTrainers()
   }
-createTrainer(){
+  
+  getTrainers(){
+ //    this.dataService.getTrainers('1111')
+ //   .subscribe((data)=>{
+ //   this.trainers = <TRAINERS[]> data;
+//   },(err)=>{
+//      console.log(err)
+//    },()=>{
+//      console.log('done')
+//    })
+  }
+  
+  createTrainer(){
   this.router.navigate(['create-trainer']);
   }
   
-  editTrainer(){
+  editTrainer(id:number){
     this.router.navigate(['edit-trainer']);
   }
-   removeTrainer(){
-    this.router.navigate(['trainers']);
+  
+   removeTrainer(id:number){
+ //    this.dataService.removeTrainer(id)
+ //   .subscribe((data)=>{
+//   },(err)=>{
+//      console.log(err)
+//    },()=>{
+//      console.log('done')
+//    })
   }
 }

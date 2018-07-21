@@ -24,6 +24,9 @@ import { TrainerProgramComponent } from './coach/trainers/edit-trainer/trainer-p
 import { CreateProgramComponent } from './coach/programs/create-program/create-program.component';
 import { CreateWorkoutComponent } from './coach/workouts/create-workout/create-workout.component';
 import { CreateExerciseComponent } from './coach/exercises/create-exercise/create-exercise.component';
+import { EditProgramComponent } from './coach/programs/edit-program/edit-program.component';
+import { EditWorkoutComponent } from './coach/workouts/edit-workout/edit-workout.component';
+import { EditExerciseComponent } from './coach/exercises/edit-exercise/edit-exercise.component';
 
 
 @NgModule({
@@ -45,7 +48,10 @@ import { CreateExerciseComponent } from './coach/exercises/create-exercise/creat
     TrainerProgramComponent,
     CreateProgramComponent,
     CreateWorkoutComponent,
-    CreateExerciseComponent
+    CreateExerciseComponent,
+    EditProgramComponent,
+    EditWorkoutComponent,
+    EditExerciseComponent
   ],
   imports: [
     BrowserModule,

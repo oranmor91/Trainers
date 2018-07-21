@@ -3,71 +3,40 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="span7">   
-<div class="widget stacked widget-table action-table">
-    				
-				<div class="widget-header">
-					<i class="icon-th-list"></i>
-					<h3>Table</h3>
-				</div> <!-- /widget-header -->
-				
-				<div class="widget-content">
-					
-					<table class="table table-striped table-bordered">
-						<thead>
-							<tr>
-								<th>Exercise Name</th>
-								<button (click)="createExercise()" name="go" class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add</button>
-								<th class="td-actions"></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Trident</td>
-								<td class="td-actions">
-								<button (click)="editExercise()"  name="edit" class="btn btn-sm btn-warning" href="javascript:;"><span class="glyphicon glyphicon-edit"></span></button>
-								<button (click)="removeExercise()" name="edit" class="btn btn-sm btn-danger" href="javascript:;"><span class="glyphicon glyphicon-remove"></span></button>
-								</td>
-							</tr>
-							<tr>
-								<td>Trident</td>
-								<td class="td-actions">
-								<button (click)="editExercise()"  name="edit" class="btn btn-sm btn-warning" href="javascript:;"><span class="glyphicon glyphicon-edit"></span></button>
-								<button (click)="removeExercise()" name="edit" class="btn btn-sm btn-danger" href="javascript:;"><span class="glyphicon glyphicon-remove"></span></button>
-								</td>
-							</tr>
-							<tr>
-								<td>Trident</td>
-								<td class="td-actions">
-								<button (click)="editExercise()"  name="edit" class="btn btn-sm btn-warning" href="javascript:;"><span class="glyphicon glyphicon-edit"></span></button>
-								<button (click)="removeExercise()" name="edit" class="btn btn-sm btn-danger" href="javascript:;"><span class="glyphicon glyphicon-remove"></span></button>
-								</td>
-							</tr>
-							<tr>
-								<td>Trident</td>
-								<td class="td-actions">
-								<button (click)="editExercise()"  name="edit" class="btn btn-sm btn-warning" href="javascript:;"><span class="glyphicon glyphicon-edit"></span></button>
-								<button (click)="removeExercise()" name="edit" class="btn btn-sm btn-danger" href="javascript:;"><span class="glyphicon glyphicon-remove"></span></button>
-								</td>
-							</tr>
-							<tr>
-								<td>Trident</td>
-								<td class="td-actions">
-								<button (click)="editExercise()"  name="edit" class="btn btn-sm btn-warning" href="javascript:;"><span class="glyphicon glyphicon-edit"></span></button>
-								<button (click)="removeExercise()" name="edit" class="btn btn-sm btn-danger" href="javascript:;"><span class="glyphicon glyphicon-remove"></span></button>
-								</td>
-							</tr>
-							<tr>
-								<td>Trident</td>
-								<td class="td-actions">
-								<button (click)="editExercise()"  name="edit" class="btn btn-sm btn-warning" href="javascript:;"><span class="glyphicon glyphicon-edit"></span></button>
-								<button (click)="removeExercise()" name="edit" class="btn btn-sm btn-danger" href="javascript:;"><span class="glyphicon glyphicon-remove"></span></button>
-								</td>
-							</tr>
-							</tbody>
-						</table>
-					
-				</div> <!-- /widget-content -->
-			
-			</div> <!-- /widget -->
-            </div>
+
+<div class="container">
+
+<div class="widget-content">	
+	<table class="table table-striped table-bordered">
+	<thead>
+			<tr>
+				<th>Exercise name</th>
+				<th>Main muscle</th>
+				<th><button (click)="createExercise()" name="go" class="btn icon-btn btn-success"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add</button></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let exercise of exercises;let i = index">
+				<td>
+					<div class="col-md-6">  
+						{{exercise.exersiceName}} 
+					</div>  
+				</td>
+								<td>
+					<div class="col-md-6">  
+						{{exercise.mainMuscle}} 
+					</div>  
+				</td>
+				<td class="td-actions">
+					<div class="col-md-6"> 
+						<button (click)="editExercise(exercise.exerciseId)"  name="edit" class="btn btn-sm btn-warning" href="javascript:;"><span class="glyphicon glyphicon-edit"></span></button>
+						<button (click)="removeExercise(exercise.exerciseId)" name="edit" class="btn btn-sm btn-danger" href="javascript:;"><span class="glyphicon glyphicon-remove"></span></button>
+		 			</div>  
+	 			</td>
+   		 	</tr>
+		</tbody>
+	</table>
+	</div>
+
+
+</div> <!-- /container -->
