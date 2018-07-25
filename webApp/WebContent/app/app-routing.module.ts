@@ -8,6 +8,7 @@ import {WorkoutsComponent} from "./coach/workouts/workouts.component";
 import {CreateWorkoutComponent} from "./coach/workouts/create-workout/create-workout.component";
 import {ExercisesComponent} from "./coach/exercises/exercises.component";
 import {CreateExerciseComponent} from "./coach/exercises/create-exercise/create-exercise.component";
+import { EditProgramComponent } from './coach/programs/edit-program/edit-program.component';
 import {TrainersComponent} from "./coach/trainers/trainers.component";
 import {CreateTrainerComponent} from "./coach/trainers/create-trainer/create-trainer.component";
 import {EditTrainerComponent} from "./coach/trainers/edit-trainer/edit-trainer.component";
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'create-trainer', component: CreateTrainerComponent},
   {path: 'edit-trainer', component: EditTrainerComponent},
   {path: 'trainer-program', component: TrainerProgramComponent},
+  {path: 'edit-program', component: EditProgramComponent},
   {path: '', redirectTo: '/welcome', pathMatch: 'full'},
   {path: '*', redirectTo: '/welcome', pathMatch: 'full'},
   {path: '**', redirectTo: '/welcome', pathMatch: 'full'},

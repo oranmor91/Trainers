@@ -20,14 +20,14 @@ export class ExercisesComponent implements OnInit {
   }
 
   getExercises(){
- //    this.dataService.getExercises('1111')
- //   .subscribe((data)=>{
- //   this.exercises = <EXERCISE[]> data;
-//   },(err)=>{
-//      console.log(err)
-//    },()=>{
-//      console.log('done')
-//    })
+     this.dataService.getExercises(this.dataService.profile.id)
+    .subscribe((data)=>{
+    this.exercises = <EXERCISE[]> data;
+   },(err)=>{
+      console.log(err)
+    },()=>{
+      console.log('done')
+    })
   }
   
   createExercise(){
@@ -35,15 +35,16 @@ export class ExercisesComponent implements OnInit {
   }
   
   editExercise(id:number){
+      this.router.navigate(['/edit-exercise:eId']);
   }
 
   removeExercise(id:number){
- //    this.dataService.removeExercise('1111')
- //   .subscribe((data)=>{
-//   },(err)=>{
-//      console.log(err)
-//    },()=>{
-//      console.log('done')
-//    })
+     this.dataService.removeExercise(id)
+    .subscribe((data)=>{
+   },(err)=>{
+      console.log(err)
+    },()=>{
+      console.log('done')
+    })
   }
 }

@@ -22,23 +22,23 @@ export class CreateProgramComponent implements OnInit {
   }
 
   getWorkout(){
-//      this.dataService.getWorkout(1111)
-//      .subscribe((data)=>{
+      this.dataService.getWorkouts(this.dataService.profile.id)
+      .subscribe((data)=>{
         
-//      this.workouts = data;
+      this.workouts = <WORKOUT[]> data;
         
- //       this.router.navigate(['programs']);      
-//      },(err)=>{
-//        console.log(err)
-//      },()=>{
-//        console.log('done')
-//      })
+       this.router.navigate(['programs']);      
+      },(err)=>{
+        console.log(err)
+      },()=>{
+        console.log('done')
+      })
     
   }
   
   
-  saveProgram(){
-        this.dataService.createNewProgram(this.program)
+  saveProgram(pro:PROGRAM){
+         this.dataService.createNewProgram(this.dataService.profile.id, pro)
       .subscribe((data)=>{
         this.router.navigate(['programs']);      
       },(err)=>{

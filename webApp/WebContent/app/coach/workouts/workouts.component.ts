@@ -20,14 +20,14 @@ export class WorkoutsComponent implements OnInit {
   }
 
   getWorkouts(){
- //    this.dataService.getWorkuts('1111')
- //   .subscribe((data)=>{
- //   this.workout = <WORKOUT[]> data;
-//   },(err)=>{
-//      console.log(err)
-//    },()=>{
-//      console.log('done')
-//    })
+    this.dataService.getWorkouts(this.dataService.profile.id)
+   .subscribe((data)=>{
+   this.workouts = <WORKOUT[]> data;
+   },(err)=>{
+      console.log(err)
+    },()=>{
+      console.log('done')
+    })
   }
   
   createWorkout(){
@@ -35,15 +35,16 @@ export class WorkoutsComponent implements OnInit {
   }
   
   editWorkout(id:number){
+      this.router.navigate(['/edit-workout:wId']);
   }
   
   removeWorkout(id:number){
- //    this.dataService.removeWorkout(id)
- //   .subscribe((data)=>{
-//   },(err)=>{
-//      console.log(err)
-//    },()=>{
-//      console.log('done')
-//    })
+    this.dataService.removeWorkout(id)
+   .subscribe((data)=>{
+   },(err)=>{
+      console.log(err)
+    },()=>{
+      console.log('done')
+    })
   }
 }

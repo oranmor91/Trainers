@@ -20,14 +20,14 @@ export class ProgramsComponent implements OnInit {
   }
   
   getPrograms(){
- //    this.dataService.getPrograms('1111')
- //   .subscribe((data)=>{
- //   this.programs = <PROGRAM[]> data;
-//   },(err)=>{
-//      console.log(err)
-//    },()=>{
-//      console.log('done')
-//    })
+    this.dataService.getPrograms(this.dataService.profile.id)
+    .subscribe((data)=>{
+    this.programs = <PROGRAM[]> data;
+   },(err)=>{
+      console.log(err)
+    },()=>{
+      console.log('done')
+    }) 
   }
   
   createProgram(){
@@ -35,8 +35,9 @@ export class ProgramsComponent implements OnInit {
   }
   
   editProgram(id:number){
-    this.router.navigate(['edit-program']);
+    this.router.navigate(['/edit-program:pId']);
   }
+  
    removeProgram(id:number){
     this.dataService.removeProgram(id).subscribe((data)=>{
     },(err)=>{

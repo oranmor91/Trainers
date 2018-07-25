@@ -13,7 +13,6 @@ import {profileMock} from "../../../mocks/profile/profile";
 export class LoginComponent implements OnInit {
 
   account:ACCOUNT = new ACCOUNT();
-  profileMock:PROFILE = profileMock;
 
   constructor(private dataService:DataService,
               private router: Router) { }
@@ -26,9 +25,7 @@ export class LoginComponent implements OnInit {
     this.dataService.login(this.account)
       .subscribe((data)=>{
         this.dataService.profile = <PROFILE>data;
-        //this.dataService.profile =this.profileMock;
-        //this.dataService.profile.type ==='coach' ? this.router.navigate(['programs']):this.router.navigate(['program']); //type trainer
-        this.router.navigate(['programs']);      
+        this.dataService.profile.type ==='coach' ? this.router.navigate(['programs']):this.router.navigate(['program']); //type trainer   
       },(err)=>{
         console.log(err)
         this.router.navigate(['programs']);  
