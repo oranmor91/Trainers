@@ -13,6 +13,7 @@ import {TrainersComponent} from "./coach/trainers/trainers.component";
 import {CreateTrainerComponent} from "./coach/trainers/create-trainer/create-trainer.component";
 import {EditTrainerComponent} from "./coach/trainers/edit-trainer/edit-trainer.component";
 import {TrainerProgramComponent} from "./coach/trainers/edit-trainer/trainer-program/trainer-program.component";
+import {EditWorkoutComponent} from "./coach/workouts/edit-workout/edit-workout.component";
 
 const routes: Routes = [
   {path: 'welcome', component: WelcomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'create-program', component: CreateProgramComponent},
   {path: 'workouts', component: WorkoutsComponent},
   {path: 'create-workout', component: CreateWorkoutComponent},
+  {path: 'edit-workout', component: EditWorkoutComponent},
   {path: 'exercises', component: ExercisesComponent},
   {path: 'create-exercise', component: CreateExerciseComponent},
   {path: 'trainers', component: TrainersComponent},

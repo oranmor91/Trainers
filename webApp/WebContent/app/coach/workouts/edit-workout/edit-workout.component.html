@@ -1,8 +1,8 @@
 <div class="container">
-  <form class="form-horizontal" role="form">
+  <form class="form-horizontal" role="form" #editForm="ngForm">
     <h2>Edit Workout</h2>
     <div class="form-group">
-      <label for="Workout name" class="col-sm-3 control-label">Workout name</label>
+      <label class="col-sm-3 control-label">Workout name</label>
       <div class="col-sm-9">
         <input [(ngModel)]="workout.workoutName"
                ngModel
@@ -15,41 +15,37 @@
       </div>
     </div>
 
-		    <div class="widget-content">	
-	<table class="table table-striped table-bordered">
-	<thead>
-			<tr>
-				<th></th>
-				<th>Exercise</th>
-				<th>Sets</th>
-				<th>Repeats</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr *ngFor="let exercise of exercises;let i = index">
-				<td>
-					<div class="col-md-6">  
-						<input type="checkbox" [checked]="checkIfExisted(exercise)" >
-					</div>  
-				</td>
-				<td>
-					<div class="col-md-6">  
-						{{exercise}}
-					</div>  
-				</td>
-				<td class="td-actions">
-					<div class="col-md-6"> 
-						<input type="text" placeholder="{{exercise.sets}}" name="{{exercise}}" >
-		 			</div>  
-	 			</td>
-				<td class="td-actions">
-					<div class="col-md-6"> 
-						<input type="text" placeholder="{{exercise.repeats}}" name="{{exercise}}" >
-		 			</div>  
-	 			</td>
-   		 	</tr>
-		</tbody>
-	</table>
+		    <div class="widget-content">
+          <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+              <th>Currently existed</th>
+              <th></th>
+              <th>Exercise name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let e of exercises;let i = index">
+              <td>
+                <div class="col-md-6">
+                  <div *ngIf="checkIfExisted(e)==true"><font color="red"> currently existed </font> </div>
+                </div>
+              </td>
+              <td>
+                <div class="col-md-1">
+                  <input
+                    type="checkbox"
+                    name="exercise_{{e}}"
+                    [checked] = "false"
+                    (change)="onCheckChange($event, e)">
+                </div>
+              </td>
+              <td>
+                <div class="col-md-6">{{e.exerciseName}}</div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
 	<div *ngIf="exercises.length==0"> <font color="red"> no exercises available </font></div>
 	</div>
 

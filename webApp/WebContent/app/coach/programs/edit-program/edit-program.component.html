@@ -1,75 +1,86 @@
 <div class="container">
-	<form class="form-horizontal" role="form">
-		<h2>Edit Program</h2>
-		<div class="form-group">
-			<label for="Program name" class="col-sm-3 control-label">Program
-				name</label>
-			<div class="col-sm-9">
-				<input [(ngModel)]="program.programName" ngModel name="programName"
-					type="text" id="programName" placeholder="{{program.programName}}"
-					class="form-control" autofocus>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="Program target" class="col-sm-3 control-label">Program
-				target</label>
-			<div class="col-sm-9">
-				<input [(ngModel)]="program.programTarget" ngModel
-					name="programTarget" type="text" id="programTarget"
-					placeholder="{{program.programTarget}}" class="form-control">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="Program note" class="col-sm-3 control-label">Program
-				note</label>
-			<div class="col-sm-9">
-				<input [(ngModel)]="program.programNote" ngModel name="programNote"
-					type="text" id="programNote" placeholder="{{program.programNote}}"
-					class="form-control">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="Sessions per week" class="col-sm-3 control-label">Sessions
-				per week</label>
-			<div class="col-sm-9">
-				<input [(ngModel)]="program.numOfExercises" ngModel
-					name="numOfExercises" type="number" id="numOfExercises"
-					placeholder="{{program.numOfExercises}}" class="form-control">
-			</div>
-		</div>
+  <form class="form-horizontal" role="form" #editForm="ngForm">
+    <h2>Edit Program</h2>
+    <div class="form-group">
+      <label for="programName" class="col-sm-3 control-label">Program
+        name</label>
+      <div class="col-sm-9">
+        <input [(ngModel)]="program.programName" ngModel name="programName"
+               type="text" id="programName" placeholder="{{program.programName}}"
+               class="form-control" autofocus>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="programTarget" class="col-sm-3 control-label">Program
+        target</label>
+      <div class="col-sm-9">
+        <input [(ngModel)]="program.programTarget" ngModel
+               name="programTarget" type="text" id="programTarget"
+               placeholder="{{program.programTarget}}" class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="programNote" class="col-sm-3 control-label">Program
+        note</label>
+      <div class="col-sm-9">
+        <input [(ngModel)]="program.programNote" ngModel name="programNote"
+               type="text" id="programNote" placeholder="{{program.programNote}}"
+               class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="numOfExercises" class="col-sm-3 control-label">Sessions
+        per week</label>
+      <div class="col-sm-9">
+        <input [(ngModel)]="program.numOfExercises" ngModel
+               name="numOfExercises" type="number" id="numOfExercises"
+               placeholder="{{program.numOfExercises}}" class="form-control">
+      </div>
+    </div>
 
-		<div class="widget-content">
-			<table class="table table-striped table-bordered">
-				<thead>
-					<tr>
-						<th></th>
-						<th>Workout name</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr *ngFor="let workout of workouts;let i = index">
-						<td>
-							<div class="col-md-6">
-								<input type="checkbox" [checked]="checkIfExisted(workout)" >
-							</div>
-						</td>
-						<td>
-							<div class="col-md-6">{{workout.workoutName}}</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+    <div class="widget-content">
+      <table class="table table-striped table-bordered">
+      <thead>
+      <tr>
+        <th>Currently existed</th>
+        <th></th>
+        <th>Workout name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let w of workout;let i = index">
+        <td>
+          <div class="col-md-6">
+            <div *ngIf="checkIfExisted(w)==true"><font color="red"> currently existed </font> </div>
+          </div>
+        </td>
+        <td>
+          <div class="col-md-1">
+            <input
+              type="checkbox"
+              name="workout_{{w}}"
+              [checked] = "false"
+              (change)="onCheckChange($event, w)">
+          </div>
+        </td>
+        <td>
+          <div class="col-md-6">{{w.workoutName}}</div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+      <div *ngIf="workout.length==0"> <font color="red"> no exercises available </font></div>
+</div>
 
 
-
-		<div class="form-group">
-			<div class="col-sm-9 col-sm-offset-3">
-				<button (click)="saveProgram()" type="submit"
-					class="btn btn-primary btn-block">Save</button>
-			</div>
-		</div>
-	</form>
-	<!-- /form -->
+<div class="form-group">
+<div class="col-sm-9 col-sm-offset-3">
+ <button (click)="saveProgram()" type="submit"
+         class="btn btn-primary btn-block">Save
+ </button>
+</div>
+</div>
+</form>
+<!-- /form -->
 </div>
 <!-- ./container -->

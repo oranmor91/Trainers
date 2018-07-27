@@ -1,8 +1,9 @@
 import { PROGRAM } from '../../../Model/program.model';
 import { WORKOUT } from '../../../Model/workout.model';
 import { DataService } from '../../../Services/data/data.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-edit-program',
@@ -11,21 +12,26 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditProgramComponent implements OnInit {
   programId:string;
- 
- // workouts2:WORKOUT[]=[{workoutId:1, workoutName:'b', exercises:[]}];
- // workouts:WORKOUT[]=[{workoutId:1, workoutName:'b', exercises:[]}, {workoutId:2, workoutName:'c', exercises:[]}];
- // program:PROGRAM={numOfExercises:1,programId:1,programName:'a',programNote:'',programTarget:'',workouts:this.workouts2};
-  
-  workouts:WORKOUT[]=[];
+ @ViewChild('editForm') editForm:NgForm;
+
+/*  ex:EXERCISE;
+  workout:WORKOUT[]=[{exercises:[this.ex],workoutId:111,workoutName:'a'},
+    {exercises:[this.ex],workoutId:222,workoutName:'b'},
+    {exercises:[this.ex],workoutId:333,workoutName:'c'}];
+  workout2:WORKOUT[]=[{exercises:[this.ex],workoutId:222,workoutName:'b'}];
+  program:PROGRAM={numOfExercises:1,programId:1,programName:'a',programNote:'',programTarget:'',workouts:this.workout2};*/
+
   program:PROGRAM;
-  
+  workout:WORKOUT[]=[];
+  temp:WORKOUT[]=[];
   arr:number[]=[];
-  
+  arr2:number[]=[];
+
   constructor(private dataService:DataService,
-              private router: Router, 
+              private router: Router,
               private route: ActivatedRoute) {
     this.programId = route.snapshot.params['id'];
-  
+
   }
 
   ngOnInit() {
@@ -41,50 +47,85 @@ export class EditProgramComponent implements OnInit {
       console.log(err)
     },()=>{
       console.log('done')
-    }) 
+    })
   }
-  
+
   getWorkouts() {
     this.dataService.getWorkouts(this.dataService.profile.id)
     .subscribe((data)=>{
-    this.workouts = <WORKOUT[]> data;
+    this.workout = <WORKOUT[]> data;
    },(err)=>{
       console.log(err)
     },()=>{
       console.log('done')
-    }) 
+    })
   }
-  
+
   checkIfExisted(w:WORKOUT){
-    console.log(w);
-    console.log(this.program);
-    if(!this.program.workouts || this.workouts.length == 0){
+    if(!this.program.workouts || this.program.workouts.length == 0){
       console.log('no workouts found');
       return false;
     }
-    
-    this.arr = this.program.workouts.map(workout => workout.workoutId); 
-    
-    console.log(this.arr);
-    
+
+    this.arr = this.program.workouts.map(workout => workout.workoutId);
+
     if(this.arr.includes(w.workoutId)) {
-       console.log('return true');
+       //console.log('return true');
         return true;
     } else {
-      console.log('return false');
-      return false;
-    }      
+       //console.log('return false');
+       return false;
+    }
   }
-  
-  saveProgram(pro:PROGRAM){
-      this.dataService.createNewProgram(this.dataService.profile.id, pro)
+
+  saveProgram(){
+    this.program.workouts = this.temp.slice();
+    this.temp = [];
+    console.log(this.temp);
+    console.log(this.program.workouts);
+    location.reload();
+
+
+      this.dataService.createNewProgram(this.dataService.profile.id, this.program)
     .subscribe((data)=>{
    },(err)=>{
       console.log(err)
     },()=>{
       console.log('done')
-    }) 
+    })
   }
 
 
+  onCheckChange($event, w:WORKOUT) {
+    /* Selected */
+    if($event.target.checked) {
+      this.arr2 = this.temp.map(workout => workout.workoutId);
+
+      if (!this.arr2.includes(w.workoutId)) {
+      // Add a new control in the arrayForm
+      this.temp.push({workoutId:w.workoutId, workoutName:w.workoutName, exercises:w.exercises});
+      console.log('after push');
+      console.log(this.temp);
+      }
+    }
+    /* unselected */
+    else{
+      // find the unselected element
+      let i: number = 0;
+      this.temp.forEach((ctrl: WORKOUT) => {
+        if(ctrl.workoutId == w.workoutId) {
+          // Remove the unselected element from the arrayForm
+          this.temp[i].workoutId = 0;
+          this.temp = this.temp.filter(workout => workout.workoutId != 0);
+          console.log('after remove');
+          console.log(this.temp);
+          return;
+        }
+
+        i++;
+      });
+
+
+    }
+  }
 }

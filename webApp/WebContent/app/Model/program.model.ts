@@ -5,5 +5,5 @@ export class PROGRAM {
   programTarget:string = '';
   programNote:string = '';
   numOfExercises:number;
-  workouts: [WORKOUT];
+  workouts: WORKOUT[];
 }

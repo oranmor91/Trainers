@@ -1,6 +1,6 @@
 export class EXERCISE {
 exerciseId:number = 0;
-exersiceName:string;
+exerciseName:string;
 mainMuscle:string;
 note:string;
 sets:number = 0;
