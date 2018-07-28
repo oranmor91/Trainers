@@ -80,5 +80,15 @@ profile:PROFILE;
     return this.http.get(`${this.baseURL}/{{id}}/getExercise`)
   }
 
+  getTrainers(id: string) {
+    return this.http.get(`${this.baseURL}/{{id}}/getTrainers`)
+  }
 
+  removeTrainer(id: number) {
+    return this.http.post(`${this.baseURL}/removeTrainer`, id)
+  }
+
+  getTrainerProfile(trainerId: string) {
+    return this.http.get(`${this.baseURL}/{{id}}/trainerProfile`)
+  }
 }

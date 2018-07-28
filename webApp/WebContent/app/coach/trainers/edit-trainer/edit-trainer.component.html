@@ -8,58 +8,58 @@
       <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
       </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
-   
-   
+
+
           <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title"></h3>
             </div>
             <div class="panel-body">
               <div class="row">
-                
-                <div class=" col-md-9 col-lg-9 "> 
+
+                <div class=" col-md-9 col-lg-9 ">
                   <table class="table table-user-information">
                     <tbody>
                       <tr>
                         <td>Date of Birth</td>
-                        <td>01/24/1988</td>
+                        <td>{{trainer.birthDay}}</td>
                       </tr>
                        <tr>
                         <td>Gender</td>
-                        <td>Female</td>
+                        <td>{{trainer.gender}}</td>
                       </tr>
                                              <tr>
                         <td>height (CM)</td>
-                        <td>1.80</td>
+                        <td>{{trainer.height}}</td>
                       </tr>
                                              <tr>
                         <td>Weight (KG)</td>
-                        <td>80</td>
+                        <td>{{trainer.weight}}</td>
                       </tr>
                       <tr>
                         <td>Address</td>
-                        <td>blabla 8, Holon</td>
+                        <td>{{trainer.address}}</td>
                       </tr>
                      <tr>
                         <td>Experience</td>
-                        <td>2</td>
+                        <td>{{trainer.numOfExperience}}</td>
                       </tr>
                       <tr>
                         <td>Email</td>
-                        <td><a href="mailto:info@support.com">info@support.com</a></td>
+                        <td><a href="mailto:info@support.com">{{trainer.email}}</a></td>
                       </tr>
                       <tr>
                         <td>Phone Number</td>
-                        <td>052-2222222<br>
+                        <td>{{trainer.phoneNumber}}<br>
                         </td>
-                     
+
                     </tbody>
                   </table>
                   <button (click)="userProgram()" type="submit" class="btn btn-primary btn-block">User current program</button>
                 </div>
               </div>
             </div>
-            
+
           </div>
         </div>
       </div>

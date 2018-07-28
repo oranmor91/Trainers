@@ -22,6 +22,8 @@
               <th>Currently existed</th>
               <th></th>
               <th>Exercise name</th>
+              <th>Sets</th>
+              <th>Repeats</th>
             </tr>
             </thead>
             <tbody>
@@ -41,7 +43,25 @@
                 </div>
               </td>
               <td>
-                <div class="col-md-6">{{e.exerciseName}}</div>
+                <div class="col-md-6">
+                  {{e.exerciseName}}
+                </div>
+              </td>
+              <td class="td-actions">
+                <div class="col-md-6">
+                  <input type="text"
+                         [(ngModel)]="e.sets"
+                         ngModel
+                         name="set_{{i}}">
+                </div>
+              </td>
+              <td class="td-actions">
+                <div class="col-md-6">
+                  <input type="text"
+                         [(ngModel)]="e.repeats"
+                         ngModel
+                         name="repeats_{{i}}">
+                </div>
               </td>
             </tr>
             </tbody>

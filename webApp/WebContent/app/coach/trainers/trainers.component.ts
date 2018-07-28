@@ -11,40 +11,40 @@ import { Router } from '@angular/router';
 export class TrainersComponent implements OnInit {
 
   trainers:TRAINER[]=[];
-  
+
   constructor(private dataService:DataService,
               private router: Router) { }
 
   ngOnInit() {
     this.getTrainers()
   }
-  
+
   getTrainers(){
- //    this.dataService.getTrainers('1111')
- //   .subscribe((data)=>{
- //   this.trainers = <TRAINERS[]> data;
-//   },(err)=>{
-//      console.log(err)
-//    },()=>{
-//      console.log('done')
-//    })
+   this.dataService.getTrainers(this.dataService.profile.id)
+  .subscribe((data)=>{
+  this.trainers = <TRAINER[]> data;
+ },(err)=>{
+    console.log(err)
+  },()=>{
+    console.log('done')
+  })
   }
-  
+
   createTrainer(){
   this.router.navigate(['create-trainer']);
   }
-  
+
   editTrainer(id:number){
-    this.router.navigate(['edit-trainer']);
+    this.router.navigate(['/edit-trainer:pid']);
   }
-  
+
    removeTrainer(id:number){
- //    this.dataService.removeTrainer(id)
- //   .subscribe((data)=>{
-//   },(err)=>{
-//      console.log(err)
-//    },()=>{
-//      console.log('done')
-//    })
+    this.dataService.removeTrainer(id)
+   .subscribe((data)=>{
+  },(err)=>{
+     console.log(err)
+   },()=>{
+     console.log('done')
+   })
   }
 }

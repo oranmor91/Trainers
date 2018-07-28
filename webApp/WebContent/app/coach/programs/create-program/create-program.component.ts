@@ -13,40 +13,72 @@ export class CreateProgramComponent implements OnInit {
 
   program:PROGRAM = new PROGRAM();
   workouts:WORKOUT[]=[];
-  
+  temp:WORKOUT[]=[];
+  arr2:number[]=[];
+
  constructor(private dataService:DataService,
               private router: Router) { }
 
   ngOnInit() {
-   this.getWorkout();    
+   this.getWorkout();
   }
 
   getWorkout(){
       this.dataService.getWorkouts(this.dataService.profile.id)
       .subscribe((data)=>{
-        
+
       this.workouts = <WORKOUT[]> data;
-        
-       this.router.navigate(['programs']);      
+
+       this.router.navigate(['programs']);
       },(err)=>{
         console.log(err)
       },()=>{
         console.log('done')
       })
-    
+
   }
-  
-  
-  saveProgram(pro:PROGRAM){
-         this.dataService.createNewProgram(this.dataService.profile.id, pro)
+
+  onCheckChange($event, w:WORKOUT) {
+    /* Selected */
+    if($event.target.checked) {
+      this.arr2 = this.temp.map(workout => workout.workoutId);
+
+      if (!this.arr2.includes(w.workoutId)) {
+        // Add a new control in the arrayForm
+        this.temp.push({workoutId:w.workoutId, workoutName:w.workoutName, exercises:w.exercises});
+        console.log('after push');
+        console.log(this.temp);
+      }
+    }
+    /* unselected */
+    else{
+      // find the unselected element
+      let i: number = 0;
+      this.temp.forEach((ctrl: WORKOUT) => {
+        if(ctrl.workoutId == w.workoutId) {
+          // Remove the unselected element from the arrayForm
+          this.temp[i].workoutId = 0;
+          this.temp = this.temp.filter(workout => workout.workoutId != 0);
+          console.log('after remove');
+          console.log(this.temp);
+          return;
+        }
+        i++;
+      });
+    }
+  }
+
+  saveProgram(){
+      this.program.workouts = this.temp;
+         this.dataService.createNewProgram(this.dataService.profile.id, this.program)
       .subscribe((data)=>{
-        this.router.navigate(['programs']);      
+        this.router.navigate(['programs']);
       },(err)=>{
         console.log(err)
       },()=>{
         console.log('done')
       })
-    
-        
+
+
   }
 }

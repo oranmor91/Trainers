@@ -2,7 +2,7 @@
   <form class="form-horizontal" role="form">
     <h2>Create Workout</h2>
     <div class="form-group">
-      <label for="Workout name" class="col-sm-3 control-label">Workout name</label>
+      <label class="col-sm-3 control-label">Workout name</label>
       <div class="col-sm-9">
         <input [(ngModel)]="workout.workoutName"
                ngModel
@@ -14,8 +14,8 @@
                autofocus>
       </div>
     </div>
-    
-    <div class="widget-content">	
+
+    <div class="widget-content">
 	<table class="table table-striped table-bordered">
 	<thead>
 			<tr>
@@ -26,33 +26,43 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let exercise of exercises;let i = index">
+			<tr *ngFor="let e of exercises;let i = index">
 				<td>
-					<div class="col-md-6">  
-						<input type="checkbox" name="{{exercise}}" >
-					</div>  
+          <div class="col-md-1">
+            <input
+              type="checkbox"
+              name="exercise_{{e}}"
+              [checked] = "false"
+              (change)="onCheckChange($event, e)">
+          </div>
 				</td>
 				<td>
-					<div class="col-md-6">  
-						{{exercise}}
-					</div>  
+					<div class="col-md-6">
+						{{e.exerciseName}}
+					</div>
 				</td>
 				<td class="td-actions">
-					<div class="col-md-6"> 
-						<input type="text" name="{{exercise}}" >
-		 			</div>  
+					<div class="col-md-6">
+						<input type="text"
+                   [(ngModel)]="e.sets"
+                   ngModel
+                  name="set_{{i}}">
+		 			</div>
 	 			</td>
 				<td class="td-actions">
-					<div class="col-md-6"> 
-						<input type="text" name="{{exercise}}" >
-		 			</div>  
+          <div class="col-md-6">
+            <input type="text"
+                   [(ngModel)]="e.repeats"
+                   ngModel
+                   name="repeats_{{i}}">
+          </div>
 	 			</td>
    		 	</tr>
 		</tbody>
 	</table>
 	<div *ngIf="exercises.length==0"> <font color="red"> no exercises available </font></div>
 	</div>
-    
+
     <div class="form-group">
       <div class="col-sm-9 col-sm-offset-3">
         <button (click)="saveWorkout()" type="submit" class="btn btn-primary btn-block">Save</button>

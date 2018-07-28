@@ -12,12 +12,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EditWorkoutComponent implements OnInit {
 
 
-/*  exercises:EXERCISE[]=[{exerciseId:111, exerciseName:'a', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:20},
+/*
+  exercises:EXERCISE[]=[{exerciseId:111, exerciseName:'a', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:20},
     {exerciseId:222, exerciseName:'b', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:20},
-    {exerciseId:333, exerciseName:'c', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:20},
-  ]
+    {exerciseId:333, exerciseName:'c', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:20}]
   exercise2:EXERCISE[]=[{exerciseId:111, exerciseName:'a', mainMuscle:'zain', repeats:3, sets:2, note:'asas', weight:20}]
-  workout:WORKOUT={workoutId:111, workoutName:'sami', exercises:this.exercise2};*/
+  workout:WORKOUT={workoutId:111, workoutName:'sami', exercises:this.exercise2};
+*/
 
     workoutId:string;
     workout:WORKOUT;
@@ -107,8 +108,6 @@ export class EditWorkoutComponent implements OnInit {
 
         i++;
       });
-
-
     }
   }
 

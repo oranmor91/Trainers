@@ -12,21 +12,36 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class TrainerProgramComponent implements OnInit {
 
+
+/*    exercises:EXERCISE[]=[{exerciseId:111, exerciseName:'a', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:10},
+    {exerciseId:222, exerciseName:'b', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:20},
+    {exerciseId:333, exerciseName:'c', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:30}];
+
+      exercises2:EXERCISE[]=[{exerciseId:111, exerciseName:'d', mainMuscle:'hand', repeats:3, sets:2, note:'asas', weight:40},
+    {exerciseId:222, exerciseName:'e', mainMuscle:'hand', repeats:3, sets:2, note:'asas', weight:50},
+    {exerciseId:333, exerciseName:'f', mainMuscle:'hand', repeats:3, sets:2, note:'asas', weight:60}];
+
+  workout:WORKOUT[]=[{exercises:this.exercises,workoutId:111,workoutName:'a'}, {exercises:this.exercises2,workoutId:222,workoutName:'b'}];
+  program:PROGRAM={numOfExercises:1,programId:1,programName:'a',programNote:'',programTarget:'',workouts:this.workout};*/
+
   programId:string;
   program:PROGRAM;
-  exercises:EXERCISE[]=[]
-  
+  exercises:EXERCISE[]=[];
+  workoutName:string;
+
   constructor(private dataService:DataService,
-              private router: Router, 
+              private router: Router,
               private route: ActivatedRoute) {
     this.programId = route.snapshot.params['id'];
-  
+
   }
 
  ngOnInit() {
    this.getProgram();
+   this.workoutName = this.program.workouts[0].workoutName;
+   this.exercises = this.program.workouts[0].exercises;
   }
-  
+
   getProgram() {
     this.dataService.getProgram(Number(this.programId))
     .subscribe((data)=>{
@@ -35,13 +50,11 @@ export class TrainerProgramComponent implements OnInit {
       console.log(err)
     },()=>{
       console.log('done')
-    }) 
+    })
   }
 
-  
-  
-  
-  getExercise(w:WORKOUT) {
+  showExercise(w:WORKOUT) {
+    this.workoutName = w.workoutName;
     this.exercises=w.exercises;
   }
 }
