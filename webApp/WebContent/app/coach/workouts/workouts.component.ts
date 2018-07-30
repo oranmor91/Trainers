@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class WorkoutsComponent implements OnInit {
 
   workouts:WORKOUT[]=[];
-  
+
  constructor(private dataService:DataService,
               private router: Router) { }
 
@@ -29,15 +29,15 @@ export class WorkoutsComponent implements OnInit {
       console.log('done')
     })
   }
-  
+
   createWorkout(){
     this.router.navigate(['create-workout']);
   }
-  
+
   editWorkout(id:number){
-      this.router.navigate(['/edit-workout:wId']);
+      this.router.navigate([`/edit-workout:wId${id}`]);
   }
-  
+
   removeWorkout(id:number){
     this.dataService.removeWorkout(id)
    .subscribe((data)=>{

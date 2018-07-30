@@ -11,14 +11,14 @@ import { Router } from '@angular/router';
 export class ProgramsComponent implements OnInit {
 
   programs:PROGRAM[]=[];
-  
+
  constructor(private dataService:DataService,
               private router: Router) { }
 
  ngOnInit() {
    this.getPrograms();
   }
-  
+
   getPrograms(){
     this.dataService.getPrograms(this.dataService.profile.id)
     .subscribe((data)=>{
@@ -27,17 +27,17 @@ export class ProgramsComponent implements OnInit {
       console.log(err)
     },()=>{
       console.log('done')
-    }) 
+    })
   }
-  
+
   createProgram(){
     this.router.navigate(['create-program']);
   }
-  
+
   editProgram(id:number){
-    this.router.navigate(['/edit-program:pId']);
+    this.router.navigate([`/edit-program:pId${id}`]);
   }
-  
+
    removeProgram(id:number){
     this.dataService.removeProgram(id).subscribe((data)=>{
     },(err)=>{

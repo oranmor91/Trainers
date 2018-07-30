@@ -35,6 +35,6 @@ export class EditTrainerComponent implements OnInit {
   }
 
   userProgram(){
-    this.router.navigate(['/trainer-program:pId']);
+    this.router.navigate([`/trainer-program:pid${this.trainerId}`]);
   }
 }
