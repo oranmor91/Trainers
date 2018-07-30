@@ -30,7 +30,7 @@
 
 <!--          <div class="pwstrength_viewport_progress"></div>-->
 
-
+          <div *ngIf="showError == true"><font color="red"> Server error {{errorMsg}} </font></div>
           <button (click)="login()" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
 
         </form>

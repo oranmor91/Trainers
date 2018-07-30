@@ -11,8 +11,9 @@ import {DataService} from "../../Services/data/data.service";
 export class CreateAccountComponent implements OnInit {
 
  trainer:TRAINER = new TRAINER();
-
  public gender : any = TRAINER;
+  showError:boolean;
+  errorMsg:string;
 
   constructor(private dataService:DataService) { }
 
@@ -25,6 +26,8 @@ export class CreateAccountComponent implements OnInit {
         console.log(data)
       },(err)=>{
         console.log(err)
+        this.showError=true;
+        this.errorMsg = err;
       },()=>{
         console.log('done')
       })

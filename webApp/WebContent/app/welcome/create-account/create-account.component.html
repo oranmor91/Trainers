@@ -167,32 +167,8 @@
       </div>
     </div>
 
+    <div *ngIf="showError == true"><font color="red"> Server error {{errorMsg}} </font></div>
 
-    <!-- /.form-group -->
-<!--    <div class="form-group">
-      <label class="control-label col-sm-3">Meal Preference</label>
-      <div class="col-sm-9">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" id="calorieCheckbox" value="Low calorie">Low calorie
-          </label>
-        </div>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" id="saltCheckbox" value="Low salt">Low salt
-          </label>
-        </div>
-      </div>
-    </div>--> <!-- /.form-group -->
-<!--    <div class="form-group">
-      <div class="col-sm-9 col-sm-offset-3">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox">I accept <a href="#">terms</a>
-          </label>
-        </div>
-      </div>
-    </div>--> <!-- /.form-group -->
     <div class="form-group">
       <div class="col-sm-9 col-sm-offset-3">
         <button (click)="register()" type="submit" class="btn btn-primary btn-block">Register</button>

@@ -29,11 +29,11 @@ profile:PROFILE;
   }
 
   createNewProgram(id:string, program:PROGRAM) {
-    return this.http.post(`${this.baseURL}{{id}}/createProgram`, program)
+    return this.http.post(`${this.baseURL}/${id}/createProgram`, program)
   }
 
   getPrograms(id:string) {
-    return this.http.get(`${this.baseURL}/{{id}}/getProgram`)
+    return this.http.get(`${this.baseURL}/${id}/getProgram`)
   }
 
   removeProgram(id:number) {
@@ -45,11 +45,11 @@ profile:PROFILE;
   }
 
   createNewWorkout(id:string, workout:WORKOUT) {
-    return this.http.post(`${this.baseURL}/{{id}}/createWorkout`, workout)
+    return this.http.post(`${this.baseURL}/${id}/createWorkout`, workout)
   }
 
   getWorkouts(id:string){
-     return this.http.get(`${this.baseURL}/{{id}}/getWorkouts`)
+     return this.http.get(`${this.baseURL}/${id}/getWorkouts`)
   }
 
   getWorkout(id:string){
@@ -61,7 +61,7 @@ profile:PROFILE;
   }
 
   getExercises(id:string){
-     return this.http.get(`${this.baseURL}/{{id}}/getExercises`)
+     return this.http.get(`${this.baseURL}/${id}/getExercises`)
   }
 
   getExercise(id:string){
@@ -77,11 +77,11 @@ profile:PROFILE;
   }
 
   getCoachExercise(id:string) {
-    return this.http.get(`${this.baseURL}/{{id}}/getExercise`)
+    return this.http.get(`${this.baseURL}/${id}/getExercise`)
   }
 
   getTrainers(id: string) {
-    return this.http.get(`${this.baseURL}/{{id}}/getTrainers`)
+    return this.http.get(`${this.baseURL}/${id}/getTrainers`)
   }
 
   removeTrainer(id: number) {
@@ -89,6 +89,6 @@ profile:PROFILE;
   }
 
   getTrainerProfile(trainerId: string) {
-    return this.http.get(`${this.baseURL}/{{id}}/trainerProfile`)
+    return this.http.get(`${this.baseURL}/${trainerId}/trainerProfile`)
   }
 }
