@@ -17,7 +17,7 @@ profile:PROFILE;
   }
 
   login(account:ACCOUNT){
-    return this.http.post(`${this.baseURL}/login`, account);
+    return this.http.post(`${this.baseURL}/public/login`, account);
   }
 
   register(trainer:TRAINER) {
