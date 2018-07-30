@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.dataService.login(this.account)
       .subscribe((data)=>{
         this.dataService.profile = <PROFILE>data;
-        this.dataService.profile.type ==='coach' ? this.router.navigate(['programs']):this.router.navigate(['program']); //type trainer
+        this.dataService.profile.type ==='COACH' ? this.router.navigate(['programs']):this.router.navigate(['program']); //type trainer
       },(err)=>{
         console.log(err)
         this.showError=true;

@@ -1,5 +1,5 @@
 export class PROFILE {
-name:string;
+firstName:string;
 id:string;
 type:string;
 }
