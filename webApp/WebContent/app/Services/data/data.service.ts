@@ -21,7 +21,7 @@ profile:PROFILE;
   }
 
   register(trainer:TRAINER) {
-    return this.http.post(`${this.baseURL}/trainer`, trainer)
+    return this.http.post(`${this.baseURL}/public/register`, trainer)
   }
 
   createNewTrainer(trainer:TRAINER) {
