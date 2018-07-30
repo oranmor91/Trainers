@@ -3,7 +3,6 @@ import {DataService} from "../../Services/data/data.service";
 import {ACCOUNT} from "../../Model/acount.model";
 import {Router} from "@angular/router";
 import {PROFILE} from "../../Model/profile.model";
-import {profileMock} from "../../../mocks/profile/profile";
 
 @Component({
   selector: 'app-login',
