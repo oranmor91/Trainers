@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {ACCOUNT} from "../../Model/acount.model";
 import { EXERCISE } from '../../Model/exercise.model';
 import {TRAINER} from "../../Model/trainer.model";
@@ -61,19 +61,20 @@ profile:PROFILE;
   }
 
   getExercises(id:string){
-     return this.http.get(`${this.baseURL}/${id}/getExercises`)
+     return this.http.get(`${this.baseURL}/admin/exercise`)
   }
 
   getExercise(id:string){
-    return this.http.post(`${this.baseURL}/getExercise`, id)
+    return this.http.post(`${this.baseURL}/admin/exercise`, id)
   }
 
   removeExercise(id:number) {
-     return this.http.post(`${this.baseURL}/removeExercise`, id)
+    const params = new HttpParams().set(id.toString(), '1');
+     return this.http.delete(`${this.baseURL}/admin/exercise`, {params})
   }
 
   createNewExercise(exercise:EXERCISE) {
-    return this.http.post(`${this.baseURL}/createExercise`, exercise)
+    return this.http.post(`${this.baseURL}/admin/exercise`, exercise)
   }
 
   getCoachExercise(id:string) {
