@@ -12,14 +12,17 @@
 			<tr>
 				<th>Exercise name</th>
 				<th>Main muscle</th>
-				<th><button (click)="createExercise()" name="go" class="btn icon-btn btn-success"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add</button></th>
-			</tr>
+        <th>
+          <button type="button" class="btn btn-success" (click)="createExercise()">
+            <span class="glyphicon glyphicon-plus addButton"></span>Add</button>
+        </th>
+      </tr>
 		</thead>
 		<tbody>
 			<tr *ngFor="let exercise of exercises;let i = index">
 				<td>
 					<div class="col-md-6">
-						{{exercise.exersiceName}}
+						{{exercise.name}}
 					</div>
 				</td>
 								<td>
@@ -29,8 +32,8 @@
 				</td>
 				<td class="td-actions">
 					<div class="col-md-6">
-						<button (click)="editExercise(exercise.exerciseId)"  name="edit" class="btn btn-sm btn-warning" href="javascript:;"><span class="glyphicon glyphicon-edit"></span></button>
-						<button (click)="removeExercise(exercise.exerciseId)" name="edit" class="btn btn-sm btn-danger" href="javascript:;"><span class="glyphicon glyphicon-remove"></span></button>
+						<button (click)="editExercise(exercise.id)" name="edit" class="btn btn-sm btn-warning" href="javascript:;"><span class="glyphicon glyphicon-edit"></span></button>
+						<button (click)="removeExercise(exercise.id)" name="edit" class="btn btn-sm btn-danger" href="javascript:;"><span class="glyphicon glyphicon-remove"></span></button>
 		 			</div>
 	 			</td>
    		 	</tr>

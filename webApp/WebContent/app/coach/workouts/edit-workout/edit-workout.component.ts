@@ -13,10 +13,10 @@ export class EditWorkoutComponent implements OnInit {
 
 
 /*
-  exercises:EXERCISE[]=[{exerciseId:111, name:'a', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20},
-    {exerciseId:222, name:'b', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20},
-    {exerciseId:333, name:'c', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20}]
-  exercise2:EXERCISE[]=[{exerciseId:111, name:'a', primaryMuscle:'zain', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20}]
+  exercises:EXERCISE[]=[{id:111, name:'a', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20},
+    {id:222, name:'b', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20},
+    {id:333, name:'c', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20}]
+  exercise2:EXERCISE[]=[{id:111, name:'a', primaryMuscle:'zain', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20}]
   workout:WORKOUT={id:111, name:'sami', exercises:this.exercise2};
 */
 
@@ -69,11 +69,11 @@ export class EditWorkoutComponent implements OnInit {
       return false;
     }
 
-    this.arr = this.workout.exercises.map(exercise => exercise.exerciseId);
+    this.arr = this.workout.exercises.map(exercise => exercise.id);
 
     console.log(this.arr);
 
-    if(this.arr.includes(e.exerciseId)) {
+    if(this.arr.includes(e.id)) {
         return true;
     } else {
       return false;
@@ -83,11 +83,11 @@ export class EditWorkoutComponent implements OnInit {
   onCheckChange($event, e:EXERCISE) {
     /* Selected */
     if($event.target.checked) {
-      this.arr2 = this.temp.map(exercise => exercise.exerciseId);
+      this.arr2 = this.temp.map(exercise => exercise.id);
 
-      if (!this.arr2.includes(e.exerciseId)) {
+      if (!this.arr2.includes(e.id)) {
         // Add a new control in the arrayForm
-        this.temp.push({exerciseId:e.exerciseId, name:e.name, primaryMuscle:e.primaryMuscle, comment:e.comment, numOfSets:e.numOfSets, numOfIntervals:e.numOfIntervals, weight:e.weight, videoURL:e.videoURL});
+        this.temp.push({id:e.id, name:e.name, primaryMuscle:e.primaryMuscle, comment:e.comment, numOfSets:e.numOfSets, numOfIntervals:e.numOfIntervals, weight:e.weight, videoURL:e.videoURL});
         console.log('after push');
         console.log(this.temp);
       }
@@ -97,10 +97,10 @@ export class EditWorkoutComponent implements OnInit {
       // find the unselected element
       let i: number = 0;
       this.temp.forEach((ctrl: EXERCISE) => {
-        if(ctrl.exerciseId == e.exerciseId) {
+        if(ctrl.id == e.id) {
           // Remove the unselected element from the arrayForm
-          this.temp[i].exerciseId = 0;
-          this.temp = this.temp.filter(exercise => exercise.exerciseId != 0);
+          this.temp[i].id = 0;
+          this.temp = this.temp.filter(exercise => exercise.id != 0);
           console.log('after remove');
           console.log(this.temp);
           return;

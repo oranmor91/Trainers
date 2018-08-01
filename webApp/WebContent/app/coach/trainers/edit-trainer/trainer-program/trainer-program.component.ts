@@ -13,13 +13,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class TrainerProgramComponent implements OnInit {
 
 
-/*    exercises:EXERCISE[]=[{exerciseId:111, name:'a', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:10},
-    {exerciseId:222, name:'b', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20},
-    {exerciseId:333, name:'c', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:30}];
+/*    exercises:EXERCISE[]=[{id:111, name:'a', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:10},
+    {id:222, name:'b', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20},
+    {id:333, name:'c', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:30}];
 
-      exercises2:EXERCISE[]=[{exerciseId:111, name:'d', primaryMuscle:'hand', numOfIntervals:3, numOfSets:2, comment:'asas', weight:40},
-    {exerciseId:222, name:'e', primaryMuscle:'hand', numOfIntervals:3, numOfSets:2, comment:'asas', weight:50},
-    {exerciseId:333, name:'f', primaryMuscle:'hand', numOfIntervals:3, numOfSets:2, comment:'asas', weight:60}];
+      exercises2:EXERCISE[]=[{id:111, name:'d', primaryMuscle:'hand', numOfIntervals:3, numOfSets:2, comment:'asas', weight:40},
+    {id:222, name:'e', primaryMuscle:'hand', numOfIntervals:3, numOfSets:2, comment:'asas', weight:50},
+    {id:333, name:'f', primaryMuscle:'hand', numOfIntervals:3, numOfSets:2, comment:'asas', weight:60}];
 
   workout:WORKOUT[]=[{exercises:this.exercises,id:111,name:'a'}, {exercises:this.exercises2,id:222,name:'b'}];
   program:PROGRAM={numOfExercises:1,programId:1,programName:'a',programNote:'',programTarget:'',workouts:this.workout};*/
