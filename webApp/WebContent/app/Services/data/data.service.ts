@@ -11,7 +11,7 @@ import { WORKOUT } from '../../Model/workout.model';
 export class DataService {
 
 profile:PROFILE;
-  baseURL:string='http://localhost:8080';
+  baseURL:string='http://localhost:8080/app';
   constructor(private http: HttpClient) {
 
   }
