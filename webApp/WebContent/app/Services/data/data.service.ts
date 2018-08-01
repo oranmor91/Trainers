@@ -29,35 +29,35 @@ profile:PROFILE;
   }
 
   createNewProgram(id:string, program:PROGRAM) {
-    return this.http.post(`${this.baseURL}/${id}/createProgram`, program)
+    return this.http.post(`${this.baseURL}/admin/program`, program)
   }
 
   getPrograms(id:string) {
-    return this.http.get(`${this.baseURL}/${id}/getProgram`)
+      return this.http.get(`${this.baseURL}/admin/program`)
   }
 
   removeProgram(id:number) {
-    return this.http.post(`${this.baseURL}/removeProgram`, id)
+    return this.http.delete(`${this.baseURL}/admin/program/${id}`)
   }
 
   getProgram(id:number) {
-    return this.http.post(`${this.baseURL}/getProgram`, id)
+    return this.http.post(`${this.baseURL}/admin/program`, id)
   }
 
   createNewWorkout(id:string, workout:WORKOUT) {
-    return this.http.post(`${this.baseURL}/${id}/createWorkout`, workout)
+    return this.http.post(`${this.baseURL}/admin/workout`, workout)
   }
 
   getWorkouts(id:string){
-     return this.http.get(`${this.baseURL}/${id}/getWorkouts`)
+     return this.http.get(`${this.baseURL}/admin/workout`)
   }
 
   getWorkout(id:string){
-    return this.http.post(`${this.baseURL}/getWorkout`, id)
+    return this.http.post(`${this.baseURL}/admin/workout`, id)
   }
 
   removeWorkout(id:number) {
-    return this.http.post(`${this.baseURL}/removeWorkout`, id)
+    return this.http.delete(`${this.baseURL}/admin/workout/${id}`)
   }
 
   getExercises(id:string){
