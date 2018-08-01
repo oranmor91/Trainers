@@ -73,7 +73,7 @@ profile:PROFILE;
   }
 
   createNewTrainer(trainer:TRAINER) {
-    return this.http.post(`${this.baseURL}admin/user`, trainer)
+    return this.http.post(`${this.baseURL}/admin/user`, trainer)
   }
 
   getTrainers(id: string) {
