@@ -1,7 +1,7 @@
 import {GENDER} from "./gender.model";
 
 export class TRAINER {
-  trainerId:number;
+  id:number;
   firstName:string = '';
   lastName:string = '';
   password:string = '';
