@@ -2,11 +2,8 @@ package com.trainer.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
-import com.trainer.types.MuscleType;
 import com.trainer.visitors.BaseVisitor;
 
 @Entity
@@ -19,8 +16,7 @@ public class ExcersiceEntity extends BaseEntity{
 	private String name;
 
 	@Column
-	@Enumerated(EnumType.STRING)
-	private MuscleType primaryMuscle;
+	private String primaryMuscle;
 	
 	@Column
 	private String comment;
@@ -36,11 +32,11 @@ public class ExcersiceEntity extends BaseEntity{
 		this.name = name;
 	}
 
-	public MuscleType getPrimaryMuscle() {
+	public String getPrimaryMuscle() {
 		return primaryMuscle;
 	}
 
-	public void setPrimaryMuscle(MuscleType primaryMuscle) {
+	public void setPrimaryMuscle(String primaryMuscle) {
 		this.primaryMuscle = primaryMuscle;
 	}
 

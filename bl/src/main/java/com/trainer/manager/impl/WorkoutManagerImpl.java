@@ -11,8 +11,11 @@ import org.springframework.stereotype.Service;
 
 import com.trainer.dao.WorkoutDao;
 import com.trainer.dto.Workout;
+import com.trainer.entity.UserEntity;
 import com.trainer.entity.WorkoutEntity;
+import com.trainer.manaager.UserManager;
 import com.trainer.manaager.WorkoutManager;
+import com.trainer.utils.FilterUtils;
 import com.trainer.utils.ModelPersister;
 import com.trainer.visitors.BaseVisitor;
 
@@ -22,6 +25,9 @@ public class WorkoutManagerImpl extends BaseManager implements WorkoutManager{
 
 	@Autowired
 	private WorkoutDao m_workoutDao;
+	
+	@Autowired
+	private UserManager m_userManager;
 	
 	@Autowired
 	@Qualifier("DtoVisitor")
@@ -38,7 +44,10 @@ public class WorkoutManagerImpl extends BaseManager implements WorkoutManager{
 	
 	@Override
 	public List<Workout> getAll() {
-		return ModelPersister.getAll(m_workoutDao, m_dtoVisitor);
+		List<Workout> workouts = ModelPersister.getAll(m_workoutDao, m_dtoVisitor);
+		UserEntity caoch = m_userManager.getUserEntityByUniqueID(getLoggedInUser());
+		FilterUtils.filter(workouts, caoch.getId());
+		return workouts;
 	}
 
 	@Override

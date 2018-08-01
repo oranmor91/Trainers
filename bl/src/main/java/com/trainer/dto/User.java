@@ -39,8 +39,6 @@ public class User extends BaseDto{
 	@JsonIgnore
 	private Set<UserType> roles = new HashSet<UserType>();
 
-	private UserType type;
-	
 	public String getFirstName() {
 		return firstName;
 	}

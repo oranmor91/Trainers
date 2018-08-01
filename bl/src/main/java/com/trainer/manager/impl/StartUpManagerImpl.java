@@ -1,26 +1,16 @@
 package com.trainer.manager.impl;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.trainer.entity.ExcersiceEntity;
-import com.trainer.entity.ExcersiceWorkoutEntity;
-import com.trainer.entity.ProgramDefEntity;
-import com.trainer.entity.UserEntity;
-import com.trainer.entity.WorkoutEntity;
 import com.trainer.manaager.ExcersiceManager;
 import com.trainer.manaager.ProgramManager;
 import com.trainer.manaager.StartUpManager;
 import com.trainer.manaager.UserManager;
 import com.trainer.manaager.WorkoutManager;
-import com.trainer.types.GenderType;
-import com.trainer.types.MuscleType;
-import com.trainer.utils.UserType;
 
 @Component
 @Scope("singleton")

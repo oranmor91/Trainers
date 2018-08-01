@@ -1,14 +1,12 @@
 package com.trainer.dto;
 
-import com.trainer.types.MuscleType;
-
 public class Excersice extends BaseDto{
 
 	private static final long serialVersionUID = 1L;
 
 	private String name;
 
-	private MuscleType primaryMuscle;
+	private String primaryMuscle;
 	
 	private String comment;
 	
@@ -22,11 +20,11 @@ public class Excersice extends BaseDto{
 		this.name = name;
 	}
 
-	public MuscleType getPrimaryMuscle() {
+	public String getPrimaryMuscle() {
 		return primaryMuscle;
 	}
 
-	public void setPrimaryMuscle(MuscleType primaryMuscle) {
+	public void setPrimaryMuscle(String primaryMuscle) {
 		this.primaryMuscle = primaryMuscle;
 	}
 

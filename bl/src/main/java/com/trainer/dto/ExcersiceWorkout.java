@@ -6,7 +6,7 @@ public class ExcersiceWorkout extends BaseDto{
 
 	private Integer excersiceId;
 	
-	private Integer numOfSets; 
+	private Integer numOfSets;
 	
 	private Integer numOfIntervals;
 

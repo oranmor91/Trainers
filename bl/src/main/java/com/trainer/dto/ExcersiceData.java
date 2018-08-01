@@ -2,8 +2,6 @@ package com.trainer.dto;
 
 import java.io.Serializable;
 
-import com.trainer.types.MuscleType;
-
 public class ExcersiceData implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -18,7 +16,7 @@ public class ExcersiceData implements Serializable{
 
 	private Integer weight;
 
-	private MuscleType primaryMuscle;
+	private String primaryMuscle;
 	
 	private String comment;
 	
@@ -64,11 +62,11 @@ public class ExcersiceData implements Serializable{
 		this.weight = weight;
 	}
 
-	public MuscleType getPrimaryMuscle() {
+	public String getPrimaryMuscle() {
 		return primaryMuscle;
 	}
 
-	public void setPrimaryMuscle(MuscleType primaryMuscle) {
+	public void setPrimaryMuscle(String primaryMuscle) {
 		this.primaryMuscle = primaryMuscle;
 	}
 
