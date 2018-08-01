@@ -2,9 +2,13 @@ package com.trainer.dto;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.trainer.types.GenderType;
+import com.trainer.utils.UserType;
 
 public class User extends BaseDto{
 
@@ -31,7 +35,12 @@ public class User extends BaseDto{
 	private int numOfExpeirence;
 	
 	private List<Integer> nutritionId = new ArrayList<Integer>();
+	
+	@JsonIgnore
+	private Set<UserType> roles = new HashSet<UserType>();
 
+	private UserType type;
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -118,5 +127,20 @@ public class User extends BaseDto{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Set<UserType> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<UserType> roles) {
+		this.roles = roles;
+	}
+
+	public UserType getType() {
+		if (roles.contains(UserType.COACH))
+			return UserType.COACH;
+		else
+			return UserType.TRAINER;
 	}
 }

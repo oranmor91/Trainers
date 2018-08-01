@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,15 +20,13 @@ import com.trainer.utils.UserType;
 @Scope("singleton")
 public class LoginManagerImpl implements LoginManager{
 
-	@Autowired
-	private UserManager m_userManager;
-	
 	@Override
 	public Authentication login(String uniqueID, String password) {
-		UserEntity user = m_userManager.getByUniqueID(uniqueID);
+		UserManager userManager = StaticBeanFactory.getBean(UserManager.class);
+		UserEntity user = userManager.getUserEntityByUniqueID(uniqueID);
 		
 		if (user == null)
-			return null;
+			throw new RuntimeException("Failed to find loggin user.");
 
 		Collection<GrantedAuthority> auth = convertRoles(user.getRoles());
 		return new UsernamePasswordAuthenticationToken(uniqueID, password, auth);

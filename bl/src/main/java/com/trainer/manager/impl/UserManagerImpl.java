@@ -14,6 +14,7 @@ import com.trainer.dto.User;
 import com.trainer.entity.UserEntity;
 import com.trainer.manaager.UserManager;
 import com.trainer.utils.ModelPersister;
+import com.trainer.utils.UserType;
 import com.trainer.visitors.BaseVisitor;
 
 @Service
@@ -33,7 +34,7 @@ public class UserManagerImpl extends BaseManager implements UserManager{
 	
 	@Override
 	public List<UserEntity> getAllEntities() {
-		return ModelPersister.getAllEntities(getMyCoachId(), m_trainerDao);
+		return ModelPersister.getAllEntities(m_trainerDao);
 	}
 
 	@Override
@@ -54,13 +55,36 @@ public class UserManagerImpl extends BaseManager implements UserManager{
 
 	@Override
 	public List<User> getAll() {
-		return ModelPersister.getAll(getMyCoachId(), m_trainerDao, m_dtoVisitor);
+		return ModelPersister.getAll(m_trainerDao, m_dtoVisitor);
 	}
 
 	@Override
 	@Transactional
-	public User save(User dto) {
-		return ModelPersister.save(dto, getMyCoachId(), new UserEntity(), m_trainerDao, m_dtoVisitor, m_entityVistor);
+	public User saveUser(User dto) {
+		String loggedInUser = getLoggedInUser();
+		
+		if (loggedInUser == null)
+			throw new RuntimeException("Failed to find loggin user.");
+		
+		UserEntity admin = getUserEntityByUniqueID(loggedInUser);
+		
+		if (admin == null)
+			throw new RuntimeException("Failed to find loggin user.");
+		
+		dto.setCoachId(admin.getId());
+		return save(dto);
+	}
+	
+	@Override
+	@Transactional
+	public User saveAdmin(User dto) {
+		dto.getRoles().clear();
+		dto.getRoles().add(UserType.COACH);
+		return save(dto);
+	}
+	
+	private User save(User dto) {
+		return ModelPersister.save(dto, new UserEntity(), m_trainerDao, m_dtoVisitor, m_entityVistor);
 	}
 	
 	@Override
@@ -70,17 +94,18 @@ public class UserManagerImpl extends BaseManager implements UserManager{
 	}
 
 	@Override
-	public UserEntity getByUniqueID(String email) {
-		return m_trainerDao.findByEmail(email);
+	public UserEntity getUserEntityByUniqueID(String email) {
+		return email == null ? null : m_trainerDao.findByEmail(email);
+	}
+	
+	@Override
+	public User getUserByUniqueID(String email) {
+		UserEntity userEntityByUniqueID = getUserEntityByUniqueID(email);
+		return ModelPersister.convert(userEntityByUniqueID, m_dtoVisitor);
 	}
 
 	@Override
 	public UserEntity getMyCoach() {
-		return getByUniqueID(getLoggedInUser());
-	}
-
-	@Override
-	public Integer getMyCoachId() {
-		return getMyCoach().getId();
+		return getUserEntityByUniqueID(getLoggedInUser());
 	}
 }

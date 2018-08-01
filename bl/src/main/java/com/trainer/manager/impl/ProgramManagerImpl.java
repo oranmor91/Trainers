@@ -58,12 +58,12 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 	
 	@Override
 	public List<ProgramDef> getAllDef() {
-		return ModelPersister.getAll(m_userManager.getMyCoachId(), m_programDefDao, m_dtoVisitor);
+		return ModelPersister.getAll(m_programDefDao, m_dtoVisitor);
 	}
 
 	@Override
 	public List<ProgramDefEntity> getAllDefEntities() {
-		return ModelPersister.getAllEntities(m_userManager.getMyCoachId(), m_programDefDao);
+		return ModelPersister.getAllEntities(m_programDefDao);
 	}
 	
 	@Override
@@ -74,7 +74,7 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 	@Override
 	@Transactional
 	public ProgramDef saveDef(ProgramDef dto) {
-		return ModelPersister.save(dto, m_userManager.getMyCoachId(), new ProgramDefEntity(), m_programDefDao, m_dtoVisitor, m_entityVistor);
+		return ModelPersister.save(dto, new ProgramDefEntity(), m_programDefDao, m_dtoVisitor, m_entityVistor);
 	}
 
 	@Override
@@ -96,12 +96,12 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 	
 	@Override
 	public List<Program> getAll() {
-		return ModelPersister.getAll(m_userManager.getMyCoachId(), m_programDao, m_dtoVisitor);
+		return ModelPersister.getAll(m_programDao, m_dtoVisitor);
 	}
 
 	@Override
 	public List<ProgramEntity> getAllEntities() {
-		return ModelPersister.getAllEntities(m_userManager.getMyCoachId(), m_programDao);
+		return ModelPersister.getAllEntities(m_programDao);
 	}
 	
 	@Override
@@ -112,7 +112,7 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 	@Override
 	@Transactional
 	public Program saveDef(Program dto) {
-		return ModelPersister.save(dto, m_userManager.getMyCoachId(), new ProgramEntity(), m_programDao, m_dtoVisitor, m_entityVistor);
+		return ModelPersister.save(dto, new ProgramEntity(), m_programDao, m_dtoVisitor, m_entityVistor);
 	}
 
 	@Override
@@ -222,7 +222,7 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 
 	@Override
 	public Program getMyCurrentProgram() {
-		UserEntity byUniqueID = m_userManager.getByUniqueID(getLoggedInUser());
+		UserEntity byUniqueID = m_userManager.getUserEntityByUniqueID(getLoggedInUser());
 		return ModelPersister.get(byUniqueID.getId(), m_programDao, m_dtoVisitor);
 	}
 }

@@ -15,16 +15,17 @@ public interface UserManager {
 	
 	public UserEntity getEntity(Integer id);
 	
-	public User save(User dto);
-	
 	public UserEntity saveEntity(UserEntity entity);
 	
 	public void delete(Integer id);
 
-	public UserEntity getByUniqueID(String loggedInUser);
+	public UserEntity getUserEntityByUniqueID(String loggedInUser);
 	
 	public UserEntity getMyCoach();
-	
-	public Integer getMyCoachId();
-	
+
+	public User saveUser(User dto);
+
+	public User saveAdmin(User dto);
+
+	public User getUserByUniqueID(String email);
 }

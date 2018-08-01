@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.trainer.dao.WorkoutDao;
 import com.trainer.dto.Workout;
 import com.trainer.entity.WorkoutEntity;
-import com.trainer.manaager.UserManager;
 import com.trainer.manaager.WorkoutManager;
 import com.trainer.utils.ModelPersister;
 import com.trainer.visitors.BaseVisitor;
@@ -23,9 +22,6 @@ public class WorkoutManagerImpl extends BaseManager implements WorkoutManager{
 
 	@Autowired
 	private WorkoutDao m_workoutDao;
-	
-	@Autowired
-	private UserManager m_userManager;
 	
 	@Autowired
 	@Qualifier("DtoVisitor")
@@ -42,12 +38,12 @@ public class WorkoutManagerImpl extends BaseManager implements WorkoutManager{
 	
 	@Override
 	public List<Workout> getAll() {
-		return ModelPersister.getAll(m_userManager.getMyCoachId(), m_workoutDao, m_dtoVisitor);
+		return ModelPersister.getAll(m_workoutDao, m_dtoVisitor);
 	}
 
 	@Override
 	public List<WorkoutEntity> getAllEntities() {
-		return ModelPersister.getAllEntities(m_userManager.getMyCoachId(), m_workoutDao);
+		return ModelPersister.getAllEntities(m_workoutDao);
 	}
 	
 	@Override
@@ -58,7 +54,7 @@ public class WorkoutManagerImpl extends BaseManager implements WorkoutManager{
 	@Override
 	@Transactional
 	public Workout save(Workout dto) {
-		return ModelPersister.save(dto, m_userManager.getMyCoachId(), new WorkoutEntity(), m_workoutDao, m_dtoVisitor, m_entityVistor);
+		return ModelPersister.save(dto, new WorkoutEntity(), m_workoutDao, m_dtoVisitor, m_entityVistor);
 	}
 
 	@Override

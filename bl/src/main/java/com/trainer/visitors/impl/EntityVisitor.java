@@ -53,6 +53,9 @@ public class EntityVisitor implements BaseVisitor{
 		entity.setWeight(dto.getWeight());
 		entity.setNumOfExpeirence(dto.getNumOfExpeirence());
 		entity.setEmail(dto.getEmail());
+		
+		entity.getRoles().clear();
+		entity.getRoles().addAll(dto.getRoles());
 		return entity;
 	}
 
@@ -64,6 +67,7 @@ public class EntityVisitor implements BaseVisitor{
 		entity.setName(dto.getName());
 		entity.setPrimaryMuscle(dto.getPrimaryMuscle());
 		entity.setVideoURL(dto.getVideoURL());
+		entity.setCoach(m_userManager.getEntity(dto.getCoachId()));
 		return entity;
 	}
 

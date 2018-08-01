@@ -36,6 +36,9 @@ public class DtoVisitor implements BaseVisitor{
 		dto.setPhoneNumber(entity.getPhoneNumber());
 		dto.setWeight(entity.getWeight());
 		dto.setEmail(entity.getEmail());
+		
+		dto.getRoles().clear();
+		dto.getRoles().addAll(entity.getRoles());
 		return dto;
 	}
 
@@ -47,6 +50,7 @@ public class DtoVisitor implements BaseVisitor{
 		dto.setName(entity.getName());
 		dto.setPrimaryMuscle(entity.getPrimaryMuscle());
 		dto.setVideoURL(entity.getVideoURL());
+		dto.setCoachId(entity.getCoach().getId());
 		return dto;
 	}
 

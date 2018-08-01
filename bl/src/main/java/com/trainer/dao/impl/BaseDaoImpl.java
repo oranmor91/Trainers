@@ -23,10 +23,10 @@ public class BaseDaoImpl<ENTITY extends BaseEntity> implements BaseDao<ENTITY>{
 	}
 
 	@Override
-	public List<ENTITY> getAll(Integer coachId) {
-		String sql = "SELECT e FROM " + getEntityClass().getName() + " e where e.coach = :coachId";
+	@Transactional
+	public List<ENTITY> getAll() {
+		String sql = "SELECT e FROM " + getEntityClass().getName() + " e";
 		TypedQuery<ENTITY> createQuery = m_entityManager.createQuery(sql, getEntityClass());
-		createQuery.setParameter("coachId", coachId);
 		
 		List<ENTITY> resultList = createQuery.getResultList();
 		

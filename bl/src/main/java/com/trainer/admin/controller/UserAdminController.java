@@ -12,34 +12,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.trainer.dto.Excersice;
-import com.trainer.manaager.ExcersiceManager;
+import com.trainer.dto.User;
+import com.trainer.manaager.UserManager;
 
 @Controller
-@RequestMapping("/admin/exercise")
-public class ExcersiceController {
+@RequestMapping("/admin/user")
+public class UserAdminController {
 
 	@Autowired
-	private ExcersiceManager m_excersiceManager;
+	private UserManager m_trainerManager;
 	
 	@RequestMapping(method = RequestMethod.GET, value="/{id}")
-	public @ResponseBody Excersice get(@PathVariable Integer id) {
-		return m_excersiceManager.get(id);
+	public @ResponseBody User get(@PathVariable Integer id) {
+		return m_trainerManager.get(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody List<Excersice> getAll() {
-		return m_excersiceManager.getAll();
+	public @ResponseBody List<User> getAll() {
+		return m_trainerManager.getAll();
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody Excersice save(@RequestBody Excersice dto) {
-		return m_excersiceManager.save(dto);
-	}
+//	@RequestMapping(method = RequestMethod.POST)
+//	public @ResponseBody User save(@RequestBody User dto) {
+//		return m_trainerManager.save(dto);
+//	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, value="/{id}")
 	@ResponseStatus(value=HttpStatus.OK)
 	public void delete(@PathVariable Integer id) {
-		m_excersiceManager.delete(id);
+		m_trainerManager.delete(id);
 	}
 }

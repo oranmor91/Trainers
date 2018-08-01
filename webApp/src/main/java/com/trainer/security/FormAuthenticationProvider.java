@@ -11,16 +11,24 @@ import com.trainer.manaager.LoginManager;
 public class FormAuthenticationProvider implements AuthenticationProvider{
 
 	@Autowired
-	private LoginManager m_loginManager;
+	private LoginManager loginManager;
 	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		return m_loginManager.login((String) authentication.getPrincipal(), (String)authentication.getPrincipal());
+		return getLoginManager().login((String) authentication.getPrincipal(), (String)authentication.getPrincipal());
 	}
 
 	@Override
 	public boolean supports(Class<?> authentication) {
 		return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
+	}
+
+	public LoginManager getLoginManager() {
+		return loginManager;
+	}
+
+	public void setLoginManager(LoginManager loginManager) {
+		this.loginManager = loginManager;
 	}
 
 }

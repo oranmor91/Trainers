@@ -8,7 +8,7 @@ public interface BaseDao<ENTITY extends BaseEntity> {
 
 	public ENTITY get(Integer id);
 	
-	public List<ENTITY> getAll(Integer coachId);
+	public List<ENTITY> getAll();
 	
 	public ENTITY save(ENTITY entity);
 	

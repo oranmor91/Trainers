@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 import com.trainer.dao.ExcersiceDao;
 import com.trainer.dto.Excersice;
 import com.trainer.entity.ExcersiceEntity;
+import com.trainer.entity.UserEntity;
 import com.trainer.manaager.ExcersiceManager;
 import com.trainer.manaager.UserManager;
+import com.trainer.utils.FilterUtils;
 import com.trainer.utils.ModelPersister;
 import com.trainer.visitors.BaseVisitor;
 
@@ -42,12 +44,15 @@ public class ExcersiceManagerImpl extends BaseManager implements ExcersiceManage
 	
 	@Override
 	public List<Excersice> getAll() {
-		return ModelPersister.getAll(m_userManager.getMyCoachId(), m_excersiceDao, m_dtoVisitor);
+		List<Excersice> excersices = ModelPersister.getAll(m_excersiceDao, m_dtoVisitor);
+		UserEntity caoch = m_userManager.getUserEntityByUniqueID(getLoggedInUser());
+		FilterUtils.filter(excersices, caoch.getId());
+		return excersices;
 	}
 
 	@Override
 	public List<ExcersiceEntity> getAllEntities() {
-		return ModelPersister.getAllEntities(m_userManager.getMyCoachId(), m_excersiceDao);
+		return ModelPersister.getAllEntities(m_excersiceDao);
 	}
 	
 	@Override
@@ -58,7 +63,9 @@ public class ExcersiceManagerImpl extends BaseManager implements ExcersiceManage
 	@Override
 	@Transactional
 	public Excersice save(Excersice dto) {
-		return ModelPersister.save(dto, m_userManager.getMyCoachId(), new ExcersiceEntity(), m_excersiceDao, m_dtoVisitor, m_entityVistor);
+		UserEntity caoch = m_userManager.getUserEntityByUniqueID(getLoggedInUser());
+		dto.setCoachId(caoch.getId());
+		return ModelPersister.save(dto, new ExcersiceEntity(), m_excersiceDao, m_dtoVisitor, m_entityVistor);
 	}
 
 	@Override
