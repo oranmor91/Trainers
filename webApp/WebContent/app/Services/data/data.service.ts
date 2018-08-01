@@ -24,10 +24,6 @@ profile:PROFILE;
     return this.http.post(`${this.baseURL}/public/register`, trainer)
   }
 
-  createNewTrainer(trainer:TRAINER) {
-    return this.http.post(`${this.baseURL}/trainer`, trainer)
-  }
-
   createNewProgram(id:string, program:PROGRAM) {
     return this.http.post(`${this.baseURL}/admin/program`, program)
   }
@@ -74,6 +70,10 @@ profile:PROFILE;
 
   createNewExercise(exercise:EXERCISE) {
     return this.http.post(`${this.baseURL}/admin/exercise`, exercise)
+  }
+
+  createNewTrainer(trainer:TRAINER) {
+    return this.http.post(`${this.baseURL}admin/user`, trainer)
   }
 
   getTrainers(id: string) {

@@ -20,19 +20,20 @@ trainer:TRAINER = new TRAINER();
   ngOnInit() {
   }
 
-  createNewTrainer(){
+/*  createNewTrainer(){
    this.router.navigate(['trainers']);
-  }
-//  createNewTrainer(){
-//    this.dataService.createNewTrainer(this.trainer)
-//      .subscribe((data)=>{
-//        console.log(data)
+  }*/
 
-//        this.router.navigate(['trainers']);
-//      },(err)=>{
-//        console.log(err)
-//      },()=>{
-//        console.log('done')
-//      })
-//  }
+ createNewTrainer(){
+   this.dataService.createNewTrainer(this.trainer)
+     .subscribe((data)=>{
+       console.log(data)
+
+       this.router.navigate(['trainers']);
+     },(err)=>{
+       console.log(err)
+     },()=>{
+       console.log('done')
+     })
+ }
 }
