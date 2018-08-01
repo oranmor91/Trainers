@@ -38,7 +38,6 @@ programId:string;
   }
 
   definedId(id: string){
-    logger
     this.programId = id;
   }
 
