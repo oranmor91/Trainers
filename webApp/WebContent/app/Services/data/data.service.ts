@@ -69,8 +69,7 @@ profile:PROFILE;
   }
 
   removeExercise(id:number) {
-    const params = new HttpParams().set(id.toString(), '1');
-     return this.http.delete(`${this.baseURL}/admin/exercise`, {params})
+     return this.http.delete(`${this.baseURL}/admin/exercise/${id}`)
   }
 
   createNewExercise(exercise:EXERCISE) {
