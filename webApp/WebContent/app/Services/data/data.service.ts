@@ -77,15 +77,15 @@ profile:PROFILE;
   }
 
   getTrainers(id: string) {
-    return this.http.get(`${this.baseURL}/${id}/getTrainers`)
+    return this.http.get(`${this.baseURL}/admin/user`)
   }
 
   removeTrainer(id: number) {
-    return this.http.post(`${this.baseURL}/removeTrainer`, id)
+    return this.http.delete(`${this.baseURL}/admin/user/${id}`)
   }
 
   getTrainerProfile(trainerId: string) {
-    return this.http.get(`${this.baseURL}/${trainerId}/trainerProfile`)
+    return this.http.post(`${this.baseURL}/admin/user`, trainerId)
   }
 
   setUserProgram(trainerId:string, chosenProgram:PROGRAM) {
