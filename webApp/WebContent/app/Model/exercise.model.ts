@@ -1,5 +1,5 @@
 export class EXERCISE {
-id:number = 0;
+id:number;
 name:string;
 primaryMuscle:string;
 comment:string;
