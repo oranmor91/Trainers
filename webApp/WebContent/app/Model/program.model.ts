@@ -1,6 +1,6 @@
 import { WORKOUT } from './workout.model';
 export class PROGRAM {
-  programId:number = 0;
+  programId:number;
   programName:string = '';
   programTarget:string = '';
   programNote:string = '';
