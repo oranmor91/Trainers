@@ -1,8 +1,8 @@
 
 export class PROGRAM {
-  programId:number;
-  programName:string = '';
+  id:number;
+  name:string = '';
   description:string = '';
-  programNote:string = '';
+  notes:string = '';
   workouts:number[];
 }

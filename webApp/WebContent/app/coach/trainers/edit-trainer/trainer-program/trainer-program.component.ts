@@ -22,7 +22,7 @@ export class TrainerProgramComponent implements OnInit {
     {id:333, name:'f', primaryMuscle:'hand', numOfIntervals:3, numOfSets:2, comment:'asas', weight:60}];
 
   workout:WORKOUT[]=[{exercises:this.exercises,id:111,name:'a'}, {exercises:this.exercises2,id:222,name:'b'}];
-  program:PROGRAM={numOfExercises:1,programId:1,programName:'a',programNote:'',description:'',workouts:this.workout};*/
+  program:PROGRAM={numOfExercises:1,id:1,name:'a',notes:'',description:'',workouts:this.workout};*/
 
   programId:string;
   program:PROGRAM;
@@ -57,7 +57,7 @@ export class TrainerProgramComponent implements OnInit {
 
 
   getWorkouts() {
-    this.dataService.getWorkout(String(this.program.programId))
+    this.dataService.getWorkout(String(this.program.id))
     .subscribe((data)=>{
     this.workout = <WORKOUT[]> data;
    },(err)=>{

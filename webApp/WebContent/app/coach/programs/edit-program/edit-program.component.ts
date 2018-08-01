@@ -19,7 +19,7 @@ export class EditProgramComponent implements OnInit {
     {exercises:[this.ex],id:222,name:'b'},
     {exercises:[this.ex],id:333,name:'c'}];
   workout2:WORKOUT[]=[{exercises:[this.ex],id:222,name:'b'}];
-  program:PROGRAM={numOfExercises:1,programId:1,programName:'a',programNote:'',description:'',workouts:this.workout2};*/
+  program:PROGRAM={numOfExercises:1,id:1,name:'a',notes:'',description:'',workouts:this.workout2};*/
 
   program:PROGRAM;
   workout:WORKOUT[]=[];

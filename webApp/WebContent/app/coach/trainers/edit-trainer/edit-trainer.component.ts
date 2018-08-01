@@ -75,9 +75,9 @@ export class EditTrainerComponent implements OnInit {
       return false;
     }
 
-    this.arr = this.programs.map(pro => pro.programId);
+    this.arr = this.programs.map(pro => pro.id);
 
-    if(this.arr.includes(p.programId)) {
+    if(this.arr.includes(p.id)) {
       //console.log('return true');
       return true;
     } else {

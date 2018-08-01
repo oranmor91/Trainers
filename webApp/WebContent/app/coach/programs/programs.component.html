@@ -20,13 +20,13 @@
 			<tr *ngFor="let program of programs;let i = index">
 				<td>
 					<div class="col-md-6">
-						{{program.programName}}
-					</div>
+            {{program.name}}
+          </div>
 				</td>
 				<td class="td-actions">
 					<div class="col-md-6">
-						<button (click)="editProgram(program.programId)"  name="edit" class="btn btn-sm btn-warning" href="javascript:;"><span class="glyphicon glyphicon-edit"></span></button>
-						<button (click)="removeProgram(program.programId)" name="edit" class="btn btn-sm btn-danger" href="javascript:;"><span class="glyphicon glyphicon-remove"></span></button>
+						<button (click)="editProgram(program.id)" name="edit" class="btn btn-sm btn-warning" href="javascript:;"><span class="glyphicon glyphicon-edit"></span></button>
+						<button (click)="removeProgram(program.id)" name="edit" class="btn btn-sm btn-danger" href="javascript:;"><span class="glyphicon glyphicon-remove"></span></button>
 		 			</div>
 	 			</td>
    		 	</tr>
