@@ -37,6 +37,12 @@ public class DtoVisitor implements BaseVisitor{
 		dto.setWeight(entity.getWeight());
 		dto.setEmail(entity.getEmail());
 		
+		UserEntity coach = entity.getCoach();
+		
+		if (coach != null)
+			dto.setCoachId(coach.getId());
+		
+		
 		dto.getRoles().clear();
 		dto.getRoles().addAll(entity.getRoles());
 		return dto;

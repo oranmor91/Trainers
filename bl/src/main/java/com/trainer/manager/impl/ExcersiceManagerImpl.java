@@ -12,10 +12,8 @@ import org.springframework.stereotype.Service;
 import com.trainer.dao.ExcersiceDao;
 import com.trainer.dto.Excersice;
 import com.trainer.entity.ExcersiceEntity;
-import com.trainer.entity.UserEntity;
 import com.trainer.manaager.ExcersiceManager;
 import com.trainer.manaager.UserManager;
-import com.trainer.utils.FilterUtils;
 import com.trainer.utils.ModelPersister;
 import com.trainer.visitors.BaseVisitor;
 
@@ -45,8 +43,7 @@ public class ExcersiceManagerImpl extends BaseManager implements ExcersiceManage
 	@Override
 	public List<Excersice> getAll() {
 		List<Excersice> excersices = ModelPersister.getAll(m_excersiceDao, m_dtoVisitor);
-		UserEntity caoch = m_userManager.getUserEntityByUniqueID(getLoggedInUser());
-		FilterUtils.filter(excersices, caoch.getId());
+		filterDtosByCoach(excersices, m_userManager);
 		return excersices;
 	}
 
@@ -63,8 +60,7 @@ public class ExcersiceManagerImpl extends BaseManager implements ExcersiceManage
 	@Override
 	@Transactional
 	public Excersice save(Excersice dto) {
-		UserEntity caoch = m_userManager.getUserEntityByUniqueID(getLoggedInUser());
-		dto.setCoachId(caoch.getId());
+		setCoachId(dto, m_userManager);
 		return ModelPersister.save(dto, new ExcersiceEntity(), m_excersiceDao, m_dtoVisitor, m_entityVistor);
 	}
 

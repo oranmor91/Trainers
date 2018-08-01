@@ -16,7 +16,6 @@ import com.trainer.entity.UserEntity;
 import com.trainer.entity.WorkoutEntity;
 import com.trainer.manaager.UserManager;
 import com.trainer.manaager.WorkoutManager;
-import com.trainer.utils.FilterUtils;
 import com.trainer.utils.ModelPersister;
 import com.trainer.visitors.BaseVisitor;
 
@@ -46,8 +45,7 @@ public class WorkoutManagerImpl extends BaseManager implements WorkoutManager{
 	@Override
 	public List<Workout> getAll() {
 		List<Workout> workouts = ModelPersister.getAll(m_workoutDao, m_dtoVisitor);
-		UserEntity caoch = m_userManager.getUserEntityByUniqueID(getLoggedInUser());
-		FilterUtils.filter(workouts, caoch.getId());
+		filterDtosByCoach(workouts, m_userManager);
 		return workouts;
 	}
 
@@ -64,8 +62,8 @@ public class WorkoutManagerImpl extends BaseManager implements WorkoutManager{
 	@Override
 	@Transactional
 	public Workout save(Workout dto) {
+		setCoachId(dto, m_userManager);
 		UserEntity caoch = m_userManager.getUserEntityByUniqueID(getLoggedInUser());
-		dto.setCoachId(caoch.getId());
 		
 		for (ExcersiceWorkout ex : dto.getExercises())
 			ex.setCoachId(caoch.getId());
