@@ -26,10 +26,7 @@ export class CreateProgramComponent implements OnInit {
   getWorkout(){
       this.dataService.getWorkouts(this.dataService.profile.id)
       .subscribe((data)=>{
-
       this.workouts = <WORKOUT[]> data;
-
-       this.router.navigate(['programs']);
       },(err)=>{
         console.log(err)
       },()=>{
