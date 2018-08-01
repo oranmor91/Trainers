@@ -5,7 +5,7 @@
 
 <div class="container">
 
-<div class="widget-content">	
+<div class="widget-content">
 	<table class="table table-striped table-bordered">
 	<thead>
 			<tr>
@@ -17,20 +17,20 @@
 		<tbody>
 			<tr *ngFor="let trainer of trainers;let i = index">
 				<td>
-					<div class="col-md-6">  
-						{{trainer.firstName}} 
-					</div>  
+					<div class="col-md-6">
+						{{trainer.firstName}}
+					</div>
 				</td>
 				<td>
-					<div class="col-md-6">  
-						{{trainer.lastName}} 
-					</div>  
+					<div class="col-md-6">
+						{{trainer.lastName}}
+					</div>
 				</td>
 				<td class="td-actions">
-					<div class="col-md-6"> 
-						<button (click)="editTrainer(trainer.trainerId)"  name="edit" class="btn btn-sm btn-warning" href="javascript:;"><span class="glyphicon glyphicon-edit"></span></button>
-						<button (click)="removeTrainer(trainer.trainerId)" name="edit" class="btn btn-sm btn-danger" href="javascript:;"><span class="glyphicon glyphicon-remove"></span></button>
-		 			</div>  
+					<div class="col-md-6">
+						<button (click)="editTrainer(trainer.id)" name="edit" class="btn btn-sm btn-warning" href="javascript:;"><span class="glyphicon glyphicon-edit"></span></button>
+						<button (click)="removeTrainer(trainer.id)" name="edit" class="btn btn-sm btn-danger" href="javascript:;"><span class="glyphicon glyphicon-remove"></span></button>
+		 			</div>
 	 			</td>
    		 	</tr>
 		</tbody>
