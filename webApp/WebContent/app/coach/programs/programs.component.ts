@@ -35,7 +35,7 @@ export class ProgramsComponent implements OnInit {
   }
 
   editProgram(id:number){
-    this.router.navigate([`/edit-program:pId${id}`]);
+    this.router.navigate([`/edit-program:${id}`]);
   }
 
    removeProgram(id:number){
