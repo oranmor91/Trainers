@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.trainer.dao.WorkoutDao;
+import com.trainer.dto.ExcersiceWorkout;
 import com.trainer.dto.Workout;
 import com.trainer.entity.UserEntity;
 import com.trainer.entity.WorkoutEntity;
@@ -63,6 +64,12 @@ public class WorkoutManagerImpl extends BaseManager implements WorkoutManager{
 	@Override
 	@Transactional
 	public Workout save(Workout dto) {
+		UserEntity caoch = m_userManager.getUserEntityByUniqueID(getLoggedInUser());
+		dto.setCoachId(caoch.getId());
+		
+		for (ExcersiceWorkout ex : dto.getExercises())
+			ex.setCoachId(caoch.getId());
+		
 		return ModelPersister.save(dto, new WorkoutEntity(), m_workoutDao, m_dtoVisitor, m_entityVistor);
 	}
 

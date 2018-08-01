@@ -78,6 +78,8 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 	@Override
 	@Transactional
 	public ProgramDef saveDef(ProgramDef dto) {
+		UserEntity caoch = m_userManager.getUserEntityByUniqueID(getLoggedInUser());
+		dto.setCoachId(caoch.getId());
 		return ModelPersister.save(dto, new ProgramDefEntity(), m_programDefDao, m_dtoVisitor, m_entityVistor);
 	}
 

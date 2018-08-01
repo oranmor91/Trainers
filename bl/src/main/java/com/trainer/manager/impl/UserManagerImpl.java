@@ -13,6 +13,7 @@ import com.trainer.dao.UserDao;
 import com.trainer.dto.User;
 import com.trainer.entity.UserEntity;
 import com.trainer.manaager.UserManager;
+import com.trainer.utils.FilterUtils;
 import com.trainer.utils.ModelPersister;
 import com.trainer.utils.UserType;
 import com.trainer.visitors.BaseVisitor;
@@ -23,6 +24,9 @@ public class UserManagerImpl extends BaseManager implements UserManager{
 
 	@Autowired
 	private UserDao m_trainerDao;
+	
+	@Autowired
+	private UserManager m_userManager;
 	
 	@Autowired
 	@Qualifier("DtoVisitor")
@@ -55,7 +59,10 @@ public class UserManagerImpl extends BaseManager implements UserManager{
 
 	@Override
 	public List<User> getAll() {
-		return ModelPersister.getAll(m_trainerDao, m_dtoVisitor);
+		List<User> users = ModelPersister.getAll(m_trainerDao, m_dtoVisitor);
+		UserEntity caoch = m_userManager.getUserEntityByUniqueID(getLoggedInUser());
+		FilterUtils.filter(users, caoch.getId());
+		return users;
 	}
 
 	@Override

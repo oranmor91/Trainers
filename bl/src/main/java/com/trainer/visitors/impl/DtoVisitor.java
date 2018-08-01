@@ -61,6 +61,12 @@ public class DtoVisitor implements BaseVisitor{
 		workoutExcersice.setExcersiceId(excersiceWorkoutEntity.getExcersice().getId());
 		workoutExcersice.setNumOfIntervals(excersiceWorkoutEntity.getNumOfIntervals());
 		workoutExcersice.setNumOfSets(excersiceWorkoutEntity.getNumOfSets());
+		
+		UserEntity coach = excersiceWorkoutEntity.getCoach();
+		
+		if (coach != null)
+			workoutExcersice.setCoachId(coach.getId());
+		
 		return workoutExcersice;
 	}
 
@@ -76,9 +82,14 @@ public class DtoVisitor implements BaseVisitor{
 		dto.setId(workoutEntity.getId());
 		dto.setName(workoutEntity.getName());
 		
+		UserEntity coach = workoutEntity.getCoach();
+		
+		if (coach != null)
+			dto.setCoachId(coach.getId());
+		
 		for (ExcersiceWorkoutEntity excersice : workoutEntity.getExcersices()) {
 			ExcersiceWorkout workoutExcersice = (ExcersiceWorkout) excersice.accept(this, excersice);
-			dto.getExcersices().add(workoutExcersice);
+			dto.getExercises().add(workoutExcersice);
 		}
 		
 		return dto;
@@ -91,6 +102,11 @@ public class DtoVisitor implements BaseVisitor{
 		dto.setName(programDefEntity.getName());
 		dto.setNotes(programDefEntity.getNotes());
 		dto.setDescription(programDefEntity.getDescription());
+		
+		UserEntity coach = programDefEntity.getCoach();
+		
+		if (coach != null)
+			dto.setCoachId(coach.getId());
 		
 		for (WorkoutEntity workout : programDefEntity.getWorkouts())
 			dto.getWorkouts().add(workout.getId());

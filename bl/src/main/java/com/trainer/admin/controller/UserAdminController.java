@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,10 +32,10 @@ public class UserAdminController {
 		return m_trainerManager.getAll();
 	}
 	
-//	@RequestMapping(method = RequestMethod.POST)
-//	public @ResponseBody User save(@RequestBody User dto) {
-//		return m_trainerManager.save(dto);
-//	}
+	@RequestMapping(method = RequestMethod.POST)
+	public @ResponseBody User save(@RequestBody User dto) {
+		return m_trainerManager.saveUser(dto);
+	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, value="/{id}")
 	@ResponseStatus(value=HttpStatus.OK)
