@@ -87,7 +87,7 @@ export class EditWorkoutComponent implements OnInit {
 
       if (!this.arr2.includes(e.exerciseId)) {
         // Add a new control in the arrayForm
-        this.temp.push({exerciseId:e.exerciseId, exerciseName:e.exerciseName, mainMuscle:e.mainMuscle, note:e.note, numOfSets:e.numOfSets, numOfIntervals:e.numOfIntervals, weight:e.weight});
+        this.temp.push({exerciseId:e.exerciseId, name:e.name, primaryMuscle:e.primaryMuscle, comment:e.comment, numOfSets:e.numOfSets, numOfIntervals:e.numOfIntervals, weight:e.weight, videoURL:e.videoURL});
         console.log('after push');
         console.log(this.temp);
       }
