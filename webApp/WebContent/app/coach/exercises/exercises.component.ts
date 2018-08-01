@@ -35,7 +35,7 @@ export class ExercisesComponent implements OnInit {
   }
 
   editExercise(id:number){
-      this.router.navigate([`/edit-exercise:id${id}`]);
+      this.router.navigate([`/edit-exercise/${id}`]);
   }
 
   removeExercise(id:number){

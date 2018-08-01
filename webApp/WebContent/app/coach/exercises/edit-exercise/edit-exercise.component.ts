@@ -11,15 +11,23 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EditExerciseComponent implements OnInit {
     exerciseId:string;
     exercise:EXERCISE;
-  
+
     constructor(private dataService:DataService,
-              private router: Router, 
+              private router: Router,
               private route: ActivatedRoute) {
-    this.exerciseId = route.snapshot.params['id'];
-  
+
+
   }
-  
+
   ngOnInit() {
+   // this.route.snapshot.params.exerciseId;
+
+    this.route.paramMap.subscribe(params => {
+      console.log(params.get('id'));
+      this.exerciseId = params.get('id');
+    });
+
+    //this.route.snapshot.paramMap.subscribe params['id'];
     this.getExercise();
   }
 
@@ -31,10 +39,10 @@ export class EditExerciseComponent implements OnInit {
       console.log(err)
     },()=>{
       console.log('done')
-    }) 
+    })
   }
-  
+
   saveExercise(){
-    
+
   }
 }
