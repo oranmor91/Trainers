@@ -56,6 +56,11 @@ public class EntityVisitor implements BaseVisitor{
 		
 		entity.getRoles().clear();
 		entity.getRoles().addAll(dto.getRoles());
+		
+		Integer coachId = dto.getCoachId();
+		
+		if (coachId != null)
+			entity.setCoach(m_userManager.getEntity(coachId));
 		return entity;
 	}
 
