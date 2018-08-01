@@ -29,7 +29,7 @@ const routes: Routes = [
   {path: 'create-trainer', component: CreateTrainerComponent},
   {path: 'edit-trainer', component: EditTrainerComponent},
   {path: 'trainer-program', component: TrainerProgramComponent},
-  {path: 'edit-program', component: EditProgramComponent},
+  {path: 'edit-program/:id', component: EditProgramComponent},
   {path: '', redirectTo: '/welcome', pathMatch: 'full'},
   {path: '*', redirectTo: '/welcome', pathMatch: 'full'},
   {path: '**', redirectTo: '/welcome', pathMatch: 'full'},

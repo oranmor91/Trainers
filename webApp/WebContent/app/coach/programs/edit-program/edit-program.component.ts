@@ -4,6 +4,7 @@ import { DataService } from '../../../Services/data/data.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgForm} from "@angular/forms";
+import {logger} from "codelyzer/util/logger";
 
 @Component({
   selector: 'app-edit-program',
@@ -11,7 +12,7 @@ import {NgForm} from "@angular/forms";
   styleUrls: ['./edit-program.component.css']
 })
 export class EditProgramComponent implements OnInit {
-  programId:string;
+
  @ViewChild('editForm') editForm:NgForm;
 
 /*  ex:EXERCISE;
@@ -21,6 +22,7 @@ export class EditProgramComponent implements OnInit {
   workout2:WORKOUT[]=[{exercises:[this.ex],id:222,name:'b'}];
   program:PROGRAM={numOfExercises:1,id:1,name:'a',notes:'',description:'',workouts:this.workout2};*/
 
+programId:string;
   program:PROGRAM;
   workout:WORKOUT[]=[];
   temp:number[]=[];
@@ -29,8 +31,15 @@ export class EditProgramComponent implements OnInit {
   constructor(private dataService:DataService,
               private router: Router,
               private route: ActivatedRoute) {
-    this.programId = route.snapshot.params['id'];
+    this.route.params.subscribe( params => console.log(params) );
+    this.route.params.subscribe(params => this.definedId(params['id']));
+    //this.programId = route.snapshot.params['id'];
+   // this.doSearch(params['term']));
+  }
 
+  definedId(id: string){
+    logger
+    this.programId = id;
   }
 
   ngOnInit() {
