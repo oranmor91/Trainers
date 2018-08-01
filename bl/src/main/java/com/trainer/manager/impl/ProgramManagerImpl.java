@@ -27,6 +27,7 @@ import com.trainer.entity.WorkoutEntity;
 import com.trainer.manaager.ProgramManager;
 import com.trainer.manaager.UserManager;
 import com.trainer.rm.RMCalculatorBuilder;
+import com.trainer.utils.FilterUtils;
 import com.trainer.utils.ModelPersister;
 import com.trainer.visitors.BaseVisitor;
 
@@ -58,7 +59,10 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 	
 	@Override
 	public List<ProgramDef> getAllDef() {
-		return ModelPersister.getAll(m_programDefDao, m_dtoVisitor);
+		List<ProgramDef> programs = ModelPersister.getAll(m_programDefDao, m_dtoVisitor);
+		UserEntity caoch = m_userManager.getUserEntityByUniqueID(getLoggedInUser());
+		FilterUtils.filter(programs, caoch.getId());
+		return programs;
 	}
 
 	@Override

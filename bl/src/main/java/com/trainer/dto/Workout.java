@@ -11,8 +11,6 @@ public class Workout extends BaseDto{
 
 	private List<ExcersiceWorkout> excersices = new ArrayList<ExcersiceWorkout>();
 	
-	private Integer coachId;
-
 	public String getName() {
 		return name;
 	}
@@ -27,13 +25,5 @@ public class Workout extends BaseDto{
 
 	public void setExcersices(List<ExcersiceWorkout> excersices) {
 		this.excersices = excersices;
-	}
-
-	public Integer getCoachId() {
-		return coachId;
-	}
-
-	public void setCoachId(Integer coachId) {
-		this.coachId = coachId;
 	}
 }

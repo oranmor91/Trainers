@@ -1,18 +1,18 @@
 package com.trainer.utils;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.apache.commons.collections4.CollectionUtils;
 
-import com.trainer.dto.Excersice;
+import com.trainer.dto.BaseDto;
 
 public class FilterUtils {
 
-	public static void filter(List<Excersice> excersices, Integer coachId) {
-		CollectionUtils.filter(excersices, new org.apache.commons.collections4.Predicate<Excersice>(){
+	public static <T extends BaseDto>  void filter(Collection<T> dtos, Integer coachId) {
+		CollectionUtils.filter(dtos, new org.apache.commons.collections4.Predicate<T>(){
 
 			@Override
-			public boolean evaluate(Excersice object) {
+			public boolean evaluate(T object) {
 				return object.getCoachId() == coachId;
 			}
 		});

@@ -17,7 +17,7 @@ import com.trainer.manaager.WorkoutManager;
 
 @Controller
 @RequestMapping("/admin/workout")
-public class WorkoutController {
+public class WorkoutAdminController {
 
 	@Autowired
 	private WorkoutManager m_workoutManager;
