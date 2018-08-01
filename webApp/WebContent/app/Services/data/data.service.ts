@@ -76,10 +76,6 @@ profile:PROFILE;
     return this.http.post(`${this.baseURL}/admin/exercise`, exercise)
   }
 
-  getCoachExercise(id:string) {
-    return this.http.get(`${this.baseURL}/${id}/getExercise`)
-  }
-
   getTrainers(id: string) {
     return this.http.get(`${this.baseURL}/${id}/getTrainers`)
   }

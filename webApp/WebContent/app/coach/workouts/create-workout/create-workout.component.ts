@@ -29,7 +29,7 @@ export class CreateWorkoutComponent implements OnInit {
   }
 
   getExercises(){
-    this.dataService.getCoachExercise('')
+    this.dataService.getExercises('')
     .subscribe((data)=>{
     this.exercises = <EXERCISE[]> data;
       },(err)=>{
