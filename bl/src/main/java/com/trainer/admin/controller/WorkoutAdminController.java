@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.trainer.dto.ExcersiceWorkout;
 import com.trainer.dto.Workout;
 import com.trainer.manaager.WorkoutManager;
 
@@ -24,22 +25,47 @@ public class WorkoutAdminController {
 	
 	@RequestMapping(method = RequestMethod.GET, value="/{id}")
 	public @ResponseBody Workout get(@PathVariable Integer id) {
-		return m_workoutManager.get(id);
+		Workout workout = m_workoutManager.get(id);
+		revertReplaceExcersiceIdWithId(workout);
+		return workout;
+		
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody List<Workout> getAll() {
-		return m_workoutManager.getAll();
+		List<Workout> results = m_workoutManager.getAll();
+		
+		for (Workout result : results)
+			revertReplaceExcersiceIdWithId(result);
+		
+		return results;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody Workout save(@RequestBody Workout dto) {
-		return m_workoutManager.save(dto);
+		replaceExcersiceIdWithId(dto);
+		Workout result = m_workoutManager.save(dto);
+		revertReplaceExcersiceIdWithId(result);
+		return result;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.DELETE, value="/{id}")
 	@ResponseStatus(value=HttpStatus.OK)
 	public void delete(@PathVariable Integer id) {
 		m_workoutManager.delete(id);
+	}
+	
+	private void replaceExcersiceIdWithId(Workout dto) {
+		for (ExcersiceWorkout excerise : dto.getExercises()) {
+			excerise.setExcersiceId(excerise.getId());
+			excerise.setId(null);
+		}
+	}
+	
+	private void revertReplaceExcersiceIdWithId(Workout workout) {
+		for (ExcersiceWorkout excerise : workout.getExercises()) {
+			excerise.setId(excerise.getExcersiceId());
+			excerise.setExcersiceId(null);
+		}
 	}
 }

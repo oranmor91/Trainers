@@ -88,6 +88,7 @@ public class EntityVisitor implements BaseVisitor{
 		excersiceWorkoutEntity.setExcersice(entity);
 		excersiceWorkoutEntity.setNumOfIntervals(dto.getNumOfIntervals());
 		excersiceWorkoutEntity.setNumOfSets(dto.getNumOfSets());
+		excersiceWorkoutEntity.setCoach(m_userManager.getEntity(dto.getCoachId()));		
 		return excersiceWorkoutEntity;
 	}
 
@@ -96,10 +97,10 @@ public class EntityVisitor implements BaseVisitor{
 		Workout dto = (Workout) obj[0];
 		workoutEntity.setId(dto.getId());
 		workoutEntity.setName(dto.getName());
-
+		workoutEntity.setCoach(m_userManager.getEntity(dto.getCoachId()));
 		workoutEntity.getExcersices().clear();
 		
-		for (ExcersiceWorkout excersiceWorkout : dto.getExcersices()) {
+		for (ExcersiceWorkout excersiceWorkout : dto.getExercises()) {
 			ExcersiceWorkoutEntity entity = (ExcersiceWorkoutEntity) visit(new ExcersiceWorkoutEntity(), excersiceWorkout);
 			
 			if (entity != null)
@@ -122,6 +123,7 @@ public class EntityVisitor implements BaseVisitor{
 		workoutProgramEntity.setDescription(dto.getDescription());
 		workoutProgramEntity.setName(dto.getName());
 		workoutProgramEntity.setNotes(dto.getNotes());
+		workoutProgramEntity.setCoach(m_userManager.getEntity(dto.getCoachId()));
 		
 		workoutProgramEntity.getWorkouts().clear();
 		
