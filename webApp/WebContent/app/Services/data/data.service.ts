@@ -37,7 +37,7 @@ profile:PROFILE;
   }
 
   getProgram(id:number) {
-    return this.http.post(`${this.baseURL}/admin/program`, id)
+    return this.http.get(`${this.baseURL}/admin/program/${id}`)
   }
 
   createNewWorkout(id:string, workout:WORKOUT) {
