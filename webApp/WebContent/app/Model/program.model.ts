@@ -1,9 +1,8 @@
-import { WORKOUT } from './workout.model';
+
 export class PROGRAM {
   programId:number;
   programName:string = '';
-  programTarget:string = '';
+  description:string = '';
   programNote:string = '';
-  numOfExercises:number;
-  workouts: WORKOUT[];
+  workouts:number[];
 }

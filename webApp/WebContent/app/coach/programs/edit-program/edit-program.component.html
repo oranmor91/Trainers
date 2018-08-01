@@ -14,9 +14,9 @@
       <label for="programTarget" class="col-sm-3 control-label">Program
         target</label>
       <div class="col-sm-9">
-        <input [(ngModel)]="program.programTarget" ngModel
+        <input [(ngModel)]="program.description" ngModel
                name="programTarget" type="text" id="programTarget"
-               placeholder="{{program.programTarget}}" class="form-control">
+               placeholder="{{program.description}}" class="form-control">
       </div>
     </div>
     <div class="form-group">
@@ -27,16 +27,6 @@
                type="text" id="programNote" placeholder="{{program.programNote}}"
                class="form-control">
       </div>
-    </div>
-    <div class="form-group">
-      <label for="numOfExercises" class="col-sm-3 control-label">Sessions
-        per week</label>
-      <div class="col-sm-9">
-        <input [(ngModel)]="program.numOfExercises" ngModel
-               name="numOfExercises" type="number" id="numOfExercises"
-               placeholder="{{program.numOfExercises}}" class="form-control">
-      </div>
-    </div>
 
     <div class="widget-content">
       <table class="table table-striped table-bordered">

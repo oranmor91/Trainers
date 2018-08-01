@@ -21,7 +21,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let workout of program.workouts;let i = index">
+			<tr *ngFor="let w of program.workouts;let i = index">
         <td>
           <div class="col-md-6">
             {{i + 1}}
@@ -38,7 +38,7 @@
         </td>
 				<td>
 					<div class="col-md-6">
-            <a (click)="showExercise(workout)" routerLinkActive="active-link">{{workout.name}}</a>
+            <a (click)="showExercise(w)" routerLinkActive="active-link">{{workout.name}}</a>
 						<!-- <span (click)="showExercise(workout)" routerLinkActive="active-link"></span>{{workout.name}} -->
 					</div>
 				</td>

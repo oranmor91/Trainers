@@ -19,12 +19,11 @@ export class EditProgramComponent implements OnInit {
     {exercises:[this.ex],id:222,name:'b'},
     {exercises:[this.ex],id:333,name:'c'}];
   workout2:WORKOUT[]=[{exercises:[this.ex],id:222,name:'b'}];
-  program:PROGRAM={numOfExercises:1,programId:1,programName:'a',programNote:'',programTarget:'',workouts:this.workout2};*/
+  program:PROGRAM={numOfExercises:1,programId:1,programName:'a',programNote:'',description:'',workouts:this.workout2};*/
 
   program:PROGRAM;
   workout:WORKOUT[]=[];
-  temp:WORKOUT[]=[];
-  arr:number[]=[];
+  temp:number[]=[];
   arr2:number[]=[];
 
   constructor(private dataService:DataService,
@@ -67,9 +66,8 @@ export class EditProgramComponent implements OnInit {
       return false;
     }
 
-    this.arr = this.program.workouts.map(workout => workout.id);
 
-    if(this.arr.includes(w.id)) {
+    if(this.program.workouts.includes(w.id)) {
        //console.log('return true');
         return true;
     } else {
@@ -98,11 +96,11 @@ export class EditProgramComponent implements OnInit {
   onCheckChange($event, w:WORKOUT) {
     /* Selected */
     if($event.target.checked) {
-      this.arr2 = this.temp.map(workout => workout.id);
+      this.arr2 = this.temp.map(workout => workout);
 
       if (!this.arr2.includes(w.id)) {
       // Add a new control in the arrayForm
-      this.temp.push({id:w.id, name:w.name, exercises:w.exercises});
+      this.temp.push(w.id);
       console.log('after push');
       console.log(this.temp);
       }
@@ -111,11 +109,11 @@ export class EditProgramComponent implements OnInit {
     else{
       // find the unselected element
       let i: number = 0;
-      this.temp.forEach((ctrl: WORKOUT) => {
-        if(ctrl.id == w.id) {
+      this.temp.forEach((ctrl: number) => {
+        if(ctrl == w.id) {
           // Remove the unselected element from the arrayForm
-          this.temp[i].id = 0;
-          this.temp = this.temp.filter(workout => workout.id != 0);
+          this.temp[i] = 0;
+          this.temp = this.temp.filter(workout => workout != 0);
           console.log('after remove');
           console.log(this.temp);
           return;

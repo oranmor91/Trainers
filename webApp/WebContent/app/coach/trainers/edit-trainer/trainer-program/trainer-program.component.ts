@@ -22,11 +22,12 @@ export class TrainerProgramComponent implements OnInit {
     {id:333, name:'f', primaryMuscle:'hand', numOfIntervals:3, numOfSets:2, comment:'asas', weight:60}];
 
   workout:WORKOUT[]=[{exercises:this.exercises,id:111,name:'a'}, {exercises:this.exercises2,id:222,name:'b'}];
-  program:PROGRAM={numOfExercises:1,programId:1,programName:'a',programNote:'',programTarget:'',workouts:this.workout};*/
+  program:PROGRAM={numOfExercises:1,programId:1,programName:'a',programNote:'',description:'',workouts:this.workout};*/
 
   programId:string;
   program:PROGRAM;
   exercises:EXERCISE[]=[];
+  workout:WORKOUT[]=[];
   workoutName:string;
 
   constructor(private dataService:DataService,
@@ -38,14 +39,27 @@ export class TrainerProgramComponent implements OnInit {
 
  ngOnInit() {
    this.getProgram();
-   this.workoutName = this.program.workouts[0].name;
-   this.exercises = this.program.workouts[0].exercises;
+   this.getWorkouts();
+   this.workoutName = this.workout[0].name;
+   this.exercises = this.workout[0].exercises;
   }
 
   getProgram() {
     this.dataService.getProgram(Number(this.programId))
+      .subscribe((data)=>{
+        this.program = <PROGRAM> data;
+      },(err)=>{
+        console.log(err)
+      },()=>{
+        console.log('done')
+      })
+  }
+
+
+  getWorkouts() {
+    this.dataService.getWorkout(String(this.program.programId))
     .subscribe((data)=>{
-    this.program = <PROGRAM> data;
+    this.workout = <WORKOUT[]> data;
    },(err)=>{
       console.log(err)
     },()=>{
@@ -55,6 +69,6 @@ export class TrainerProgramComponent implements OnInit {
 
   showExercise(w:WORKOUT) {
     this.workoutName = w.name;
-    this.exercises=w.exercises;
+    this.exercises = w.exercises;
   }
 }
