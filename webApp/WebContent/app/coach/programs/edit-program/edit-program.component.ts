@@ -31,7 +31,7 @@ programId:string;
   constructor(private dataService:DataService,
               private router: Router,
               private route: ActivatedRoute) {
-    this.route.params.subscribe( params => console.log(params) );
+    this.route.params.subscribe( params => console.log(params));
     this.route.params.subscribe(params => this.definedId(params['id']));
     //this.programId = route.snapshot.params['id'];
    // this.doSearch(params['term']));
