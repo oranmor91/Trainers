@@ -35,7 +35,7 @@ export class TrainersComponent implements OnInit {
   }
 
   editTrainer(id:number){
-    this.router.navigate([`/edit-trainer:pid${id}`]);
+    this.router.navigate([`/edit-trainer:${id}`]);
   }
 
    removeTrainer(id:number){
