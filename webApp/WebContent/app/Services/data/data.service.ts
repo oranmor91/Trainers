@@ -92,4 +92,8 @@ profile:PROFILE;
   getTrainerProfile(trainerId: string) {
     return this.http.get(`${this.baseURL}/${trainerId}/trainerProfile`)
   }
+
+  setUserProgram(trainerId:string, chosenProgram:PROGRAM) {
+    return this.http.post(`${this.baseURL}/admin/trainer/${trainerId}`, chosenProgram)
+  }
 }

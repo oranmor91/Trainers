@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 })
 export class CreateWorkoutComponent implements OnInit {
 
-/*  exercises:EXERCISE[]=[{exerciseId:111, exerciseName:'a', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:20},
-    {exerciseId:222, exerciseName:'b', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:20},
-    {exerciseId:333, exerciseName:'c', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:20}];*/
+/*  exercises:EXERCISE[]=[{exerciseId:111, name:'a', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20},
+    {exerciseId:222, name:'b', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20},
+    {exerciseId:333, name:'c', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20}];*/
 
 
   workout:WORKOUT = new WORKOUT();
@@ -47,7 +47,7 @@ export class CreateWorkoutComponent implements OnInit {
 
       if (!this.arr2.includes(e.exerciseId)) {
         // Add a new control in the arrayForm
-        this.temp.push({exerciseId:e.exerciseId, exerciseName:e.exerciseName, mainMuscle:e.mainMuscle, note:e.note, sets:e.sets, repeats:e.repeats, weight:e.weight});
+        this.temp.push({exerciseId:e.exerciseId, name:e.name, primaryMuscle:e.primaryMuscle, comment:e.comment, numOfSets:e.numOfSets, numOfIntervals:e.numOfIntervals, weight:e.weight});
         console.log('after push');
         console.log(this.temp);
       }

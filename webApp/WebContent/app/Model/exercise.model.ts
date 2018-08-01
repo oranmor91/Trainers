@@ -1,9 +1,10 @@
 export class EXERCISE {
 exerciseId:number = 0;
-exerciseName:string;
-mainMuscle:string;
-note:string;
-sets:number = 0;
-repeats:number = 0;
+name:string;
+primaryMuscle:string;
+comment:string;
+numOfSets:number = 0;
+numOfIntervals:number = 0;
 weight:number = 0;
+videoURL:string;
 }

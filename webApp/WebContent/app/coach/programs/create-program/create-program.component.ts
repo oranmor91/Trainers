@@ -41,11 +41,11 @@ export class CreateProgramComponent implements OnInit {
   onCheckChange($event, w:WORKOUT) {
     /* Selected */
     if($event.target.checked) {
-      this.arr2 = this.temp.map(workout => workout.workoutId);
+      this.arr2 = this.temp.map(workout => workout.id);
 
-      if (!this.arr2.includes(w.workoutId)) {
+      if (!this.arr2.includes(w.id)) {
         // Add a new control in the arrayForm
-        this.temp.push({workoutId:w.workoutId, workoutName:w.workoutName, exercises:w.exercises});
+        this.temp.push({id:w.id, name:w.name, exercises:w.exercises});
         console.log('after push');
         console.log(this.temp);
       }
@@ -55,10 +55,10 @@ export class CreateProgramComponent implements OnInit {
       // find the unselected element
       let i: number = 0;
       this.temp.forEach((ctrl: WORKOUT) => {
-        if(ctrl.workoutId == w.workoutId) {
+        if(ctrl.id == w.id) {
           // Remove the unselected element from the arrayForm
-          this.temp[i].workoutId = 0;
-          this.temp = this.temp.filter(workout => workout.workoutId != 0);
+          this.temp[i].id = 0;
+          this.temp = this.temp.filter(workout => workout.id != 0);
           console.log('after remove');
           console.log(this.temp);
           return;

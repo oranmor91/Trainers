@@ -1,6 +1,6 @@
 import { EXERCISE } from './exercise.model';
 export class WORKOUT {
-workoutId:number = 0;
-workoutName:string = '';
+id:number = 0;
+name:string = '';
 exercises:EXERCISE[];
 }

@@ -31,3 +31,12 @@
 .toppad
 {margin-top:20px;
 }
+
+.currentlyExisted{
+  width: 150px;
+}
+
+.changeButton{
+  width: 200px;
+}
+

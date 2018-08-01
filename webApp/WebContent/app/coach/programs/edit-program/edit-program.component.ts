@@ -15,10 +15,10 @@ export class EditProgramComponent implements OnInit {
  @ViewChild('editForm') editForm:NgForm;
 
 /*  ex:EXERCISE;
-  workout:WORKOUT[]=[{exercises:[this.ex],workoutId:111,workoutName:'a'},
-    {exercises:[this.ex],workoutId:222,workoutName:'b'},
-    {exercises:[this.ex],workoutId:333,workoutName:'c'}];
-  workout2:WORKOUT[]=[{exercises:[this.ex],workoutId:222,workoutName:'b'}];
+  workout:WORKOUT[]=[{exercises:[this.ex],id:111,name:'a'},
+    {exercises:[this.ex],id:222,name:'b'},
+    {exercises:[this.ex],id:333,name:'c'}];
+  workout2:WORKOUT[]=[{exercises:[this.ex],id:222,name:'b'}];
   program:PROGRAM={numOfExercises:1,programId:1,programName:'a',programNote:'',programTarget:'',workouts:this.workout2};*/
 
   program:PROGRAM;
@@ -67,9 +67,9 @@ export class EditProgramComponent implements OnInit {
       return false;
     }
 
-    this.arr = this.program.workouts.map(workout => workout.workoutId);
+    this.arr = this.program.workouts.map(workout => workout.id);
 
-    if(this.arr.includes(w.workoutId)) {
+    if(this.arr.includes(w.id)) {
        //console.log('return true');
         return true;
     } else {
@@ -85,7 +85,6 @@ export class EditProgramComponent implements OnInit {
     console.log(this.program.workouts);
     location.reload();
 
-
       this.dataService.createNewProgram(this.dataService.profile.id, this.program)
     .subscribe((data)=>{
    },(err)=>{
@@ -99,11 +98,11 @@ export class EditProgramComponent implements OnInit {
   onCheckChange($event, w:WORKOUT) {
     /* Selected */
     if($event.target.checked) {
-      this.arr2 = this.temp.map(workout => workout.workoutId);
+      this.arr2 = this.temp.map(workout => workout.id);
 
-      if (!this.arr2.includes(w.workoutId)) {
+      if (!this.arr2.includes(w.id)) {
       // Add a new control in the arrayForm
-      this.temp.push({workoutId:w.workoutId, workoutName:w.workoutName, exercises:w.exercises});
+      this.temp.push({id:w.id, name:w.name, exercises:w.exercises});
       console.log('after push');
       console.log(this.temp);
       }
@@ -113,10 +112,10 @@ export class EditProgramComponent implements OnInit {
       // find the unselected element
       let i: number = 0;
       this.temp.forEach((ctrl: WORKOUT) => {
-        if(ctrl.workoutId == w.workoutId) {
+        if(ctrl.id == w.id) {
           // Remove the unselected element from the arrayForm
-          this.temp[i].workoutId = 0;
-          this.temp = this.temp.filter(workout => workout.workoutId != 0);
+          this.temp[i].id = 0;
+          this.temp = this.temp.filter(workout => workout.id != 0);
           console.log('after remove');
           console.log(this.temp);
           return;

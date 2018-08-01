@@ -55,7 +55,7 @@
 
                     </tbody>
                   </table>
-                  <button (click)="userProgram()" type="submit" class="btn btn-primary btn-block">User current program</button>
+                  <button [disabled]="!program" (click)="userProgram()" type="submit" class="btn btn-primary btn-block">User current program</button>
                 </div>
               </div>
             </div>
@@ -63,4 +63,40 @@
           </div>
         </div>
       </div>
+
+  <div class="widget-content">
+    <table class="table table-striped table-bordered">
+      <thead>
+      <tr>
+        <th class="currentlyExisted">Currently existed</th>
+        <th></th>
+        <th class="workoutName">Workout name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let p of programs;let i = index">
+        <td>
+          <div class="col-md-6">
+            <div *ngIf="checkIfExisted(p)==true"><font color="red"> currently existed </font> </div>
+          </div>
+        </td>
+        <td>
+          <div class="col-md-1">
+            <input type="radio" name="chosenProgram"
+                   ngModel
+                   [(ngModel)]="chosenProgram">
+          </div>
+        </td>
+        <td>
+          <div class="col-md-6">{{p.programName}}</div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div *ngIf="programs.length==0"> <font color="red"> no programs available </font></div>
+    <button [disabled]="!chosenProgram" (click)="changeUserProgram()" type="submit" class="btn btn-primary btn-block changeButton">Change user program</button>
+  </div>
+
     </div>
+
+

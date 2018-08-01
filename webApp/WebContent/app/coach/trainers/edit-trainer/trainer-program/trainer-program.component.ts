@@ -13,15 +13,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class TrainerProgramComponent implements OnInit {
 
 
-/*    exercises:EXERCISE[]=[{exerciseId:111, exerciseName:'a', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:10},
-    {exerciseId:222, exerciseName:'b', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:20},
-    {exerciseId:333, exerciseName:'c', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:30}];
+/*    exercises:EXERCISE[]=[{exerciseId:111, name:'a', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:10},
+    {exerciseId:222, name:'b', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20},
+    {exerciseId:333, name:'c', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:30}];
 
-      exercises2:EXERCISE[]=[{exerciseId:111, exerciseName:'d', mainMuscle:'hand', repeats:3, sets:2, note:'asas', weight:40},
-    {exerciseId:222, exerciseName:'e', mainMuscle:'hand', repeats:3, sets:2, note:'asas', weight:50},
-    {exerciseId:333, exerciseName:'f', mainMuscle:'hand', repeats:3, sets:2, note:'asas', weight:60}];
+      exercises2:EXERCISE[]=[{exerciseId:111, name:'d', primaryMuscle:'hand', numOfIntervals:3, numOfSets:2, comment:'asas', weight:40},
+    {exerciseId:222, name:'e', primaryMuscle:'hand', numOfIntervals:3, numOfSets:2, comment:'asas', weight:50},
+    {exerciseId:333, name:'f', primaryMuscle:'hand', numOfIntervals:3, numOfSets:2, comment:'asas', weight:60}];
 
-  workout:WORKOUT[]=[{exercises:this.exercises,workoutId:111,workoutName:'a'}, {exercises:this.exercises2,workoutId:222,workoutName:'b'}];
+  workout:WORKOUT[]=[{exercises:this.exercises,id:111,name:'a'}, {exercises:this.exercises2,id:222,name:'b'}];
   program:PROGRAM={numOfExercises:1,programId:1,programName:'a',programNote:'',programTarget:'',workouts:this.workout};*/
 
   programId:string;
@@ -38,7 +38,7 @@ export class TrainerProgramComponent implements OnInit {
 
  ngOnInit() {
    this.getProgram();
-   this.workoutName = this.program.workouts[0].workoutName;
+   this.workoutName = this.program.workouts[0].name;
    this.exercises = this.program.workouts[0].exercises;
   }
 
@@ -54,7 +54,7 @@ export class TrainerProgramComponent implements OnInit {
   }
 
   showExercise(w:WORKOUT) {
-    this.workoutName = w.workoutName;
+    this.workoutName = w.name;
     this.exercises=w.exercises;
   }
 }

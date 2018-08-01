@@ -4,12 +4,12 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Workout name</label>
       <div class="col-sm-9">
-        <input [(ngModel)]="workout.workoutName"
+        <input [(ngModel)]="workout.name"
                ngModel
                name="workoutName"
                type="text"
                id="workoutName"
-               placeholder="{{workout.workoutName}}"
+               placeholder="{{workout.name}}"
                class="form-control"
                autofocus>
       </div>
@@ -44,13 +44,13 @@
               </td>
               <td>
                 <div class="col-md-6">
-                  {{e.exerciseName}}
+                  {{e.name}}
                 </div>
               </td>
               <td class="td-actions">
                 <div class="col-md-6">
                   <input type="text"
-                         [(ngModel)]="e.sets"
+                         [(ngModel)]="e.numOfSets"
                          ngModel
                          name="set_{{i}}">
                 </div>
@@ -58,7 +58,7 @@
               <td class="td-actions">
                 <div class="col-md-6">
                   <input type="text"
-                         [(ngModel)]="e.repeats"
+                         [(ngModel)]="e.numOfIntervals"
                          ngModel
                          name="repeats_{{i}}">
                 </div>

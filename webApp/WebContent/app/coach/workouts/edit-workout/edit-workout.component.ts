@@ -13,11 +13,11 @@ export class EditWorkoutComponent implements OnInit {
 
 
 /*
-  exercises:EXERCISE[]=[{exerciseId:111, exerciseName:'a', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:20},
-    {exerciseId:222, exerciseName:'b', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:20},
-    {exerciseId:333, exerciseName:'c', mainMuscle:'legs', repeats:3, sets:2, note:'asas', weight:20}]
-  exercise2:EXERCISE[]=[{exerciseId:111, exerciseName:'a', mainMuscle:'zain', repeats:3, sets:2, note:'asas', weight:20}]
-  workout:WORKOUT={workoutId:111, workoutName:'sami', exercises:this.exercise2};
+  exercises:EXERCISE[]=[{exerciseId:111, name:'a', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20},
+    {exerciseId:222, name:'b', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20},
+    {exerciseId:333, name:'c', primaryMuscle:'legs', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20}]
+  exercise2:EXERCISE[]=[{exerciseId:111, name:'a', primaryMuscle:'zain', numOfIntervals:3, numOfSets:2, comment:'asas', weight:20}]
+  workout:WORKOUT={id:111, name:'sami', exercises:this.exercise2};
 */
 
     workoutId:string;
@@ -87,7 +87,7 @@ export class EditWorkoutComponent implements OnInit {
 
       if (!this.arr2.includes(e.exerciseId)) {
         // Add a new control in the arrayForm
-        this.temp.push({exerciseId:e.exerciseId, exerciseName:e.exerciseName, mainMuscle:e.mainMuscle, note:e.note, sets:e.sets, repeats:e.repeats, weight:e.weight});
+        this.temp.push({exerciseId:e.exerciseId, exerciseName:e.exerciseName, mainMuscle:e.mainMuscle, note:e.note, numOfSets:e.numOfSets, numOfIntervals:e.numOfIntervals, weight:e.weight});
         console.log('after push');
         console.log(this.temp);
       }

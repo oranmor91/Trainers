@@ -27,11 +27,19 @@
             {{i + 1}}
           </div>
         </td>
-
+        <td>
+          <div class="col-md-1">
+            <input
+              type="radio"
+              name="workout_{{w}}">
+<!--              [checked] = "false"
+              (change)="onCheckChange($event, w)">-->
+          </div>
+        </td>
 				<td>
 					<div class="col-md-6">
-            <a (click)="showExercise(workout)" routerLinkActive="active-link">{{workout.workoutName}}</a>
-						<!-- <span (click)="showExercise(workout)" routerLinkActive="active-link"></span>{{workout.workoutName}} -->
+            <a (click)="showExercise(workout)" routerLinkActive="active-link">{{workout.name}}</a>
+						<!-- <span (click)="showExercise(workout)" routerLinkActive="active-link"></span>{{workout.name}} -->
 					</div>
 				</td>
    		 	</tr>
@@ -61,18 +69,18 @@
 							<tr *ngFor="let e of exercises;let i = index">
 								<td>
 									<div class="col-md-6">
-										{{e.exerciseName}}
-									</div>
+                    {{e.name}}
+                  </div>
 								</td>
 								<td>
 									<div class="col-md-6">
-										{{e.sets}}
-									</div>
+                    {{e.numOfSets}}
+                  </div>
 								</td>
 								<td>
 									<div class="col-md-6">
-										{{e.repeats}}
-									</div>
+                    {{e.numOfIntervals}}
+                  </div>
 								</td>
 								<td>
 									<div class="col-md-6">
