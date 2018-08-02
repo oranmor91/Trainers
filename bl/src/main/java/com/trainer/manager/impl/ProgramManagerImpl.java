@@ -228,4 +228,15 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 		UserEntity byUniqueID = m_userManager.getUserEntityByUniqueID(getLoggedInUser());
 		return ModelPersister.get(byUniqueID.getId(), m_programDao, m_dtoVisitor);
 	}
+	
+	@Override
+	public Program getUserProgram(Integer id) {
+		UserEntity user = m_userManager.getEntity(id);
+		UserEntity coach = user.getCoach();
+		
+		if (!coach.getEmail().equals(getLoggedInUser()))
+			return null;
+		
+		return ModelPersister.get(user.getId(), m_programDao, m_dtoVisitor);
+	}
 }

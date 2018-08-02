@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.trainer.dto.Program;
 import com.trainer.dto.ProgramDef;
 import com.trainer.manaager.ProgramManager;
 
@@ -30,6 +31,11 @@ public class ProgramDefController {
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody List<ProgramDef> getAll() {
 		return m_programDefManager.getAllDef();
+	}
+	
+	@RequestMapping(value = "/userProgram/{id}", method = RequestMethod.GET)
+	public @ResponseBody Program getUserProgram(@PathVariable Integer id) {
+		return m_programDefManager.getUserProgram(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)

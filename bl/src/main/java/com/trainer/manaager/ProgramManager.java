@@ -39,4 +39,6 @@ public interface ProgramManager {
 
 	public Program getMyCurrentProgram();
 
+	public Program getUserProgram(Integer id);
+
 }
