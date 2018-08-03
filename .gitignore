@@ -3,3 +3,4 @@
 *eclipse*
 */target*
 /.metadata/
+*package-lock.json*
