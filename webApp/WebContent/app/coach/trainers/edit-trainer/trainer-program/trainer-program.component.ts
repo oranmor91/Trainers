@@ -1,5 +1,6 @@
 import { EXERCISE } from '../../../../Model/exercise.model';
 import { PROGRAM } from '../../../../Model/program.model';
+import { PROGRAM_DEF } from '../../../../Model/programDef.model';
 import { WORKOUT } from '../../../../Model/workout.model';
 import { DataService } from '../../../../Services/data/data.service';
 import { Component, OnInit } from '@angular/core';
@@ -39,9 +40,9 @@ export class TrainerProgramComponent implements OnInit {
 
  ngOnInit() {
    this.getProgram();
-   this.getWorkouts();
-   this.workoutName = this.workout[0].name;
-   this.exercises = this.workout[0].exercises;
+   //this.getWorkouts();
+   this.workoutName = this.program.data.workouts[0].name;
+   this.exercises = this.program.data.workouts[0].exercises;
   }
 
   getProgram() {
@@ -56,16 +57,16 @@ export class TrainerProgramComponent implements OnInit {
   }
 
 
-  getWorkouts() {
-    this.dataService.getWorkout(String(this.program.id))
-    .subscribe((data)=>{
-    this.workout = <WORKOUT[]> data;
-   },(err)=>{
-      console.log(err)
-    },()=>{
-      console.log('done')
-    })
-  }
+//  getWorkouts() {
+//    this.dataService.getWorkout(String(this.program.id))
+//    .subscribe((data)=>{
+//    this.workout = <WORKOUT[]> data;
+//   },(err)=>{
+//      console.log(err)
+//    },()=>{
+//      console.log('done')
+//    })
+//  }
 
   showExercise(w:WORKOUT) {
     this.workoutName = w.name;

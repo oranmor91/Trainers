@@ -15,19 +15,15 @@ export class EditExerciseComponent implements OnInit {
     constructor(private dataService:DataService,
               private router: Router,
               private route: ActivatedRoute) {
+  this.route.params.subscribe( params => console.log(params));
+  this.route.params.subscribe(params => this.definedId(params['id']));
+  }
 
-
+  definedId(id: string){
+    this.exerciseId = id;
   }
 
   ngOnInit() {
-   // this.route.snapshot.params.exerciseId;
-
-    this.route.paramMap.subscribe(params => {
-      console.log(params.get('id'));
-      this.exerciseId = params.get('id');
-    });
-
-    //this.route.snapshot.paramMap.subscribe params['id'];
     this.getExercise();
   }
 
@@ -43,6 +39,13 @@ export class EditExerciseComponent implements OnInit {
   }
 
   saveExercise(){
-
+    this.dataService.getExercise(this.exerciseId)
+    .subscribe((data)=>{
+    this.router.navigate(['exercises']);
+   },(err)=>{
+      console.log(err)
+    },()=>{
+      console.log('done')
+    })
   }
 }

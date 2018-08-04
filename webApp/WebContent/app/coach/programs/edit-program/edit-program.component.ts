@@ -1,4 +1,4 @@
-import { PROGRAM } from '../../../Model/program.model';
+import { PROGRAM_DEF } from '../../../Model/programDef.model';
 import { WORKOUT } from '../../../Model/workout.model';
 import { DataService } from '../../../Services/data/data.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -23,7 +23,7 @@ export class EditProgramComponent implements OnInit {
   program:PROGRAM={numOfExercises:1,id:1,name:'a',notes:'',description:'',workouts:this.workout2};*/
 
 programId:string;
-  program:PROGRAM;
+  program:PROGRAM_DEF;
   workout:WORKOUT[]=[];
   temp:number[]=[];
   arr2:number[]=[];
@@ -33,8 +33,6 @@ programId:string;
               private route: ActivatedRoute) {
     this.route.params.subscribe( params => console.log(params));
     this.route.params.subscribe(params => this.definedId(params['id']));
-    //this.programId = route.snapshot.params['id'];
-   // this.doSearch(params['term']));
   }
 
   definedId(id: string){
@@ -49,7 +47,7 @@ programId:string;
   getProgram() {
     this.dataService.getProgram(Number(this.programId))
     .subscribe((data)=>{
-    this.program = <PROGRAM> data;
+    this.program = <PROGRAM_DEF> data;
    },(err)=>{
       console.log(err)
     },()=>{

@@ -30,9 +30,14 @@ export class EditWorkoutComponent implements OnInit {
     constructor(private dataService:DataService,
               private router: Router,
               private route: ActivatedRoute) {
-    this.workoutId = route.snapshot.params['id'];
-
+    this.route.params.subscribe( params => console.log(params));
+    this.route.params.subscribe(params => this.definedId(params['id']));
   }
+
+  definedId(id: string){
+    this.workoutId = id;
+  }
+
 
   ngOnInit() {
     this.getWorkout()

@@ -12,4 +12,6 @@ export class TrainerComponent implements OnInit {
   ngOnInit() {
   }
 
+  
+  
 }

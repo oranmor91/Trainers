@@ -4,8 +4,9 @@ import {ACCOUNT} from "../../Model/acount.model";
 import { EXERCISE } from '../../Model/exercise.model';
 import {TRAINER} from "../../Model/trainer.model";
 import {PROFILE} from "../../Model/profile.model";
-import { PROGRAM } from '../../Model/program.model';
+import { PROGRAM_DEF } from '../../Model/programDef.model';
 import { WORKOUT } from '../../Model/workout.model';
+import {PROGRAM} from "../../Model/program.model";
 
 @Injectable()
 export class DataService {
@@ -24,7 +25,7 @@ profile:PROFILE;
     return this.http.post(`${this.baseURL}/public/register`, trainer)
   }
 
-  createNewProgram(id:string, program:PROGRAM) {
+  createNewProgram(id:string, program:PROGRAM_DEF) {
     return this.http.post(`${this.baseURL}/admin/program`, program)
   }
 
@@ -37,7 +38,7 @@ profile:PROFILE;
   }
 
   getProgram(id:number) {
-    return this.http.get(`${this.baseURL}/admin/program/${id}`)
+    return this.http.get(`${this.baseURL}/admin/program/userProgram/${id}`)
   }
 
   createNewWorkout(id:string, workout:WORKOUT) {
@@ -88,7 +89,15 @@ profile:PROFILE;
     return this.http.get(`${this.baseURL}/admin/user/${trainerId}`)
   }
 
-  setUserProgram(trainerId:string, chosenProgram:PROGRAM) {
+  setUserProgram(trainerId:string, chosenProgram:PROGRAM_DEF) {
     return this.http.post(`${this.baseURL}/admin/trainer/${trainerId}`, chosenProgram)
+  }
+
+  getProfile() {
+    return this.http.get(`${this.baseURL}/user`)
+  }
+
+  saveRM(program:PROGRAM) {
+      return this.http.post(`${this.baseURL}/user/rm`, program)
   }
 }

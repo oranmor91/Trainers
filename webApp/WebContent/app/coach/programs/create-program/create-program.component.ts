@@ -1,4 +1,4 @@
-import { PROGRAM } from '../../../Model/program.model';
+import { PROGRAM_DEF } from '../../../Model/programDef.model';
 import { WORKOUT } from '../../../Model/workout.model';
 import { DataService } from '../../../Services/data/data.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class CreateProgramComponent implements OnInit {
 
-  program:PROGRAM = new PROGRAM();
+  program:PROGRAM_DEF = new PROGRAM_DEF();
   workouts:WORKOUT[]=[];
   temp:number[]=[];
   arr2:number[]=[];

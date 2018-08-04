@@ -1,4 +1,4 @@
-import { PROGRAM } from '../../Model/program.model';
+import { PROGRAM_DEF } from '../../Model/programDef.model';
 import { DataService } from '../../Services/data/data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ProgramsComponent implements OnInit {
 
-  programs:PROGRAM[]=[];
+  programs:PROGRAM_DEF[]=[];
 
  constructor(private dataService:DataService,
               private router: Router) { }
@@ -22,7 +22,7 @@ export class ProgramsComponent implements OnInit {
   getPrograms(){
     this.dataService.getPrograms(this.dataService.profile.id)
     .subscribe((data)=>{
-    this.programs = <PROGRAM[]> data;
+    this.programs = <PROGRAM_DEF[]> data;
    },(err)=>{
       console.log(err)
     },()=>{

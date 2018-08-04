@@ -101,3 +101,11 @@ vertical-align: middle;
 
 .btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
 .icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;}
+
+.addButton{
+  color: #5bb75b;
+  background: white;
+  border-radius: 50%;
+  padding: 5px;
+  margin-right: 5px;
+}

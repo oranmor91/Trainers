@@ -10,7 +10,10 @@
 	<thead>
 			<tr>
 				<th>Workout Name</th>
-				<th><button (click)="createWorkout()" name="go" class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add</button></th>
+								<th>
+          <button type="button" class="btn btn-success" (click)="createWorkout()">
+            <span class="glyphicon glyphicon-plus addButton"></span>Add</button>
+        </th>
 			</tr>
 		</thead>
 		<tbody>

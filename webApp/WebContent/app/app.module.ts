@@ -17,7 +17,6 @@ import { WorkoutsComponent } from './coach/workouts/workouts.component';
 import { ExercisesComponent } from './coach/exercises/exercises.component';
 import { TrainersComponent } from './coach/trainers/trainers.component';
 import { TrainerComponent } from './trainer/trainer.component';
-import { ProfileComponent } from './profile/profile.component';
 import { CreateTrainerComponent } from './coach/trainers/create-trainer/create-trainer.component';
 import { EditTrainerComponent } from './coach/trainers/edit-trainer/edit-trainer.component';
 import { TrainerProgramComponent } from './coach/trainers/edit-trainer/trainer-program/trainer-program.component';
@@ -27,6 +26,11 @@ import { CreateExerciseComponent } from './coach/exercises/create-exercise/creat
 import { EditProgramComponent } from './coach/programs/edit-program/edit-program.component';
 import { EditWorkoutComponent } from './coach/workouts/edit-workout/edit-workout.component';
 import { EditExerciseComponent } from './coach/exercises/edit-exercise/edit-exercise.component';
+import { ProfileComponent } from './trainer/profile/profile.component';
+import { ProgramComponent } from './trainer/program/program.component';
+import { RmComponent } from './trainer/program/rm/rm.component';
+import { CurrentProgramComponent } from './trainer/program/current-program/current-program.component';
+import { Profile } from 'selenium-webdriver/firefox';
 
 
 @NgModule({
@@ -42,7 +46,6 @@ import { EditExerciseComponent } from './coach/exercises/edit-exercise/edit-exer
     ExercisesComponent,
     TrainersComponent,
     TrainerComponent,
-    ProfileComponent,
     CreateTrainerComponent,
     EditTrainerComponent,
     TrainerProgramComponent,
@@ -51,7 +54,11 @@ import { EditExerciseComponent } from './coach/exercises/edit-exercise/edit-exer
     CreateExerciseComponent,
     EditProgramComponent,
     EditWorkoutComponent,
-    EditExerciseComponent
+    EditExerciseComponent,
+    ProfileComponent,
+    ProgramComponent,
+    RmComponent,
+    CurrentProgramComponent
   ],
   imports: [
     BrowserModule,

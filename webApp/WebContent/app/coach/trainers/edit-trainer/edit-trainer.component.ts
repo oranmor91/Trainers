@@ -1,8 +1,9 @@
+import { PROGRAM } from '../../../Model/program.model';
 import { DataService } from '../../../Services/data/data.service';
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TRAINER} from "../../../Model/trainer.model";
-import {PROGRAM} from "../../../Model/program.model";
+import {PROGRAM_DEF} from "../../../Model/programDef.model";
 
 @Component({
   selector: 'app-edit-trainer',
@@ -13,18 +14,16 @@ export class EditTrainerComponent implements OnInit {
 
   trainerId:string;
   trainer:TRAINER;
-  program:PROGRAM = null;
-  programs:PROGRAM[] = [];
+  program:PROGRAM;
+  programs:PROGRAM_DEF[];
   arr:number[];
-  chosenProgram:PROGRAM;
+  chosenProgram:number;
 
   constructor(private dataService:DataService,
               private router: Router,
               private route: ActivatedRoute) {
     this.route.params.subscribe( params => console.log(params));
     this.route.params.subscribe(params => this.definedId(params['id']));
-    //this.programId = route.snapshot.params['id'];
-    // this.doSearch(params['term']));
   }
 
   definedId(id: string){
@@ -50,9 +49,7 @@ export class EditTrainerComponent implements OnInit {
   private getTrainerProgram() {
     this.dataService.getProgram(Number(this.trainerId))
       .subscribe((data)=> {
-        if (data != null) {
         this.program = <PROGRAM> data;
-      }
       },(err)=>{
         console.log(err)
       },()=>{
@@ -63,7 +60,7 @@ export class EditTrainerComponent implements OnInit {
   private getAllPrograms() {
     this.dataService.getPrograms(this.trainerId)
       .subscribe((data)=> {
-        this.programs = <PROGRAM[]> data;
+        this.programs = <PROGRAM_DEF[]> data;
       },(err)=>{
         console.log(err)
       },()=>{
@@ -75,15 +72,12 @@ export class EditTrainerComponent implements OnInit {
     this.router.navigate([`/trainer-program:pid${this.trainerId}`]);
   }
 
-  checkIfExisted(p:PROGRAM){
-    if(!this.programs || this.programs.length == 0){
-      console.log('no programs found');
+  checkIfExisted(p:PROGRAM_DEF){
+    if(!this.program){
       return false;
     }
 
-    this.arr = this.programs.map(pro => pro.id);
-
-    if(this.arr.includes(p.id)) {
+    if(p.id === this.program.programDefId) {
       //console.log('return true');
       return true;
     } else {
@@ -93,7 +87,7 @@ export class EditTrainerComponent implements OnInit {
   }
 
   changeUserProgram() {
-    this.dataService.setUserProgram(this.trainerId, this.chosenProgram)
+    this.dataService.setUserProgram(this.trainerId, this.programs[this.chosenProgram])
       .subscribe((data)=>{
         location.reload();
       },(err)=>{
