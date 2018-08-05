@@ -12,7 +12,7 @@ public class FormAuthenticationProvider implements AuthenticationProvider{
 
 	@Autowired
 	private LoginManager loginManager;
-	
+
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		return getLoginManager().login((String) authentication.getPrincipal(), (String)authentication.getPrincipal());

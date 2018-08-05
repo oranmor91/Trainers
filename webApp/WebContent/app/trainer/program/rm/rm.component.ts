@@ -58,17 +58,6 @@ export class RmComponent implements OnInit {
   }
 
   saveRm(){
-    this.program.data.workouts.forEach((wo: WORKOUT) => {
-      wo.exercises.forEach((ex: EXERCISE) => {
-       this.program.rmData.forEach((rm: RM_DATA) => {
-          if(rm.workout.name === wo.name && rm.exercise.exercise.name === ex.name) {
-            rm.data = ex.weight;
-            ex.weight = null;
-          }
-        });
-      });
-    });
-
     this.dataService.saveRM(this.program)
       .subscribe((data)=> {
       },(err)=>{

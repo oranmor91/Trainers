@@ -9,6 +9,5 @@ export class PROGRAM {
   notes:string = '';
   startDate:Date;
   data:PROGRAM_DATA;
-  rmData:RM_DATA[];
-
+  rmFilled:boolean;
 }
