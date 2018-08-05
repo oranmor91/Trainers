@@ -9,7 +9,8 @@
                id="exerciseName"
                placeholder="{{exercise.name}}"
                class="form-control"
-               autofocus>
+               [(ngModel)]="exercise.name"
+               ngModel>
       </div>
     </div>
     <div class="form-group">
