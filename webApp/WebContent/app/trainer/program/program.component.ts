@@ -24,7 +24,7 @@ export class ProgramComponent implements OnInit {
       .subscribe((data)=> {
         if (data != null) {
         this.program = <PROGRAM> data;
-        if(this.program.rmData[0].data === null){
+        if(this.program.rmData.length === 0){
           this.router.navigate(['rm']);
         } else {
           this.router.navigate(['current-program']);
