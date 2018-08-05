@@ -130,6 +130,5 @@ export class EditWorkoutComponent implements OnInit {
     this.temp = [];
     console.log(this.temp);
     console.log(this.workout.exercises);
-    location.reload();
   }
 }
