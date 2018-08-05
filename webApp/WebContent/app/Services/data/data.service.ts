@@ -66,7 +66,7 @@ profile:PROFILE;
   }
 
   getExercise(id:string){
-    return this.http.post(`${this.baseURL}/admin/exercise`, id)
+    return this.http.get(`${this.baseURL}/admin/exercise/${id}`)
   }
 
   setExercise(exercise:EXERCISE){
