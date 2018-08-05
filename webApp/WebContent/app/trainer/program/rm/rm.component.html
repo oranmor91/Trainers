@@ -20,27 +20,21 @@
               <th>Wokrouts name</th>
             </tr>
             </thead>
-            <tbody>
-            <tr *ngFor="let w of program.data.workouts;let i = index">
-              <td>
-                <div class="col-md-6">
-                  {{i + 1}}
-                </div>
-              </td>
-              <td>
-                <div class="col-md-1">
-                  <input
-                    type="radio"
-                    name="workout_{{w}}">
-                </div>
-              </td>
-              <td>
-                <div class="col-md-6">
-                  <a (click)="showExercise(w)" routerLinkActive="active-link">{{w.name}}</a>
-                </div>
-              </td>
-            </tr>
-            </tbody>
+            		<tbody>
+			<tr *ngFor="let w of program.data.workouts;let i = index">
+        <td>
+          <div class="col-md-6">
+            {{i + 1}}
+          </div>
+        </td>
+
+				<td>
+					<div class="col-md-6">
+            <a (click)="showExercise(w)" routerLinkActive="active-link">{{w.name}}</a>
+					</div>
+				</td>
+   		 	</tr>
+		</tbody>
           </table>
           <div *ngIf="program.data.workouts.length==0"> no workouts available </div>
         </div> <!-- /container -->
