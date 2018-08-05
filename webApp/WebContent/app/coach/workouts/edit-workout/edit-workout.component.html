@@ -2,11 +2,11 @@
   <form class="form-horizontal" role="form" #editForm="ngForm">
     <h2>Edit Workout</h2>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Workout name</label>
-      <div for="workoutName" class="col-sm-9">
-        <input name="workoutName"
+      <label for="name" class="col-sm-3 control-label">Workout name</label>
+      <div class="col-sm-9">
+        <input name="name"
                type="text"
-               id="workoutName"
+               id="name"
                placeholder="{{workout.name}}"
                class="form-control"
                [(ngModel)]="workout.name"
@@ -49,18 +49,20 @@
               </td>
               <td class="td-actions">
                 <div class="col-md-6">
-                  <input type="text"
+                  <input type="number"
                          [(ngModel)]="e.numOfSets"
                          ngModel
                          name="set_{{i}}">
+                  {{e.numOfSets}}
                 </div>
               </td>
               <td class="td-actions">
                 <div class="col-md-6">
-                  <input type="text"
+                  <input type="number"
                          [(ngModel)]="e.numOfIntervals"
                          ngModel
                          name="repeats_{{i}}">
+                  {{e.numOfIntervals}}
                 </div>
               </td>
             </tr>

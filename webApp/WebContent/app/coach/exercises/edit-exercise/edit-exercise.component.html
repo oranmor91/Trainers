@@ -13,11 +13,11 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="mainMuscle" class="col-sm-3 control-label">Main muscle</label>
+      <label for="primaryMuscle" class="col-sm-3 control-label">primaryMuscle</label>
       <div class="col-sm-9">
-        <input name="mainMuscle"
+        <input name="primaryMuscle"
                type="text"
-               id="mainMuscle"
+               id="primaryMuscle"
                placeholder="{{exercise.primaryMuscle}}"
                class="form-control"
                [(ngModel)]="exercise.primaryMuscle"
@@ -25,11 +25,11 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="note" class="col-sm-3 control-label">Exercise note</label>
+      <label for="comment" class="col-sm-3 control-label">Exercise comment</label>
       <div class="col-sm-9">
-        <input name="note"
+        <input name="comment"
               type="text"
-              id="note"
+              id="comment"
               placeholder="{{exercise.comment}}"
               class="form-control"
                [(ngModel)]="exercise.comment"
@@ -37,13 +37,13 @@
       </div>
     </div>
       <div class="form-group">
-        <label for="video" class="col-sm-3 control-label">Video URL</label>
+        <label for="videoURL" class="col-sm-3 control-label">Video URL</label>
         <div class="col-sm-9">
           <input [(ngModel)]="exercise.videoURL"
                  ngModel
-                 name="video"
+                 name="videoURL"
                  type="text"
-                 id="video"
+                 id="videoURL"
                  placeholder="{{exercise.videoURL}}"
                  class="form-control">
         </div>
