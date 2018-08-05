@@ -98,7 +98,7 @@
       </tbody>
     </table>
     <div *ngIf="programs.length==0"> <font color="red"> no programs available </font></div>
-    <button [disabled]="chosenProgram" (click)="changeUserProgram()" type="submit" class="btn btn-primary btn-block changeButton">Change user program</button>
+    <button [disabled]="!chosenProgram" (click)="changeUserProgram()" type="submit" class="btn btn-primary btn-block changeButton">Change user program</button>
   </div>
 
     </div>
