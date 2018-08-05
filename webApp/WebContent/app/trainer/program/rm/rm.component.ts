@@ -45,7 +45,7 @@ export class RmComponent implements OnInit {
   checkIfAllFilled(){
     this.program.data.workouts.forEach((wo: WORKOUT) => {
       wo.exercises.forEach((ex: EXERCISE) => {
-        if(ex.weight === null){
+        if(!ex.weight ||ex.weight === null){
           return false;
         }
       });

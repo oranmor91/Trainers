@@ -36,6 +36,7 @@
    		 	</tr>
 		</tbody>
           </table>
+          <button [disabled]="!checkIfAllFilled()" (click)="saveRm()" type="submit" class="btn btn-primary btn-block changeButton">Save RM</button>
           <div *ngIf="program.data.workouts.length==0"> no workouts available </div>
         </div> <!-- /container -->
       </div>
@@ -73,7 +74,6 @@
           </tr>
           </tbody>
         </table>
-        <button [disabled]="!checkIfAllFilled()" (click)="saveRm()" type="submit" class="btn btn-primary btn-block changeButton">Save RM</button>
       </div>
     </div>
   </div>
