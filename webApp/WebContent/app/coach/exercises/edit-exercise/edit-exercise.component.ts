@@ -39,7 +39,7 @@ export class EditExerciseComponent implements OnInit {
   }
 
   saveExercise(){
-    this.dataService.getExercise(this.exerciseId)
+    this.dataService.setExercise(this.exercise)
     .subscribe((data)=>{
     this.router.navigate(['exercises']);
    },(err)=>{

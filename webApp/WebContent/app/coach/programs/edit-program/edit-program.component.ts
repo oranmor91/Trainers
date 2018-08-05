@@ -85,12 +85,10 @@ programId:string;
   saveProgram(){
     this.program.workouts = this.temp.slice();
     this.temp = [];
-    console.log(this.temp);
-    console.log(this.program.workouts);
-    location.reload();
 
       this.dataService.createNewProgram(this.dataService.profile.id, this.program)
     .subscribe((data)=>{
+      this.router.navigate(['programs']);
    },(err)=>{
       console.log(err)
     },()=>{

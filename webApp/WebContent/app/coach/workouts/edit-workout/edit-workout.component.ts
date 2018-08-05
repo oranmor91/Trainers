@@ -116,9 +116,10 @@ export class EditWorkoutComponent implements OnInit {
     }
   }
 
-  saveProgram(){
+  saveWorkout(){
     this.dataService.createNewWorkout(this.dataService.profile.id, this.workout)
       .subscribe((data)=>{
+        this.router.navigate(['workouts']);
       },(err)=>{
         console.log(err)
       },()=>{

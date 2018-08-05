@@ -41,5 +41,5 @@
 	</table>
 	</div>
 
-<div *ngIf="exercises.length==0"> <font color="red"> no exercises available </font></div>
+<div *ngIf="!exercises || exercises.length==0"> <font color="red"> no exercises available </font></div>
 </div> <!-- /container -->

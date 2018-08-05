@@ -54,7 +54,7 @@ profile:PROFILE;
   }
 
   getWorkout(id:string){
-    return this.http.post(`${this.baseURL}/admin/workout`, id)
+    return this.http.get(`${this.baseURL}/admin/workout/${id}`)
   }
 
   removeWorkout(id:number) {
@@ -67,6 +67,10 @@ profile:PROFILE;
 
   getExercise(id:string){
     return this.http.post(`${this.baseURL}/admin/exercise`, id)
+  }
+
+  setExercise(exercise:EXERCISE){
+    return this.http.post(`${this.baseURL}/admin/exercise`, exercise)
   }
 
   removeExercise(id:number) {
