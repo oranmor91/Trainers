@@ -40,7 +40,7 @@ public class UserEntity extends BaseEntity {
 	private String phoneNumber;
 	
 	@Column
-	private String adress;
+	private String address;
 	
 	@Column(unique = true, nullable = false)
 	private String email;
@@ -52,7 +52,7 @@ public class UserEntity extends BaseEntity {
 	private Double weight;
 	
 	@Column 
-	private int numOfExpeirence;
+	private int numOfExperience;
 	
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name="user_roles")
@@ -100,12 +100,12 @@ public class UserEntity extends BaseEntity {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public Double getHeight() {
@@ -124,12 +124,12 @@ public class UserEntity extends BaseEntity {
 		this.weight = weight;
 	}
 
-	public int getNumOfExpeirence() {
-		return numOfExpeirence;
+	public int getNumOfExperience() {
+		return numOfExperience;
 	}
 
-	public void setNumOfExpeirence(int numOfExpeirence) {
-		this.numOfExpeirence = numOfExpeirence;
+	public void setNumOfExperience(int numOfExperience) {
+		this.numOfExperience = numOfExperience;
 	}
 
 	@Override

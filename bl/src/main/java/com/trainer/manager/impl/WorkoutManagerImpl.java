@@ -10,10 +10,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.trainer.dao.WorkoutDao;
-import com.trainer.dto.ExcersiceWorkout;
+import com.trainer.dto.ExerciseWorkout;
+import com.trainer.dto.ProgramDef;
 import com.trainer.dto.Workout;
+import com.trainer.entity.ExerciseWorkoutEntity;
 import com.trainer.entity.UserEntity;
 import com.trainer.entity.WorkoutEntity;
+import com.trainer.manaager.ProgramManager;
 import com.trainer.manaager.UserManager;
 import com.trainer.manaager.WorkoutManager;
 import com.trainer.utils.ModelPersister;
@@ -28,6 +31,9 @@ public class WorkoutManagerImpl extends BaseManager implements WorkoutManager{
 	
 	@Autowired
 	private UserManager m_userManager;
+	
+	@Autowired
+	private ProgramManager m_programManager;
 	
 	@Autowired
 	@Qualifier("DtoVisitor")
@@ -55,6 +61,11 @@ public class WorkoutManagerImpl extends BaseManager implements WorkoutManager{
 	}
 	
 	@Override
+	public ExerciseWorkoutEntity getExcersiceWorkoutEntity(Integer id) {
+		return m_workoutDao.getExcersiceWorkoutEntity(id);
+	}
+	
+	@Override
 	public WorkoutEntity getEntity(Integer id) {
 		return ModelPersister.getEntity(id, m_workoutDao);
 	}
@@ -65,7 +76,7 @@ public class WorkoutManagerImpl extends BaseManager implements WorkoutManager{
 		setCoachId(dto, m_userManager);
 		UserEntity caoch = m_userManager.getUserEntityByUniqueID(getLoggedInUser());
 		
-		for (ExcersiceWorkout ex : dto.getExercises())
+		for (ExerciseWorkout ex : dto.getExercise())
 			ex.setCoachId(caoch.getId());
 		
 		return ModelPersister.save(dto, new WorkoutEntity(), m_workoutDao, m_dtoVisitor, m_entityVistor);
@@ -79,8 +90,16 @@ public class WorkoutManagerImpl extends BaseManager implements WorkoutManager{
 
 	@Override
 	@Transactional
-	public void delete(Integer id) {
+	public void delete(Integer id) throws Exception {
+		checkConnectedEntities(id);
 		ModelPersister.delete(id, m_workoutDao);
+	}
+
+	private void checkConnectedEntities(Integer id) throws Exception {
+		for (ProgramDef programDef : m_programManager.getAllDef()) {
+			if (programDef.getId() == id)
+				throw new Exception("Can not delete workout that connected to program with name: " + programDef.getName());
+		}
 	}
 	
 	

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.trainer.entity.RMData;
-
 public class Program extends BaseDto{
 
 	private static final long serialVersionUID = 1L;

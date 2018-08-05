@@ -22,7 +22,7 @@ public class WorkoutEntity extends BaseEntity{
 	private String name;
 
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	private List<ExcersiceWorkoutEntity> excersices = new ArrayList<ExcersiceWorkoutEntity>();
+	private List<ExerciseWorkoutEntity> excersices = new ArrayList<ExerciseWorkoutEntity>();
 
 	public String getName() {
 		return name;
@@ -37,11 +37,11 @@ public class WorkoutEntity extends BaseEntity{
 		return visitor.visit(this, obj);
 	}
 
-	public List<ExcersiceWorkoutEntity> getExcersices() {
+	public List<ExerciseWorkoutEntity> getExcersices() {
 		return excersices;
 	}
 
-	public void setExcersices(List<ExcersiceWorkoutEntity> excersices) {
+	public void setExcersices(List<ExerciseWorkoutEntity> excersices) {
 		this.excersices = excersices;
 	}
 }

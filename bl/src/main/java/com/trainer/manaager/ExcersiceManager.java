@@ -3,7 +3,7 @@ package com.trainer.manaager;
 import java.util.List;
 
 import com.trainer.dto.Excersice;
-import com.trainer.entity.ExcersiceEntity;
+import com.trainer.entity.ExerciseEntity;
 
 public interface ExcersiceManager {
 
@@ -11,13 +11,13 @@ public interface ExcersiceManager {
 	
 	public List<Excersice> getAll();
 	
-	public List<ExcersiceEntity> getAllEntities();
+	public List<ExerciseEntity> getAllEntities();
 	
-	public ExcersiceEntity getEntity(Integer id);
+	public ExerciseEntity getEntity(Integer id);
 	
 	public Excersice save(Excersice dto);
 	
-	public ExcersiceEntity saveEntity(ExcersiceEntity entity);
+	public ExerciseEntity saveEntity(ExerciseEntity entity);
 	
-	public void delete(Integer id);
+	public void delete(Integer id) throws Exception;
 }

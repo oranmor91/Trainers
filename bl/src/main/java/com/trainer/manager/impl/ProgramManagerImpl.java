@@ -1,5 +1,6 @@
 package com.trainer.manager.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,8 @@ import com.trainer.dto.Program;
 import com.trainer.dto.ProgramData;
 import com.trainer.dto.ProgramDef;
 import com.trainer.dto.WorkoutData;
-import com.trainer.entity.ExcersiceWorkoutEntity;
+import com.trainer.entity.ExerciseEntity;
+import com.trainer.entity.ExerciseWorkoutEntity;
 import com.trainer.entity.ProgramDefEntity;
 import com.trainer.entity.ProgramEntity;
 import com.trainer.entity.RMData;
@@ -177,7 +179,7 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 		if (exversiceByIdMap == null)
 			throw new RuntimeException("Failed to find workout with id: " + workout.getId());
 		
-		ExcersiceWorkoutEntity excersice = rmData.getExcersice();
+		ExerciseWorkoutEntity excersice = rmData.getExcersiceWorkout();
 		ExcersiceData excersiceData = exversiceByIdMap.get(excersice.getId());
 		
 		if (excersiceData == null)
@@ -216,7 +218,7 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 		if (rm.getData() == null || rm.getData() == 0)
 			throw new Exception("No rm data was filled");
 		
-		if (rm.getExcersice() == null)
+		if (rm.getExcersiceWorkout() == null)
 			throw new Exception("No excersice was filled");
 		
 		if (rm.getWorkout() == null)
@@ -237,6 +239,54 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 		if (!coach.getEmail().equals(getLoggedInUser()))
 			return null;
 		
-		return ModelPersister.get(user.getId(), m_programDao, m_dtoVisitor);
+		ProgramEntity programEntity = m_programDao.getLatestProgram(user.getId());
+		return ModelPersister.convert(programEntity, m_dtoVisitor);
+	}
+
+	@Override
+	public Program assignUserToProgram(Integer programId, UserEntity userEntity, UserEntity coachEntity) {
+		ProgramDefEntity programDefEntity = getDefEntity(programId);
+		ProgramEntity program = new ProgramEntity();
+		program.setCoach(coachEntity);
+		program.setName(programDefEntity.getName() + userEntity.getFirstName());
+		program.setParentDef(programDefEntity);
+		program.setStartDate(new Date());
+		program.setTrainer(userEntity);
+		program.setData(createData(programDefEntity));
+		ProgramEntity saveEntity = saveEntity(program);
+		return ModelPersister.convert(saveEntity, m_dtoVisitor);
+	}
+
+	private ProgramData createData(ProgramDefEntity programDefEntity) {
+		ProgramData result = new ProgramData();
+		
+		for (WorkoutEntity workout : programDefEntity.getWorkouts())
+			result.getWorkouts().add(toWorkoutData(workout));
+		
+		return result;
+	}
+
+	private WorkoutData toWorkoutData(WorkoutEntity workout) {
+		WorkoutData result = new WorkoutData();
+		result.setId(workout.getId());
+		result.setName(workout.getName());
+		
+		for (ExerciseWorkoutEntity excersice : workout.getExcersices())
+			result.getExcersices().add(toExcersiceWorkoutData(excersice));
+		
+		return result;
+	}
+
+	private ExcersiceData toExcersiceWorkoutData(ExerciseWorkoutEntity excersiceWorkout) {
+		ExcersiceData result = new ExcersiceData();
+		ExerciseEntity excersice = excersiceWorkout.getExercise();
+		result.setId(excersice.getId());
+		result.setName(excersice.getName());
+		result.setComment(excersice.getComment());
+		result.setPrimaryMuscle(excersice.getPrimaryMuscle());
+		result.setVideoURL(excersice.getVideoURL());
+		result.setNumOfIntervals(excersiceWorkout.getNumOfIntervals());
+		result.setNumOfSets(excersiceWorkout.getNumOfSets());
+		return result;
 	}
 }

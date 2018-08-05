@@ -1,6 +1,6 @@
 package com.trainer.dao;
 
-import com.trainer.entity.ExcersiceEntity;
+import com.trainer.entity.ExerciseEntity;
 
-public interface ExcersiceDao extends BaseDao<ExcersiceEntity>{
+public interface ExcersiceDao extends BaseDao<ExerciseEntity>{
 }

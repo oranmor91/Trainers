@@ -24,7 +24,7 @@ public class User extends BaseDto{
 	
 	private String phoneNumber;
 	
-	private String adress;
+	private String address;
 	
 	private Double height;
 	
@@ -32,7 +32,7 @@ public class User extends BaseDto{
 	
 	private String email;
 	
-	private int numOfExpeirence;
+	private int numOfExperience;
 	
 	private List<Integer> nutritionId = new ArrayList<Integer>();
 	
@@ -79,12 +79,12 @@ public class User extends BaseDto{
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public Double getHeight() {
@@ -103,12 +103,12 @@ public class User extends BaseDto{
 		this.weight = weight;
 	}
 
-	public int getNumOfExpeirence() {
-		return numOfExpeirence;
+	public int getNumOfExperience() {
+		return numOfExperience;
 	}
 
-	public void setNumOfExpeirence(int numOfExpeirence) {
-		this.numOfExpeirence = numOfExpeirence;
+	public void setNumOfExperience(int numOfExperience) {
+		this.numOfExperience = numOfExperience;
 	}
 
 	public List<Integer> getNutritionId() {

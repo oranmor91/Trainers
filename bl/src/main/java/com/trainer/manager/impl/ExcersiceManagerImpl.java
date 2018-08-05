@@ -11,9 +11,12 @@ import org.springframework.stereotype.Service;
 
 import com.trainer.dao.ExcersiceDao;
 import com.trainer.dto.Excersice;
-import com.trainer.entity.ExcersiceEntity;
+import com.trainer.entity.ExerciseEntity;
+import com.trainer.entity.ExerciseWorkoutEntity;
+import com.trainer.entity.WorkoutEntity;
 import com.trainer.manaager.ExcersiceManager;
 import com.trainer.manaager.UserManager;
+import com.trainer.manaager.WorkoutManager;
 import com.trainer.utils.ModelPersister;
 import com.trainer.visitors.BaseVisitor;
 
@@ -26,6 +29,9 @@ public class ExcersiceManagerImpl extends BaseManager implements ExcersiceManage
 	
 	@Autowired
 	private UserManager m_userManager;
+	
+	@Autowired
+	private WorkoutManager m_workoutManager;
 	
 	@Autowired
 	@Qualifier("DtoVisitor")
@@ -48,12 +54,12 @@ public class ExcersiceManagerImpl extends BaseManager implements ExcersiceManage
 	}
 
 	@Override
-	public List<ExcersiceEntity> getAllEntities() {
+	public List<ExerciseEntity> getAllEntities() {
 		return ModelPersister.getAllEntities(m_excersiceDao);
 	}
 	
 	@Override
-	public ExcersiceEntity getEntity(Integer id) {
+	public ExerciseEntity getEntity(Integer id) {
 		return ModelPersister.getEntity(id, m_excersiceDao);
 	}
 
@@ -61,18 +67,29 @@ public class ExcersiceManagerImpl extends BaseManager implements ExcersiceManage
 	@Transactional
 	public Excersice save(Excersice dto) {
 		setCoachId(dto, m_userManager);
-		return ModelPersister.save(dto, new ExcersiceEntity(), m_excersiceDao, m_dtoVisitor, m_entityVistor);
+		return ModelPersister.save(dto, new ExerciseEntity(), m_excersiceDao, m_dtoVisitor, m_entityVistor);
 	}
 
 	@Override
 	@Transactional
-	public ExcersiceEntity saveEntity(ExcersiceEntity entity) {
+	public ExerciseEntity saveEntity(ExerciseEntity entity) {
 		return ModelPersister.saveEntity(entity, m_excersiceDao);
 	}
 
 	@Override
 	@Transactional
-	public void delete(Integer id) {
+	public void delete(Integer id) throws Exception {
+		checkConnectedEntities(id);
 		ModelPersister.delete(id, m_excersiceDao);
+	}
+
+	private void checkConnectedEntities(Integer id) throws Exception {
+		
+		for (WorkoutEntity workout : m_workoutManager.getAllEntities()) {
+			for (ExerciseWorkoutEntity excersice : workout.getExcersices()) {
+				if (excersice.getExercise().getId() == id)
+					throw new Exception("Can not delete Excersice please remove link from workout named: " + workout.getName());
+			}
+		}
 	}
 }

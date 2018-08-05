@@ -10,8 +10,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.trainer.dao.UserDao;
+import com.trainer.dto.Program;
 import com.trainer.dto.User;
 import com.trainer.entity.UserEntity;
+import com.trainer.manaager.ProgramManager;
 import com.trainer.manaager.UserManager;
 import com.trainer.utils.ModelPersister;
 import com.trainer.utils.UserType;
@@ -26,6 +28,9 @@ public class UserManagerImpl extends BaseManager implements UserManager{
 	
 	@Autowired
 	private UserManager m_userManager;
+	
+	@Autowired
+	private ProgramManager m_programManager;
 	
 	@Autowired
 	@Qualifier("DtoVisitor")
@@ -102,5 +107,10 @@ public class UserManagerImpl extends BaseManager implements UserManager{
 	@Override
 	public UserEntity getMyCoach() {
 		return getUserEntityByUniqueID(getLoggedInUser());
+	}
+	
+	@Override
+	public Program assignUserToProgram(Integer userId, Integer programId) {
+		return m_programManager.assignUserToProgram(programId, getEntity(userId), getUserEntityByUniqueID(getLoggedInUser()));
 	}
 }
