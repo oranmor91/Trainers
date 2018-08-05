@@ -15,6 +15,12 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    
+     this.dataService.logout()
+    .subscribe((data)=>{
+   },(err)=>{
+      console.log(err)
+    },()=>{
+      console.log('done')
+    })
   }
 }

@@ -112,4 +112,8 @@ profile:PROFILE;
   getProgramForUser() {
       return this.http.get(`${this.baseURL}/program`)
   }
+  
+    logout() {
+      return this.http.get(`${this.baseURL}/public/logout`)
+  }
 }

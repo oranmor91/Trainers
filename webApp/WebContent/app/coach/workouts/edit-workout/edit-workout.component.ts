@@ -24,7 +24,7 @@ export class EditWorkoutComponent implements OnInit {
     workout:WORKOUT;
     exercises:EXERCISE[]=[];
     temp:EXERCISE[]=[];
-    arr:number[]=[];
+    arr:number[];
     arr2:number[]=[];
 
     constructor(private dataService:DataService,
@@ -69,12 +69,12 @@ export class EditWorkoutComponent implements OnInit {
   checkIfExisted(e:EXERCISE){
     console.log(e);
     console.log(this.workout);
-    if(!this.workout.exercises || this.exercises.length == 0){
+    if(this.exercises.length === 0){
       console.log('no exercises found');
       return false;
     }
-
-    this.arr = this.workout.exercises.map(exercise => exercise.id);
+    
+    this.arr = this.workout.exercises.map(ex => ex.id);
 
     console.log(this.arr);
 

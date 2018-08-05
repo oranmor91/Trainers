@@ -67,7 +67,7 @@ programId:string;
   }
 
   checkIfExisted(w:WORKOUT){
-    if(!this.program.workouts || this.program.workouts.length == 0){
+    if(this.program.workouts.length === 0){
       console.log('no workouts found');
       return false;
     }
