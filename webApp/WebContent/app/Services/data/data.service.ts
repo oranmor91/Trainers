@@ -108,4 +108,8 @@ profile:PROFILE;
   saveRM(program:PROGRAM) {
       return this.http.post(`${this.baseURL}/program`, program)
   }
+  
+  getProgramForUser() {
+      return this.http.get(`${this.baseURL}/program`)
+  }
 }
