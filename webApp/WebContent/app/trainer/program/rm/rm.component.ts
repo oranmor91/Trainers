@@ -56,6 +56,7 @@ export class RmComponent implements OnInit {
   saveRm(){
     this.dataService.saveRM(this.program)
       .subscribe((data)=> {
+        this.router.navigate(['current-program']);
       },(err)=>{
         console.log(err)
       },()=>{
