@@ -33,11 +33,15 @@ profile:PROFILE;
       return this.http.get(`${this.baseURL}/admin/program`)
   }
 
+  getProgram(id:string) {
+    return this.http.post(`${this.baseURL}/admin/program`, id)
+  }
+
   removeProgram(id:number) {
     return this.http.delete(`${this.baseURL}/admin/program/${id}`)
   }
 
-  getProgram(id:number) {
+  getUserProgram(id:number) {
     return this.http.get(`${this.baseURL}/admin/program/userProgram/${id}`)
   }
 
@@ -89,8 +93,8 @@ profile:PROFILE;
     return this.http.get(`${this.baseURL}/admin/user/${trainerId}`)
   }
 
-  setUserProgram(trainerId:string, chosenProgram:PROGRAM_DEF) {
-    return this.http.post(`${this.baseURL}/admin/trainer/${trainerId}`, chosenProgram)
+  setUserProgram(trainerId:string, programId:number) {
+    return this.http.get(`${this.baseURL}/admin/user/${trainerId}/${programId}`)
   }
 
   getProfile() {

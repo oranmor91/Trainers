@@ -45,7 +45,7 @@ programId:string;
   }
 
   getProgram() {
-    this.dataService.getProgram(Number(this.programId))
+    this.dataService.getProgram(this.programId)
     .subscribe((data)=>{
     this.program = <PROGRAM_DEF> data;
    },(err)=>{

@@ -47,7 +47,7 @@ export class EditTrainerComponent implements OnInit {
   }
 
   private getTrainerProgram() {
-    this.dataService.getProgram(Number(this.trainerId))
+    this.dataService.getUserProgram(Number(this.trainerId))
       .subscribe((data)=> {
         this.program = <PROGRAM> data;
       },(err)=>{
@@ -87,7 +87,7 @@ export class EditTrainerComponent implements OnInit {
   }
 
   changeUserProgram() {
-    this.dataService.setUserProgram(this.trainerId, this.programs[this.chosenProgram])
+    this.dataService.setUserProgram(this.trainerId, this.programs[this.chosenProgram].id)
       .subscribe((data)=>{
         location.reload();
       },(err)=>{

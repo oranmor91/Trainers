@@ -46,7 +46,7 @@ export class TrainerProgramComponent implements OnInit {
   }
 
   getProgram() {
-    this.dataService.getProgram(Number(this.programId))
+    this.dataService.getUserProgram(Number(this.programId))
       .subscribe((data)=>{
         this.program = <PROGRAM> data;
       },(err)=>{

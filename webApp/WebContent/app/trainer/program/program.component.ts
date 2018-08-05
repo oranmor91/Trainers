@@ -20,7 +20,7 @@ export class ProgramComponent implements OnInit {
   }
 
     private getTrainerProgram() {
-    this.dataService.getProgram(Number(this.dataService.profile.id))
+    this.dataService.getUserProgram(Number(this.dataService.profile.id))
       .subscribe((data)=> {
         if (data != null) {
         this.program = <PROGRAM> data;
