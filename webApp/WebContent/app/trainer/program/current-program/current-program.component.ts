@@ -31,7 +31,7 @@ export class CurrentProgramComponent implements OnInit {
   }
 
   getProgram() {
-    this.dataService.getUserProgram(Number(this.programId))
+    this.dataService.getProgramForUser()
       .subscribe((data)=>{
         this.program = <PROGRAM> data;
       },(err)=>{

@@ -27,7 +27,7 @@ export class RmComponent implements OnInit {
   }
 
   private getTrainerProgram() {
-    this.dataService.getUserProgram(Number(this.dataService.profile.id))
+    this.dataService.getProgramForUser()
       .subscribe((data)=> {
           this.program = <PROGRAM> data;
       },(err)=>{
