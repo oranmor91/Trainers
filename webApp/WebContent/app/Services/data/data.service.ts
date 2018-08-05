@@ -106,6 +106,6 @@ profile:PROFILE;
   }
 
   saveRM(program:PROGRAM) {
-      return this.http.post(`${this.baseURL}/user/rm`, program)
+      return this.http.post(`${this.baseURL}/program`, program)
   }
 }
