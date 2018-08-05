@@ -44,4 +44,6 @@ public interface ProgramManager {
 
 	public Program assignUserToProgram(Integer programId, UserEntity entity, UserEntity userEntityByUniqueID);
 
+	public void fillRmData(Program program) throws Exception;
+
 }

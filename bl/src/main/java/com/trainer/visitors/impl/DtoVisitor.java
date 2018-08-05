@@ -14,7 +14,6 @@ import com.trainer.entity.ExerciseWorkoutEntity;
 import com.trainer.entity.NutritionEntity;
 import com.trainer.entity.ProgramDefEntity;
 import com.trainer.entity.ProgramEntity;
-import com.trainer.entity.RMData;
 import com.trainer.entity.UserEntity;
 import com.trainer.entity.WorkoutEntity;
 import com.trainer.visitors.BaseVisitor;
@@ -128,9 +127,6 @@ public class DtoVisitor implements BaseVisitor{
 		dto.setName(personalProgramEntity.getName());
 		dto.setStartDate(personalProgramEntity.getStartDate());
 		
-		for (RMData rmData : personalProgramEntity.getRmData())
-			dto.getRmData().add(visit(rmData));
-		
 		UserEntity coach = personalProgramEntity.getCoach();
 		dto.setCoachId(coach.getId());
 		
@@ -141,16 +137,8 @@ public class DtoVisitor implements BaseVisitor{
 		dto.setNotes(parentDef.getNotes());
 		dto.setDescription(parentDef.getDescription());
 		dto.setProgramDefId(parentDef.getId());
-		
 		dto.setData(personalProgramEntity.getData());
+		dto.setRmFilled(!personalProgramEntity.getRmData().isEmpty());
 		return dto;
-	}
-
-	private com.trainer.dto.RMData visit(RMData rmData) {
-		com.trainer.dto.RMData result = new com.trainer.dto.RMData();
-		result.setData(rmData.getData());
-		result.setExcersiceWorkoutId(rmData.getExcersiceWorkout().getId());
-		result.setWorkoutId(rmData.getWorkout().getId());
-		return result;
 	}
 }

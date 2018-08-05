@@ -1,8 +1,6 @@
 package com.trainer.dto;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Program extends BaseDto{
 
@@ -22,12 +20,8 @@ public class Program extends BaseDto{
 	
 	private ProgramData data;
 	
-	private List<RMData> rmData = new ArrayList<RMData>();
+	private boolean rmFilled;
 	
-	public boolean isRmFilled() {
-		return !rmData.isEmpty();
-	}
-
 	public Integer getTrainerId() {
 		return trainerId;
 	}
@@ -84,11 +78,11 @@ public class Program extends BaseDto{
 		this.notes = notes;
 	}
 
-	public List<RMData> getRmData() {
-		return rmData;
+	public boolean isRmFilled() {
+		return rmFilled;
 	}
 
-	public void setRmData(List<RMData> rmData) {
-		this.rmData = rmData;
+	public void setRmFilled(boolean rmFilled) {
+		this.rmFilled = rmFilled;
 	}
 }

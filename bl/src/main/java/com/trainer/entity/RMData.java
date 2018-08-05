@@ -7,21 +7,13 @@ import javax.persistence.Embeddable;
 public class RMData{
 
 	@Column
-	private WorkoutEntity workout;
+	private Integer workoutId;
 	
 	@Column
-	private ExerciseWorkoutEntity excersiceWorkout;
+	private Integer excersiceWorkout;
 	
 	@Column
 	private Integer data;
-
-	public WorkoutEntity getWorkout() {
-		return workout;
-	}
-
-	public void setWorkout(WorkoutEntity workout) {
-		this.workout = workout;
-	}
 
 	public Integer getData() {
 		return data;
@@ -31,11 +23,19 @@ public class RMData{
 		this.data = data;
 	}
 
-	public ExerciseWorkoutEntity getExcersiceWorkout() {
+	public Integer getWorkoutId() {
+		return workoutId;
+	}
+
+	public void setWorkoutId(Integer workoutId) {
+		this.workoutId = workoutId;
+	}
+
+	public Integer getExcersiceWorkout() {
 		return excersiceWorkout;
 	}
 
-	public void setExcersiceWorkout(ExerciseWorkoutEntity excersiceWorkout) {
+	public void setExcersiceWorkout(Integer excersiceWorkout) {
 		this.excersiceWorkout = excersiceWorkout;
 	}
 }

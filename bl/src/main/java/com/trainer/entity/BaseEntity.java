@@ -44,4 +44,23 @@ public abstract class BaseEntity implements Serializable{
 	
 	public abstract Object accept(BaseVisitor visitor, Object... obj);
 
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		
+		if (obj == null || !(obj instanceof BaseEntity))
+			return false;
+		
+		BaseEntity other = (BaseEntity) obj;
+		
+		return other.id == this.id;
+	}
+	
+	@Override
+	public int hashCode() {
+		return id.hashCode();
+	}
+	
 }

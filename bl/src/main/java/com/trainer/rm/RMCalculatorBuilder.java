@@ -17,12 +17,12 @@ public class RMCalculatorBuilder{
 	}
 	
 	public RMCalculatorBuilder simpleRmCalculator() {
-		result = (int) (rmData.getData() / 0.7);
+		result = (int) (rmData.getData() * 0.7);
 		return this;
 	}
 	
 	public RMCalculatorBuilder advanceRmCalculator() {
-		result = (int) (rmData.getData() / 0.8);
+		result = (int) (rmData.getData() * 0.8);
 		return this;
 	}
 	

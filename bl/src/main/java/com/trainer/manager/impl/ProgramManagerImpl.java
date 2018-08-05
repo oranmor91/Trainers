@@ -1,9 +1,12 @@
 package com.trainer.manager.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -14,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.trainer.dao.ProgramDao;
 import com.trainer.dao.ProgramDefDao;
-import com.trainer.dto.ExcersiceData;
+import com.trainer.dto.ExercisesData;
 import com.trainer.dto.Program;
 import com.trainer.dto.ProgramData;
 import com.trainer.dto.ProgramDef;
@@ -28,6 +31,7 @@ import com.trainer.entity.UserEntity;
 import com.trainer.entity.WorkoutEntity;
 import com.trainer.manaager.ProgramManager;
 import com.trainer.manaager.UserManager;
+import com.trainer.manaager.WorkoutManager;
 import com.trainer.rm.RMCalculatorBuilder;
 import com.trainer.utils.ModelPersister;
 import com.trainer.visitors.BaseVisitor;
@@ -44,6 +48,9 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 	
 	@Autowired
 	private UserManager m_userManager;
+	
+	@Autowired
+	private WorkoutManager m_workoutManager;
 	
 	@Autowired
 	@Qualifier("DtoVisitor")
@@ -132,58 +139,85 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 		ModelPersister.delete(id, m_programDao);
 	}
 	
-	public void fillRmData(List<RMData> data, Integer programId) throws Exception{
-		ProgramEntity programEntity = getEntity(programId);
+	
+	@Override
+	public void fillRmData(Program program) throws Exception {
+		ProgramEntity programEntity = getEntity(program.getId());
 		
 		if (programEntity == null)
-			throw new Exception("Failed to find program with id: " + programId);
+			throw new Exception("Failed to find program with id: " + program.getId());
+		
+		List<RMData> data = createRmDataFromProgram(program);
 		
 		programEntity = fillRmDataToEntity(data, programEntity);
 		updateWeights(programEntity);
 		saveEntity(programEntity);
 	}
+	
+	private List<RMData> createRmDataFromProgram(Program program) {
+		List<RMData> results = new ArrayList<RMData>();
+		
+		ProgramData data = program.getData();
+		
+		for (WorkoutData workout : data.getWorkouts()) {
+			for (ExercisesData exercises : workout.getExercises()) {
+				results.add(createRmData(workout.getId(), exercises.getExerciseWorkoutId(), exercises.getWeight()));
+			}
+		}
+		
+		return results;
+	}
+
+	private RMData createRmData(Integer workoutId, Integer exerciseWorkoutId, Integer data) {
+		RMData result = new RMData();
+		result.setData(data);
+		result.setWorkoutId(workoutId);
+		result.setExcersiceWorkout(exerciseWorkoutId);
+		return result;
+	}
 
 	private void updateWeights(ProgramEntity programEntity) {
 		ProgramData programData = programEntity.getData();
-		Map<Integer, Map<Integer, ExcersiceData>> workoutExcersiceMap = createWorkoutExcericeMap(programData);
+		Map<Integer, Map<Integer, ExercisesData>> workoutExcersiceMap = createWorkoutExcericeMap(programData);
 
 		
 		for (RMData rmData : programEntity.getRmData())
 			calculateAndUpdateRmData(rmData, workoutExcersiceMap);
+		
+		programEntity.setData(programData);
 	}
 
-	private Map<Integer, Map<Integer, ExcersiceData>> createWorkoutExcericeMap(ProgramData programData) {
-		Map<Integer, Map<Integer, ExcersiceData>> result = new HashMap<Integer, Map<Integer, ExcersiceData>>();
+	private Map<Integer, Map<Integer, ExercisesData>> createWorkoutExcericeMap(ProgramData programData) {
+		Map<Integer, Map<Integer, ExercisesData>> result = new HashMap<Integer, Map<Integer, ExercisesData>>();
 		
 		for (WorkoutData workout : programData.getWorkouts()) {
-			Map<Integer, ExcersiceData> excersiceById = result.get(workout.getId());
+			Map<Integer, ExercisesData> excersiceById = result.get(workout.getId());
 			
 			if (excersiceById == null) {
-				excersiceById = new HashMap<Integer, ExcersiceData>();
+				excersiceById = new HashMap<Integer, ExercisesData>();
 				result.put(workout.getId(), excersiceById);
 			}
 			
-			for (ExcersiceData excersice : workout.getExcersices())
+			for (ExercisesData excersice : workout.getExercises())
 				excersiceById.put(excersice.getId(), excersice);
 		}
 
 		return result;
 	}
 
-	private void calculateAndUpdateRmData(RMData rmData, Map<Integer, Map<Integer, ExcersiceData>> workoutExcersiceMap) {
+	private void calculateAndUpdateRmData(RMData rmData, Map<Integer, Map<Integer, ExercisesData>> workoutExcersiceMap) {
 		Integer newWeight = RMCalculatorBuilder.instance(rmData).simpleRmCalculator().build();
 		
-		WorkoutEntity workout = rmData.getWorkout();
-		Map<Integer, ExcersiceData> exversiceByIdMap = workoutExcersiceMap.get(workout.getId());
+		Map<Integer, ExercisesData> exversiceByIdMap = workoutExcersiceMap.get(rmData.getWorkoutId());
 
 		if (exversiceByIdMap == null)
-			throw new RuntimeException("Failed to find workout with id: " + workout.getId());
+			throw new RuntimeException("Failed to find workout with id: " + rmData.getWorkoutId());
 		
-		ExerciseWorkoutEntity excersice = rmData.getExcersiceWorkout();
-		ExcersiceData excersiceData = exversiceByIdMap.get(excersice.getId());
+		ExerciseWorkoutEntity excersiceWorkoutEntity = m_workoutManager.getExcersiceWorkoutEntity(rmData.getExcersiceWorkout());
+		ExercisesData excersiceData = exversiceByIdMap.get(excersiceWorkoutEntity.getExercise().getId());
 		
 		if (excersiceData == null)
-			throw new RuntimeException("Failed to find excersice with id: " + excersice.getId());
+			throw new RuntimeException("Failed to find excersice with id: " + rmData.getExcersiceWorkout());
 		
 		excersiceData.setWeight(newWeight);
 	}
@@ -208,9 +242,16 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 	}
 
 	private void validateAllRMDataWasFilled(List<RMData> rms, ProgramDefEntity parentDef) throws Exception {
-		List<WorkoutEntity> workouts = parentDef.getWorkouts();
+		Set<WorkoutEntity> workouts = parentDef.getWorkouts();
 		
-		if (workouts.size() != rms.size())
+		Integer numberOfEx = 0;
+		
+		for (Iterator<WorkoutEntity> iter = workouts.iterator(); iter.hasNext();) {
+			WorkoutEntity next = iter.next();
+			numberOfEx += next.getExcersices().size();
+		}
+		
+		if (numberOfEx != rms.size())
 			throw new Exception("Please fill all RM Data");
 	}
 
@@ -221,14 +262,15 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 		if (rm.getExcersiceWorkout() == null)
 			throw new Exception("No excersice was filled");
 		
-		if (rm.getWorkout() == null)
+		if (rm.getWorkoutId() == null)
 			throw new Exception("No workout was filled");
 	}
 
 	@Override
 	public Program getMyCurrentProgram() {
 		UserEntity byUniqueID = m_userManager.getUserEntityByUniqueID(getLoggedInUser());
-		return ModelPersister.get(byUniqueID.getId(), m_programDao, m_dtoVisitor);
+		ProgramEntity programEntity = m_programDao.getLatestProgram(byUniqueID.getId());
+		return ModelPersister.convert(programEntity, m_dtoVisitor);
 	}
 	
 	@Override
@@ -271,22 +313,23 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 		result.setId(workout.getId());
 		result.setName(workout.getName());
 		
-		for (ExerciseWorkoutEntity excersice : workout.getExcersices())
-			result.getExcersices().add(toExcersiceWorkoutData(excersice));
+		for (ExerciseWorkoutEntity exercise : workout.getExcersices())
+			result.getExercises().add(toExcersiceWorkoutData(exercise));
 		
 		return result;
 	}
 
-	private ExcersiceData toExcersiceWorkoutData(ExerciseWorkoutEntity excersiceWorkout) {
-		ExcersiceData result = new ExcersiceData();
-		ExerciseEntity excersice = excersiceWorkout.getExercise();
-		result.setId(excersice.getId());
-		result.setName(excersice.getName());
-		result.setComment(excersice.getComment());
-		result.setPrimaryMuscle(excersice.getPrimaryMuscle());
-		result.setVideoURL(excersice.getVideoURL());
-		result.setNumOfIntervals(excersiceWorkout.getNumOfIntervals());
-		result.setNumOfSets(excersiceWorkout.getNumOfSets());
+	private ExercisesData toExcersiceWorkoutData(ExerciseWorkoutEntity exerciseWorkout) {
+		ExercisesData result = new ExercisesData();
+		ExerciseEntity exercise = exerciseWorkout.getExercise();
+		result.setId(exercise.getId());
+		result.setName(exercise.getName());
+		result.setComment(exercise.getComment());
+		result.setPrimaryMuscle(exercise.getPrimaryMuscle());
+		result.setVideoURL(exercise.getVideoURL());
+		result.setExerciseWorkoutId(exerciseWorkout.getId());
+		result.setNumOfIntervals(exerciseWorkout.getNumOfIntervals());
+		result.setNumOfSets(exerciseWorkout.getNumOfSets());
 		return result;
 	}
 }

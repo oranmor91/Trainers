@@ -113,4 +113,9 @@ public class UserManagerImpl extends BaseManager implements UserManager{
 	public Program assignUserToProgram(Integer userId, Integer programId) {
 		return m_programManager.assignUserToProgram(programId, getEntity(userId), getUserEntityByUniqueID(getLoggedInUser()));
 	}
+
+	@Override
+	public User getMySelf() {
+		return getUserByUniqueID(getLoggedInUser());
+	}
 }

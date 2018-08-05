@@ -31,4 +31,6 @@ public interface UserManager {
 	public User getUserByUniqueID(String email);
 
 	public Program assignUserToProgram(Integer userId, Integer programId);
+
+	public User getMySelf();
 }

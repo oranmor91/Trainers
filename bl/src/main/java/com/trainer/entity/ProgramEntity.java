@@ -44,7 +44,7 @@ public class ProgramEntity extends BaseEntity{
 	private String personalData;
 	
 	@ElementCollection(fetch=FetchType.LAZY)
-	@CollectionTable(name="rm_data", joinColumns=@JoinColumn(name="person_program_id"), uniqueConstraints=@UniqueConstraint(columnNames = { "person_program_id", "workout", "excersiceWorkout" }))
+	@CollectionTable(name="rm_data", joinColumns=@JoinColumn(name="person_program_id"), uniqueConstraints=@UniqueConstraint(columnNames = { "person_program_id", "workoutId", "excersiceWorkout" }))
 	private List<RMData> rmData = new ArrayList<RMData>();
 	
 	@Transient

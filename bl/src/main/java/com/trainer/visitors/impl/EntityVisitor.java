@@ -8,7 +8,6 @@ import com.trainer.dto.Excersice;
 import com.trainer.dto.ExerciseWorkout;
 import com.trainer.dto.Program;
 import com.trainer.dto.ProgramDef;
-import com.trainer.dto.RMData;
 import com.trainer.dto.User;
 import com.trainer.dto.Workout;
 import com.trainer.entity.ExerciseEntity;
@@ -160,18 +159,6 @@ public class EntityVisitor implements BaseVisitor{
 		
 		UserEntity trainerEntity = m_userManager.getEntity(dto.getTrainerId());
 		personalProgramEntity.setTrainer(trainerEntity);
-		
-		for (RMData rmData : dto.getRmData())
-			personalProgramEntity.getRmData().add(visit(rmData));
-		
 		return personalProgramEntity;
-	}
-
-	private com.trainer.entity.RMData visit(RMData rmData) {
-		com.trainer.entity.RMData result = new com.trainer.entity.RMData();
-		result.setData(rmData.getData());
-		result.setExcersiceWorkout(m_workoutManager.getExcersiceWorkoutEntity(rmData.getExcersiceWorkoutId()));
-		result.setWorkout(m_workoutManager.getEntity(rmData.getWorkoutId()));
-		return result;
 	}
 }

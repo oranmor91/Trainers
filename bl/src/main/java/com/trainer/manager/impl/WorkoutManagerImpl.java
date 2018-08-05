@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import com.trainer.dao.ExerciseWorkoutDao;
 import com.trainer.dao.WorkoutDao;
 import com.trainer.dto.ExerciseWorkout;
 import com.trainer.dto.ProgramDef;
@@ -34,6 +35,9 @@ public class WorkoutManagerImpl extends BaseManager implements WorkoutManager{
 	
 	@Autowired
 	private ProgramManager m_programManager;
+	
+	@Autowired
+	private ExerciseWorkoutDao m_exerciseWorkoutDao;
 	
 	@Autowired
 	@Qualifier("DtoVisitor")
@@ -62,7 +66,7 @@ public class WorkoutManagerImpl extends BaseManager implements WorkoutManager{
 	
 	@Override
 	public ExerciseWorkoutEntity getExcersiceWorkoutEntity(Integer id) {
-		return m_workoutDao.getExcersiceWorkoutEntity(id);
+		return m_exerciseWorkoutDao.get(id);
 	}
 	
 	@Override

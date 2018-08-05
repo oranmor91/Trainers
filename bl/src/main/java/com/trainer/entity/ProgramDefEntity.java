@@ -1,14 +1,14 @@
 package com.trainer.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -29,20 +29,20 @@ public class ProgramDefEntity extends BaseEntity{
 	@Column
 	private String notes;
 	
-	@ManyToMany(cascade = { CascadeType.ALL}, fetch=FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name = "workout_prog_def", joinColumns = { @JoinColumn(name = "prog_def_id") }, inverseJoinColumns = { @JoinColumn(name = "workouts_id") })
-	private List<WorkoutEntity> workouts = new ArrayList<WorkoutEntity>();
+	private Set<WorkoutEntity> workouts = new HashSet<WorkoutEntity>();
 	
 	@Override
 	public Object accept(BaseVisitor visitor, Object... obj) {
 		return visitor.visit(this, obj);
 	}
 
-	public List<WorkoutEntity> getWorkouts() {
+	public Set<WorkoutEntity> getWorkouts() {
 		return workouts;
 	}
 
-	public void setWorkouts(List<WorkoutEntity> workouts) {
+	public void setWorkouts(Set<WorkoutEntity> workouts) {
 		this.workouts = workouts;
 	}
 
