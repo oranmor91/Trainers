@@ -22,7 +22,7 @@ public class UserAdminController {
 
 	@Autowired
 	private UserManager m_trainerManager;
-	
+
 	@RequestMapping(method = RequestMethod.GET, value="/{id}")
 	public @ResponseBody User get(@PathVariable Integer id) {
 		return m_trainerManager.get(id);

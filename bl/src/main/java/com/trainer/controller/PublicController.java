@@ -65,6 +65,5 @@ public class PublicController {
 			session.invalidate();
 		
         	SecurityContextHolder.getContext().setAuthentication(null);
-        	response.sendRedirect("/app");
 	}
 }
