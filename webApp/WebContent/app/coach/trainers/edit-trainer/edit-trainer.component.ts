@@ -89,7 +89,7 @@ export class EditTrainerComponent implements OnInit {
   changeUserProgram() {
     this.dataService.setUserProgram(this.trainerId, this.programs[this.chosenProgram].id)
       .subscribe((data)=>{
-        location.reload();
+        //location.reload();
       },(err)=>{
         console.log(err)
       },()=>{
