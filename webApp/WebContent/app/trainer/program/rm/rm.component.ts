@@ -37,13 +37,9 @@ export class RmComponent implements OnInit {
       })
   }
 
-  showExercise(rm:RM_DATA) {
-    this.workoutName = rm.workout.name;
-    this.program.data.workouts.forEach((ctrl: WORKOUT) => {
-      if(ctrl.name === rm.workout.name){
-        this.exercises = ctrl.exercises;
-      }
-    });
+  showExercise(w:WORKOUT) {
+    this.workoutName = w.name;
+    this.exercises = w.exercises;
   }
 
   checkIfAllFilled(){
