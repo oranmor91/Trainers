@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from "../Services/data/data.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,7 @@ import {DataService} from "../Services/data/data.service";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public dataService:DataService) { }
+  constructor(public dataService:DataService,  private router: Router) { }
 
   ngOnInit() {
 
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit {
   logout(){
      this.dataService.logout()
     .subscribe((data)=>{
+      this.router.navigate(['welcome']);
    },(err)=>{
       console.log(err)
     },()=>{
