@@ -3,14 +3,14 @@
     <h2>Edit Workout</h2>
     <div class="form-group">
       <label class="col-sm-3 control-label">Workout name</label>
-      <div class="col-sm-9">
-        <input [(ngModel)]="workout.name"
-               ngModel
-               name="workoutName"
+      <div for="workoutName" class="col-sm-9">
+        <input name="workoutName"
                type="text"
                id="workoutName"
                placeholder="{{workout.name}}"
                class="form-control"
+               [(ngModel)]="workout.name"
+               ngModel
                autofocus>
       </div>
     </div>
