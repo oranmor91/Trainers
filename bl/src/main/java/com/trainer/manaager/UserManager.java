@@ -2,6 +2,7 @@ package com.trainer.manaager;
 
 import java.util.List;
 
+import com.trainer.dto.Program;
 import com.trainer.dto.User;
 import com.trainer.entity.UserEntity;
 
@@ -28,4 +29,6 @@ public interface UserManager {
 	public User saveAdmin(User dto);
 
 	public User getUserByUniqueID(String email);
+
+	public Program assignUserToProgram(Integer userId, Integer programId);
 }

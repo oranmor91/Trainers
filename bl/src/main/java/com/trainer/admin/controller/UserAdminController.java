@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.trainer.dto.Program;
 import com.trainer.dto.User;
 import com.trainer.manaager.UserManager;
 
@@ -25,6 +26,11 @@ public class UserAdminController {
 	@RequestMapping(method = RequestMethod.GET, value="/{id}")
 	public @ResponseBody User get(@PathVariable Integer id) {
 		return m_trainerManager.get(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value="/{userId}/{programDefId}")
+	public @ResponseBody Program assignUserToProgram(@PathVariable Integer userId, @PathVariable Integer programDefId) {
+		return m_trainerManager.assignUserToProgram(userId, programDefId);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)

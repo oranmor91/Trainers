@@ -39,7 +39,7 @@ public class ExcersiceAdminController {
 	
 	@RequestMapping(method = RequestMethod.DELETE, value="/{id}")
 	@ResponseStatus(value=HttpStatus.OK)
-	public void delete(@PathVariable Integer id) {
+	public void delete(@PathVariable Integer id) throws Exception {
 		m_excersiceManager.delete(id);
 	}
 }

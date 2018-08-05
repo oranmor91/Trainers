@@ -3,6 +3,7 @@ package com.trainer.manaager;
 import java.util.List;
 
 import com.trainer.dto.Workout;
+import com.trainer.entity.ExerciseWorkoutEntity;
 import com.trainer.entity.WorkoutEntity;
 
 public interface WorkoutManager {
@@ -19,5 +20,7 @@ public interface WorkoutManager {
 	
 	public WorkoutEntity saveEntity(WorkoutEntity entity);
 	
-	public void delete(Integer id);
+	public void delete(Integer id) throws Exception;
+
+	public ExerciseWorkoutEntity getExcersiceWorkoutEntity(Integer id);
 }

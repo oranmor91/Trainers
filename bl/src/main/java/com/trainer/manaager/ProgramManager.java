@@ -6,6 +6,7 @@ import com.trainer.dto.Program;
 import com.trainer.dto.ProgramDef;
 import com.trainer.entity.ProgramDefEntity;
 import com.trainer.entity.ProgramEntity;
+import com.trainer.entity.UserEntity;
 
 public interface ProgramManager {
 
@@ -40,5 +41,7 @@ public interface ProgramManager {
 	public Program getMyCurrentProgram();
 
 	public Program getUserProgram(Integer id);
+
+	public Program assignUserToProgram(Integer programId, UserEntity entity, UserEntity userEntityByUniqueID);
 
 }

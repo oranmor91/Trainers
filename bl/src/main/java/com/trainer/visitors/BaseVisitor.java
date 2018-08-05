@@ -1,7 +1,7 @@
 package com.trainer.visitors;
 
-import com.trainer.entity.ExcersiceEntity;
-import com.trainer.entity.ExcersiceWorkoutEntity;
+import com.trainer.entity.ExerciseEntity;
+import com.trainer.entity.ExerciseWorkoutEntity;
 import com.trainer.entity.NutritionEntity;
 import com.trainer.entity.ProgramEntity;
 import com.trainer.entity.UserEntity;
@@ -12,9 +12,9 @@ public interface BaseVisitor {
 
 	public Object visit(UserEntity entity, Object... obj);
 	
-	public Object visit(ExcersiceEntity entity, Object... obj);
+	public Object visit(ExerciseEntity entity, Object... obj);
 
-	public Object visit(ExcersiceWorkoutEntity excersiceWorkoutEntity, Object... obj);
+	public Object visit(ExerciseWorkoutEntity excersiceWorkoutEntity, Object... obj);
 
 	public Object visit(NutritionEntity nutritionEntity, Object... obj);
 

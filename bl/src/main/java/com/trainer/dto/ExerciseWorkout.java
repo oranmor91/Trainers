@@ -1,6 +1,6 @@
 package com.trainer.dto;
 
-public class ExcersiceWorkout extends BaseDto{
+public class ExerciseWorkout extends BaseDto{
 
 	private static final long serialVersionUID = 1L;
 
@@ -10,9 +10,9 @@ public class ExcersiceWorkout extends BaseDto{
 	
 	private Integer numOfIntervals;
 
-	public ExcersiceWorkout() {}
+	public ExerciseWorkout() {}
 	
-	public ExcersiceWorkout(Integer excersiceId, Integer numOfSets, Integer numOfIntervals) {
+	public ExerciseWorkout(Integer excersiceId, Integer numOfSets, Integer numOfIntervals) {
 		this.excersiceId = excersiceId;
 		this.numOfSets= numOfSets;
 		this.numOfIntervals = numOfIntervals;

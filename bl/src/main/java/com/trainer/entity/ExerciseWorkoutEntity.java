@@ -9,12 +9,12 @@ import com.trainer.visitors.BaseVisitor;
 
 @Entity
 @Table(name="ex_work")
-public class ExcersiceWorkoutEntity extends BaseEntity{
+public class ExerciseWorkoutEntity extends BaseEntity{
 
 	private static final long serialVersionUID = 1L;
 
 	@OneToOne
-	private ExcersiceEntity excersice;
+	private ExerciseEntity exercise;
 	
 	@Column
 	private Integer numOfSets; 
@@ -22,12 +22,12 @@ public class ExcersiceWorkoutEntity extends BaseEntity{
 	@Column
 	private Integer numOfIntervals;
 	
-	public ExcersiceEntity getExcersice() {
-		return excersice;
+	public ExerciseEntity getExercise() {
+		return exercise;
 	}
 
-	public void setExcersice(ExcersiceEntity excersice) {
-		this.excersice = excersice;
+	public void setExercise(ExerciseEntity exercise) {
+		this.exercise = exercise;
 	}
 
 	public Integer getNumOfSets() {

@@ -8,7 +8,7 @@ import com.trainer.visitors.BaseVisitor;
 
 @Entity
 @Table(name="excersice")
-public class ExcersiceEntity extends BaseEntity{
+public class ExerciseEntity extends BaseEntity{
 
 	private static final long serialVersionUID = 1L;
 

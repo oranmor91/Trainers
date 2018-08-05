@@ -9,7 +9,7 @@ public class Workout extends BaseDto{
 
 	private String name;
 
-	private List<ExcersiceWorkout> exercises = new ArrayList<ExcersiceWorkout>();
+	private List<ExerciseWorkout> exercises = new ArrayList<ExerciseWorkout>();
 	
 	public String getName() {
 		return name;
@@ -19,11 +19,11 @@ public class Workout extends BaseDto{
 		this.name = name;
 	}
 
-	public List<ExcersiceWorkout> getExercises() {
+	public List<ExerciseWorkout> getExercise() {
 		return exercises;
 	}
 
-	public void setExercises(List<ExcersiceWorkout> exercises) {
+	public void setExercises(List<ExerciseWorkout> exercises) {
 		this.exercises = exercises;
 	}
 }

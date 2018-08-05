@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.trainer.dto.ExcersiceWorkout;
+import com.trainer.dto.ExerciseWorkout;
 import com.trainer.dto.Workout;
 import com.trainer.manaager.WorkoutManager;
 
@@ -51,19 +51,19 @@ public class WorkoutAdminController {
 
 	@RequestMapping(method = RequestMethod.DELETE, value="/{id}")
 	@ResponseStatus(value=HttpStatus.OK)
-	public void delete(@PathVariable Integer id) {
+	public void delete(@PathVariable Integer id) throws Exception {
 		m_workoutManager.delete(id);
 	}
 	
 	private void replaceExcersiceIdWithId(Workout dto) {
-		for (ExcersiceWorkout excerise : dto.getExercises()) {
+		for (ExerciseWorkout excerise : dto.getExercise()) {
 			excerise.setExcersiceId(excerise.getId());
 			excerise.setId(null);
 		}
 	}
 	
 	private void revertReplaceExcersiceIdWithId(Workout workout) {
-		for (ExcersiceWorkout excerise : workout.getExercises()) {
+		for (ExerciseWorkout excerise : workout.getExercise()) {
 			excerise.setId(excerise.getExcersiceId());
 			excerise.setExcersiceId(null);
 		}

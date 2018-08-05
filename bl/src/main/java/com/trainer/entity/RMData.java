@@ -10,7 +10,7 @@ public class RMData{
 	private WorkoutEntity workout;
 	
 	@Column
-	private ExcersiceWorkoutEntity excersice;
+	private ExerciseWorkoutEntity excersiceWorkout;
 	
 	@Column
 	private Integer data;
@@ -23,19 +23,19 @@ public class RMData{
 		this.workout = workout;
 	}
 
-	public ExcersiceWorkoutEntity getExcersice() {
-		return excersice;
-	}
-
-	public void setExcersice(ExcersiceWorkoutEntity excersice) {
-		this.excersice = excersice;
-	}
-
 	public Integer getData() {
 		return data;
 	}
 
 	public void setData(Integer data) {
 		this.data = data;
+	}
+
+	public ExerciseWorkoutEntity getExcersiceWorkout() {
+		return excersiceWorkout;
+	}
+
+	public void setExcersiceWorkout(ExerciseWorkoutEntity excersiceWorkout) {
+		this.excersiceWorkout = excersiceWorkout;
 	}
 }

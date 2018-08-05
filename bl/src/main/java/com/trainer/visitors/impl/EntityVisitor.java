@@ -5,18 +5,19 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.trainer.dto.Excersice;
-import com.trainer.dto.ExcersiceWorkout;
+import com.trainer.dto.ExerciseWorkout;
 import com.trainer.dto.Program;
 import com.trainer.dto.ProgramDef;
+import com.trainer.dto.RMData;
 import com.trainer.dto.User;
 import com.trainer.dto.Workout;
-import com.trainer.entity.ExcersiceEntity;
-import com.trainer.entity.ExcersiceWorkoutEntity;
+import com.trainer.entity.ExerciseEntity;
+import com.trainer.entity.ExerciseWorkoutEntity;
 import com.trainer.entity.NutritionEntity;
+import com.trainer.entity.ProgramDefEntity;
 import com.trainer.entity.ProgramEntity;
 import com.trainer.entity.UserEntity;
 import com.trainer.entity.WorkoutEntity;
-import com.trainer.entity.ProgramDefEntity;
 import com.trainer.manaager.ExcersiceManager;
 import com.trainer.manaager.ProgramManager;
 import com.trainer.manaager.UserManager;
@@ -48,10 +49,10 @@ public class EntityVisitor implements BaseVisitor{
 		entity.setGender(dto.getGender());
 		entity.setBirthDay(dto.getBirthDay());
 		entity.setPhoneNumber(dto.getPhoneNumber());
-		entity.setAdress(dto.getAdress());
+		entity.setAddress(dto.getAddress());
 		entity.setHeight(dto.getHeight());
 		entity.setWeight(dto.getWeight());
-		entity.setNumOfExpeirence(dto.getNumOfExpeirence());
+		entity.setNumOfExperience(dto.getNumOfExperience());
 		entity.setEmail(dto.getEmail());
 		
 		entity.getRoles().clear();
@@ -65,7 +66,7 @@ public class EntityVisitor implements BaseVisitor{
 	}
 
 	@Override
-	public Object visit(ExcersiceEntity entity, Object... obj) {
+	public Object visit(ExerciseEntity entity, Object... obj) {
 		Excersice dto = (Excersice) obj[0];
 		entity.setId(dto.getId());
 		entity.setComment(dto.getComment());
@@ -77,20 +78,20 @@ public class EntityVisitor implements BaseVisitor{
 	}
 
 	@Override
-	public Object visit(ExcersiceWorkoutEntity excersiceWorkoutEntity, Object... obj) {
-		ExcersiceWorkout dto = (ExcersiceWorkout) obj[0];
+	public Object visit(ExerciseWorkoutEntity excersiceWorkoutEntity, Object... obj) {
+		ExerciseWorkout dto = (ExerciseWorkout) obj[0];
 		Integer excersiceId = dto.getExcersiceId();
 		
 		if (excersiceId == null)
 			return null;
 		
-		ExcersiceEntity entity = m_excersiceManager.getEntity(excersiceId);
+		ExerciseEntity entity = m_excersiceManager.getEntity(excersiceId);
 		
 		if (entity == null)
 			return null;
 		
 		excersiceWorkoutEntity.setId(dto.getId());
-		excersiceWorkoutEntity.setExcersice(entity);
+		excersiceWorkoutEntity.setExercise(entity);
 		excersiceWorkoutEntity.setNumOfIntervals(dto.getNumOfIntervals());
 		excersiceWorkoutEntity.setNumOfSets(dto.getNumOfSets());
 		excersiceWorkoutEntity.setCoach(m_userManager.getEntity(dto.getCoachId()));		
@@ -105,8 +106,8 @@ public class EntityVisitor implements BaseVisitor{
 		workoutEntity.setCoach(m_userManager.getEntity(dto.getCoachId()));
 		workoutEntity.getExcersices().clear();
 		
-		for (ExcersiceWorkout excersiceWorkout : dto.getExercises()) {
-			ExcersiceWorkoutEntity entity = (ExcersiceWorkoutEntity) visit(new ExcersiceWorkoutEntity(), excersiceWorkout);
+		for (ExerciseWorkout excersiceWorkout : dto.getExercise()) {
+			ExerciseWorkoutEntity entity = (ExerciseWorkoutEntity) visit(new ExerciseWorkoutEntity(), excersiceWorkout);
 			
 			if (entity != null)
 				workoutEntity.getExcersices().add(entity);	
@@ -148,7 +149,6 @@ public class EntityVisitor implements BaseVisitor{
 		
 		personalProgramEntity.setId(dto.getId());
 		personalProgramEntity.setName(dto.getName());
-		personalProgramEntity.getRmData().addAll(dto.getRmData());
 		personalProgramEntity.setData(dto.getData());
 		personalProgramEntity.setStartDate(dto.getStartDate());
 		
@@ -160,6 +160,18 @@ public class EntityVisitor implements BaseVisitor{
 		
 		UserEntity trainerEntity = m_userManager.getEntity(dto.getTrainerId());
 		personalProgramEntity.setTrainer(trainerEntity);
+		
+		for (RMData rmData : dto.getRmData())
+			personalProgramEntity.getRmData().add(visit(rmData));
+		
 		return personalProgramEntity;
+	}
+
+	private com.trainer.entity.RMData visit(RMData rmData) {
+		com.trainer.entity.RMData result = new com.trainer.entity.RMData();
+		result.setData(rmData.getData());
+		result.setExcersiceWorkout(m_workoutManager.getExcersiceWorkoutEntity(rmData.getExcersiceWorkoutId()));
+		result.setWorkout(m_workoutManager.getEntity(rmData.getWorkoutId()));
+		return result;
 	}
 }
