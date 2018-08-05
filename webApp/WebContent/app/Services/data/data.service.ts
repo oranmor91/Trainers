@@ -42,7 +42,7 @@ profile:PROFILE;
   }
 
   getUserProgram(id:number) {
-    return this.http.get(`${this.baseURL}/admin/program/userProgram/${id}`)
+    return this.http.get(`${this.baseURL}/program`)
   }
 
   createNewWorkout(id:string, workout:WORKOUT) {
