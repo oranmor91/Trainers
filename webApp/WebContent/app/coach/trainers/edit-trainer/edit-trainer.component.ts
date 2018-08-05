@@ -69,7 +69,7 @@ export class EditTrainerComponent implements OnInit {
   }
 
   userProgram(){
-    this.router.navigate([`/trainer-program:pid${this.trainerId}`]);
+    this.router.navigate([`/trainer-program/${this.trainerId}`]);
   }
 
   checkIfExisted(p:PROGRAM_DEF){

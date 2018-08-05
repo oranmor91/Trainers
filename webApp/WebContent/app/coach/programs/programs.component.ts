@@ -40,6 +40,7 @@ export class ProgramsComponent implements OnInit {
 
    removeProgram(id:number){
     this.dataService.removeProgram(id).subscribe((data)=>{
+      this.programs = <PROGRAM_DEF[]> data;
     },(err)=>{
       console.log(err)
    },()=>{

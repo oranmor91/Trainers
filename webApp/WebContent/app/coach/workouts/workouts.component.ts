@@ -35,12 +35,13 @@ export class WorkoutsComponent implements OnInit {
   }
 
   editWorkout(id:number){
-      this.router.navigate([`/edit-workout:wId${id}`]);
+      this.router.navigate([`/edit-workout/${id}`]);
   }
 
   removeWorkout(id:number){
     this.dataService.removeWorkout(id)
    .subscribe((data)=>{
+     this.workouts = <WORKOUT[]> data;
    },(err)=>{
       console.log(err)
     },()=>{
