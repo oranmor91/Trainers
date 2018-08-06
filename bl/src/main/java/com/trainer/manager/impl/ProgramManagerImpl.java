@@ -160,7 +160,7 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 		ProgramData data = program.getData();
 		
 		for (WorkoutData workout : data.getWorkouts()) {
-			for (ExercisesData exercises : workout.getExercises()) {
+			for (ExercisesData exercises : workout.getExercise()) {
 				results.add(createRmData(workout.getId(), exercises.getExerciseWorkoutId(), exercises.getWeight()));
 			}
 		}
@@ -198,7 +198,7 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 				result.put(workout.getId(), excersiceById);
 			}
 			
-			for (ExercisesData excersice : workout.getExercises())
+			for (ExercisesData excersice : workout.getExercise())
 				excersiceById.put(excersice.getId(), excersice);
 		}
 
@@ -314,7 +314,7 @@ public class ProgramManagerImpl extends BaseManager implements ProgramManager{
 		result.setName(workout.getName());
 		
 		for (ExerciseWorkoutEntity exercise : workout.getExcersices())
-			result.getExercises().add(toExcersiceWorkoutData(exercise));
+			result.getExercise().add(toExcersiceWorkoutData(exercise));
 		
 		return result;
 	}

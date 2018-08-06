@@ -41,7 +41,7 @@ export class ExercisesComponent implements OnInit {
   removeExercise(id:number){
      this.dataService.removeExercise(id)
     .subscribe((data)=>{
-      this.exercises = <EXERCISE[]> data;
+      this.getExercises();
    },(err)=>{
       console.log(err)
     },()=>{

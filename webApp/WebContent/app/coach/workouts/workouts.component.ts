@@ -41,7 +41,7 @@ export class WorkoutsComponent implements OnInit {
   removeWorkout(id:number){
     this.dataService.removeWorkout(id)
    .subscribe((data)=>{
-     this.workouts = <WORKOUT[]> data;
+     this.getWorkouts()
    },(err)=>{
       console.log(err)
     },()=>{
