@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {GENDER} from "../../Model/gender.model";
 import {TRAINER} from "../../Model/trainer.model";
 import {DataService} from "../../Services/data/data.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-account',
@@ -15,15 +16,14 @@ export class CreateAccountComponent implements OnInit {
   showError:boolean;
   errorMsg:string;
 
-  constructor(private dataService:DataService) { }
-
+  constructor(private dataService:DataService, private router: Router) { }
   ngOnInit() {
   }
 
   register(){
     this.dataService.register(this.trainer)
       .subscribe((data)=>{
-        console.log(data)
+         this.router.navigate(['welcome']);
       },(err)=>{
         console.log(err)
         this.showError=true;

@@ -21,7 +21,7 @@ export class EditWorkoutComponent implements OnInit {
 */
 
     workoutId:string;
-    workout:WORKOUT;
+    workout:WORKOUT=new WORKOUT();
     exercises:EXERCISE[]=[];
     temp:EXERCISE[]=[];
     arr:number[];
@@ -74,7 +74,7 @@ export class EditWorkoutComponent implements OnInit {
       return false;
     }
     
-    this.arr = this.workout.exercises.map(ex => ex.id);
+    this.arr = this.workout.exercise.map(ex => ex.id);
 
     console.log(this.arr);
 
@@ -126,9 +126,9 @@ export class EditWorkoutComponent implements OnInit {
         console.log('done')
       });
 
-    this.workout.exercises = this.temp.slice();
+    this.workout.exercise = this.temp.slice();
     this.temp = [];
     console.log(this.temp);
-    console.log(this.workout.exercises);
+    console.log(this.workout.exercise);
   }
 }

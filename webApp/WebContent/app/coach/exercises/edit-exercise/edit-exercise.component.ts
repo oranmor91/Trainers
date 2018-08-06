@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EditExerciseComponent implements OnInit {
     exerciseId:string;
-    exercise:EXERCISE;
+    exercise:EXERCISE = new EXERCISE();
 
     constructor(private dataService:DataService,
               private router: Router,

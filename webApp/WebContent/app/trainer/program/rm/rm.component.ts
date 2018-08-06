@@ -23,7 +23,7 @@ export class RmComponent implements OnInit {
   ngOnInit() {
     this.getTrainerProgram();
     this.workoutName = this.program.data.workouts[0].name;
-    this.exercises = this.program.data.workouts[0].exercises;
+    this.exercises = this.program.data.workouts[0].exercise;
   }
 
   private getTrainerProgram() {
@@ -39,12 +39,12 @@ export class RmComponent implements OnInit {
 
   showExercise(w:WORKOUT) {
     this.workoutName = w.name;
-    this.exercises = w.exercises;
+    this.exercises = w.exercise;
   }
 
   checkIfAllFilled(){
     this.program.data.workouts.forEach((wo: WORKOUT) => {
-      wo.exercises.forEach((ex: EXERCISE) => {
+      wo.exercise.forEach((ex: EXERCISE) => {
         if(!ex.weight ||ex.weight === null){
           return false;
         }

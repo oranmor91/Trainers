@@ -72,7 +72,7 @@ export class CreateWorkoutComponent implements OnInit {
   }
 
   saveWorkout(){
-        this.workout.exercises = this.temp;
+        this.workout.exercise = this.temp;
 
         this.dataService.createNewWorkout(this.dataService.profile.id, this.workout)
       .subscribe((data)=>{

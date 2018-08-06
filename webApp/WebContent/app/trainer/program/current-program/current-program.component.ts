@@ -27,7 +27,7 @@ export class CurrentProgramComponent implements OnInit {
     this.getProgram();
     //this.getWorkouts();
     this.workoutName = this.program.data.workouts[0].name;
-    this.exercises = this.program.data.workouts[0].exercises;
+    this.exercises = this.program.data.workouts[0].exercise;
   }
 
   getProgram() {
@@ -55,6 +55,6 @@ export class CurrentProgramComponent implements OnInit {
 
   showExercise(w:WORKOUT) {
     this.workoutName = w.name;
-    this.exercises = w.exercises;
+    this.exercises = w.exercise;
   }
 }

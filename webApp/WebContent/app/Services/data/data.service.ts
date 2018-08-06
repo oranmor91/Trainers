@@ -34,7 +34,7 @@ profile:PROFILE;
   }
 
   getProgram(id:string) {
-    return this.http.post(`${this.baseURL}/admin/program`, id)
+    return this.http.get(`${this.baseURL}/admin/program/${id}`)
   }
 
   removeProgram(id:number) {

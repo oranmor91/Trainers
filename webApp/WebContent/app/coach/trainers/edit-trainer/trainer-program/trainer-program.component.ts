@@ -26,7 +26,7 @@ export class TrainerProgramComponent implements OnInit {
   program:PROGRAM={numOfExercises:1,id:1,name:'a',notes:'',description:'',workouts:this.workout};*/
 
   programId:string;
-  program:PROGRAM;
+  program:PROGRAM = new PROGRAM();
   exercises:EXERCISE[]=[];
   workout:WORKOUT[]=[];
   workoutName:string;
@@ -46,7 +46,7 @@ export class TrainerProgramComponent implements OnInit {
    this.getProgram();
    //this.getWorkouts();
    this.workoutName = this.program.data.workouts[0].name;
-   this.exercises = this.program.data.workouts[0].exercises;
+   this.exercises = this.program.data.workouts[0].exercise;
   }
 
   getProgram() {
@@ -74,6 +74,6 @@ export class TrainerProgramComponent implements OnInit {
 
   showExercise(w:WORKOUT) {
     this.workoutName = w.name;
-    this.exercises = w.exercises;
+    this.exercises = w.exercise;
   }
 }

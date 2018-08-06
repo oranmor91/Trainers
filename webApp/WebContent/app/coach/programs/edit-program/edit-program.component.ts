@@ -23,7 +23,7 @@ export class EditProgramComponent implements OnInit {
   program:PROGRAM={numOfExercises:1,id:1,name:'a',notes:'',description:'',workouts:this.workout2};*/
 
 programId:string;
-  program:PROGRAM_DEF;
+  program:PROGRAM_DEF = new PROGRAM_DEF();
   workout:WORKOUT[]=[];
   temp:number[]=[];
   arr2:number[]=[];
