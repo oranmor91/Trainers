@@ -12,7 +12,8 @@ public class WorkoutData implements Serializable{
 	
 	private Integer id;
 	
-	private List<ExercisesData> exercises = new ArrayList<ExercisesData>();
+	// ** change s
+	private List<ExercisesData> exercise = new ArrayList<ExercisesData>();
 
 	public String getName() {
 		return name;
@@ -30,12 +31,14 @@ public class WorkoutData implements Serializable{
 		this.id = id;
 	}
 
-	public List<ExercisesData> getExercises() {
-		return exercises;
+	// ** change s
+	public List<ExercisesData> getExercise() {
+		return exercise;
 	}
 
-	public void setExercises(List<ExercisesData> exercises) {
-		this.exercises = exercises;
+	// ** change s
+	public void setExercises(List<ExercisesData> exercise) {
+		this.exercise = exercise;
 	}
 	
 }

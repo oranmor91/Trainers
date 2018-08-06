@@ -10,6 +10,7 @@ public class ExercisesData implements Serializable{
 	
 	private Integer id;
 	
+	// ** change from exerciseWorkoutId
 	private Integer exerciseWorkoutId;
 	
 	private Integer numOfSets; 
