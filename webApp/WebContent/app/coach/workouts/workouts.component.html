@@ -35,4 +35,6 @@
 	</div>
 
 <div *ngIf="workouts.length==0"><font color="red"> no workouts available </font></div>
+<div *ngIf="showError == true"><font color="red"> Server error:</font></div>
+<div *ngIf="showError == true"><font color="red"> This workout is linked to a program and cannot be removed </font></div>
 </div> <!-- /container -->

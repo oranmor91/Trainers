@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./exercises.component.css']
 })
 export class ExercisesComponent implements OnInit {
+  showError: boolean;
 
   exercises:EXERCISE[]=[];
 
@@ -42,8 +43,9 @@ export class ExercisesComponent implements OnInit {
      this.dataService.removeExercise(id)
     .subscribe((data)=>{
       this.getExercises();
+       this.showError=false;
    },(err)=>{
-      console.log(err)
+      this.showError=true;
     },()=>{
       console.log('done')
     })

@@ -12,8 +12,10 @@ import {RM_DATA} from "../../../Model/rmData.model";
   styleUrls: ['./rm.component.css']
 })
 export class RmComponent implements OnInit {
-  program:PROGRAM;
-  exercises:EXERCISE[]=[];
+  fin:boolean;
+  showError: boolean = true;
+  program: PROGRAM;
+  exercises:EXERCISE[];
   private workoutName: string;
 
   constructor(private dataService:DataService,
@@ -42,15 +44,23 @@ export class RmComponent implements OnInit {
     this.exercises = w.exercise;
   }
 
-  checkIfAllFilled(){
+  checkIfAllFilled(): boolean {
+    this.fin = true;
+    
     this.program.data.workouts.forEach((wo: WORKOUT) => {
       wo.exercise.forEach((ex: EXERCISE) => {
-        if(!ex.weight ||ex.weight === null){
-          return false;
+        if(ex.weight === null){
+          this.fin = false;
         }
       });
     });
-    return true;
+    
+    if(this.fin) {
+      this.showError = false;
+      return true;
+    } else {
+      return false;
+    }
   }
 
   saveRm(){

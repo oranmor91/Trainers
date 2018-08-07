@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./trainers.component.css']
 })
 export class TrainersComponent implements OnInit {
+  errorMsg: any;
+  showError: boolean;
 
   trainers:TRAINER[]=[];
 
@@ -41,8 +43,10 @@ export class TrainersComponent implements OnInit {
    removeTrainer(id:number){
     this.dataService.removeTrainer(id)
    .subscribe((data)=>{
+     this.getTrainers();
   },(err)=>{
-     console.log(err)
+      this.showError=true;
+      this.errorMsg = err.message;
    },()=>{
      console.log('done')
    })

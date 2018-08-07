@@ -37,6 +37,7 @@
 		</tbody>
           </table>
           <button [disabled]="!checkIfAllFilled()" (click)="saveRm()" type="submit" class="btn btn-primary btn-block changeButton">Save RM</button>
+          <div *ngIf="showError == true"><font color="red"> In order to continue, please insert all RM weights </font></div>
           <div *ngIf="program.data.workouts.length==0"> no workouts available </div>
         </div> <!-- /container -->
       </div>

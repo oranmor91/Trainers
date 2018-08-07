@@ -15,6 +15,7 @@ export class CreateAccountComponent implements OnInit {
  public gender : any = TRAINER;
   showError:boolean;
   errorMsg:string;
+  successMsg:boolean;
 
   constructor(private dataService:DataService, private router: Router) { }
   ngOnInit() {
@@ -23,7 +24,7 @@ export class CreateAccountComponent implements OnInit {
   register(){
     this.dataService.register(this.trainer)
       .subscribe((data)=>{
-         this.router.navigate(['welcome']);
+         this.successMsg = true;
       },(err)=>{
         console.log(err)
         this.showError=true;

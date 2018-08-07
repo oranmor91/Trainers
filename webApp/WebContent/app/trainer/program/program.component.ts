@@ -9,7 +9,8 @@ import {PROGRAM} from "../../Model/program.model";
   styleUrls: ['./program.component.css']
 })
 export class ProgramComponent implements OnInit {
-  private program:PROGRAM;
+  showError: boolean;
+  private program: PROGRAM;
 
   constructor(private dataService:DataService,
               private router: Router) {
@@ -23,15 +24,19 @@ export class ProgramComponent implements OnInit {
     this.dataService.getProgramForUser()
       .subscribe((data)=> {
         if (data != null) {
-        this.program = <PROGRAM> data;
-        if(this.program.rmFilled === false){
-          this.router.navigate(['rm']);
+          this.program = <PROGRAM> data;
+        
+          if(this.program.rmFilled === false){
+            this.router.navigate(['rm']);
+          } else {
+            this.router.navigate(['current-program']);
+          }
         } else {
-          this.router.navigate(['current-program']);
+          this.showError = true;
         }
-      }
+      
       },(err)=>{
-        console.log(err)
+        this.showError = true;
       },()=>{
         console.log('done')
       })

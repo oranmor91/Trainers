@@ -35,4 +35,6 @@
 	</div>
 
 <div *ngIf="programs.length==0"><font color="red"> no programs available </font> </div>
+<div *ngIf="showError == true"><font color="red"> Server error:</font></div>
+<div *ngIf="showError == true"><font color="red"> {{errorMsg}} </font></div>
 </div> <!-- /container -->

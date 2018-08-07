@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./programs.component.css']
 })
 export class ProgramsComponent implements OnInit {
+  errorMsg: string;
+  showError: boolean;
 
   programs:PROGRAM_DEF[]=[];
 
@@ -41,8 +43,10 @@ export class ProgramsComponent implements OnInit {
    removeProgram(id:number){
     this.dataService.removeProgram(id).subscribe((data)=>{
       this.getPrograms();
+      this.showError=false;
     },(err)=>{
-      console.log(err)
+      this.showError=true;
+      this.errorMsg = err.message;
    },()=>{
       console.log('done')
     })
