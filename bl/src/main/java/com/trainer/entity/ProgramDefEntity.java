@@ -3,7 +3,6 @@ package com.trainer.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +28,7 @@ public class ProgramDefEntity extends BaseEntity{
 	@Column
 	private String notes;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "workout_prog_def", joinColumns = { @JoinColumn(name = "prog_def_id") }, inverseJoinColumns = { @JoinColumn(name = "workouts_id") })
 	private Set<WorkoutEntity> workouts = new HashSet<WorkoutEntity>();
 	
