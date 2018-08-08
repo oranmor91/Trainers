@@ -13,8 +13,8 @@ import {PROGRAM_DEF} from "../../../Model/programDef.model";
 export class EditTrainerComponent implements OnInit {
 
   trainerId:string;
-  trainer:TRAINER;
-  program:PROGRAM;
+  trainer:TRAINER = new TRAINER();
+  program:PROGRAM = new PROGRAM();
   programs:PROGRAM_DEF[];
   arr:number[];
   chosenProgram:number;

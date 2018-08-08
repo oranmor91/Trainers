@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  trainer:TRAINER;
+  trainer:TRAINER = new TRAINER();
   
     constructor(private dataService:DataService,
               private router: Router,
@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.getTrainerProfile();
   }
-
+ 
   private getTrainerProfile() {
     this.dataService.getProfile()
       .subscribe((data)=>{
